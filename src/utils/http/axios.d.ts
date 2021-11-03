@@ -7,28 +7,28 @@ export type RequestMethods = Extract<
 	'get' | 'post' | 'put' | 'delete' | 'patch' | 'option' | 'head'
 >
 
-export interface EnclosureHttpRequestConfig extends AxiosRequestConfig {
-	requestCb?: (request: EnclosureHttpRequestConfig) => void // 请求发送之前
-	responseCb?: (response: EnclosureHttpResponse) => void // 相应返回之前
+export interface HttpRequestConfig extends AxiosRequestConfig {
+	requestCb?: (request: HttpRequestConfig) => void // 请求发送之前
+	responseCb?: (response: HttpResponse) => void // 相应返回之前
 }
 
-export interface EnclosureHttpResponse extends AxiosResponse {
-	config: EnclosureHttpRequestConfig
+export interface HttpResponse extends AxiosResponse {
+	config: HttpRequestConfig
 }
 
-export interface EnclosureHttpError extends AxiosError {
+export interface HttpError extends AxiosError {
 	isCancelRequest?: boolean
 }
 
-export default class EnclosureHttp {
+export default class Http {
 	cancelTokenList: Array<cancelTokenType>
 	clearCancelTokenList(): void
 	request<T>(
 		method: RequestMethods,
 		url: string,
 		param?: AxiosRequestConfig,
-		axiosConfig?: EnclosureHttpRequestConfig
+		axiosConfig?: HttpRequestConfig
 	): Promise<T>
-	post<T>(url: string, params?: T, config?: EnclosureHttpRequestConfig): Promise<T>
-	get<T>(url: string, params?: T, config?: EnclosureHttpRequestConfig): Promise<T>
+	post<T>(url: string, params?: T, config?: HttpRequestConfig): Promise<T>
+	get<T>(url: string, params?: T, config?: HttpRequestConfig): Promise<T>
 }

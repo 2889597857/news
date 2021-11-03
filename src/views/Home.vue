@@ -3,10 +3,8 @@ import { onMounted, ref } from 'vue-demi';
 import { a } from '@/api/a';
 let a1 = ref('1121412asfas3')
 import { useAppStoreHook } from '@/store/modules/app';
-a().then(res => console.log(res))
-
-const app = useAppStoreHook()
 a()
+const app = useAppStoreHook()
 
 </script>
 <template lang="pug">

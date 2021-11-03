@@ -5,8 +5,5 @@ const store = createPinia()
 export function setupStore(app: App<Element>) {
 	app.use(store)
 }
-window.onload = () => {
-	console.log(123)
-}
 
 export { store }

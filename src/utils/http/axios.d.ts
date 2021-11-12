@@ -1,6 +1,9 @@
 import { AxiosRequestConfig, Canceler, AxiosResponse, Method, AxiosError } from 'axios'
 
-export type cancelTokenType = { cancelKey: string; cancelExecutor: Canceler }
+export type cancelTokenType = {
+	cancelKey: string
+	cancelExecutor: Canceler
+}
 
 export type RequestMethods = Extract<
 	Method,

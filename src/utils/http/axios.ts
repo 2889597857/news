@@ -1,4 +1,4 @@
-import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic, Method } from 'axios'
+import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios'
 import { defaultConfig } from './axios.config'
 import {
 	RequestMethods,
@@ -14,7 +14,7 @@ class HttpRequest {
 		this.interceptorsResponse()
 	}
 	// axios 实例
-	private static axiosInstance: AxiosInstance = Axios.create()
+	private axiosInstance: AxiosInstance = Axios.create()
 	// 取消请求
 	private CancelToken: CancelTokenStatic = Axios.CancelToken
 	// 请求列表
@@ -60,7 +60,10 @@ class HttpRequest {
 	private filterTokenList(cancelKey: string): Array<cancelTokenType> {
 		return this.sourceTokenList.filter(cancelToken => cancelToken.cancelKey !== cancelKey)
 	}
-
+	// 清空请求列表
+	public clearCancelTokenList(): void {
+		this.sourceTokenList.length = 0
+	}
 	//  全局拦截器
 	// 请求拦截器
 	private interceptorsRequest(): void {
@@ -93,7 +96,7 @@ class HttpRequest {
 	// 响应拦截器
 	private interceptorsResponse() {
 		this.axiosInstance.interceptors.response.use(
-			response => {
+			(response: HttpResponse) => {
 				NProgress.done()
 				// 生成 cancelKey
 				const cancelKey = this.genUniqueKey(response.config)
@@ -104,6 +107,8 @@ class HttpRequest {
 					this.responseCb(response)
 					this.responseCb = undefined
 					return response.data
+				}
+				if (response.status) {
 				}
 
 				return response.data
@@ -128,10 +133,7 @@ class HttpRequest {
 			}
 		)
 	}
-	// 清空请求列表
-	public clearCancelTokenList(): void {
-		this.sourceTokenList.length = 0
-	}
+
 	/**
 	 *
 	 * @param url 请求地址
@@ -140,13 +142,13 @@ class HttpRequest {
 	 * @param interceptors 自定义拦截器
 	 * @returns 请求结果
 	 */
-	public request(
+	public request<T>(
 		url: string,
 		method: RequestMethods,
 		date?: AxiosRequestConfig,
 		interceptors?: HttpRequestConfig
-	) {
-		const config: HttpRequestConfig = Object.assign(defaultConfig, { url, method, date })
+	): Promise<T> {
+		const config = Object.assign(defaultConfig, { url, method, date })
 		if (interceptors?.requestCb) {
 			this.requestCb = interceptors.requestCb
 		}
@@ -154,9 +156,9 @@ class HttpRequest {
 			this.responseCb = interceptors.responseCb
 		}
 		return new Promise((resolve, reject) => {
-			HttpRequest.axiosInstance
+			this.axiosInstance
 				.request(config)
-				.then((response: unknown) => {
+				.then((response: any) => {
 					resolve(response)
 				})
 				.catch((error: any) => {

@@ -5,6 +5,7 @@ declare module '*.vue' {
 }
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
 	readonly VITE_APP_TITLE: string
+	readonly VITE_BASE_CONFIG: string
 	// 更多环境变量...
 }
 

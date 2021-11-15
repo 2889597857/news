@@ -14,6 +14,9 @@ export interface HttpRequestConfig extends AxiosRequestConfig {
 	requestCb?: (request: HttpRequestConfig) => void // 请求发送之前
 	responseCb?: (response: HttpResponse) => void // 相应返回之前
 }
+export interface HttpResponse extends AxiosResponse {
+	config: HttpRequestConfig
+}
 
 export interface HttpResponse extends AxiosResponse {
 	config: HttpRequestConfig

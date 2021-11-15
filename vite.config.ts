@@ -6,6 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // 	console.log(loadEnv(mode, process.cwd()))
 // 	return defineConfig({})
 // })
+// console.log(new URL('./src'))
 
 export default defineConfig({
 	base: './',

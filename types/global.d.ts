@@ -94,15 +94,6 @@ declare global {
 		Grey?: boolean
 		Weak?: boolean
 		HideTabs?: boolean
-		MapConfigure?: {
-			amapKey?: string
-			baiduKey?: string
-			options: {
-				resizeEnable?: boolean
-				center?: number[]
-				zoom?: number
-			}
-		}
 	}
 
 	function parseInt(s: string | number, radix?: number): number

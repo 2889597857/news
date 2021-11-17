@@ -17,6 +17,9 @@ const routes: Array<RouteRecordRaw> = [
 				path: '/b/index',
 				name: 'PageB2',
 				component: () => import('@/components/b/b2.vue'),
+				meta: {
+					keepAlive: true,
+				},
 			},
 		],
 	},

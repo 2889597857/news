@@ -6,7 +6,7 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		"isolatedModules": true,
-		"strict": true,
+		"strict": false,
 		"jsx": "preserve",
 		"sourceMap": true,
 		"resolveJsonModule": true,
@@ -18,5 +18,6 @@
 		"skipLibCheck": true,
 		"types": ["vite/client"]
 	},
-	"include": ["vite.config.*", "env.d.ts", "src/**/*", "src/**/*.vue", "types"]
+
+	"include": ["vite.config.*", "env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.tsx", "types"]
 }

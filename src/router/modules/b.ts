@@ -1,18 +1,17 @@
-import { RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
 const routes = {
 	path: '/b',
-	name: 'PageB1',
+	name: 'PageB',
 	component: Layout,
-	redirect: '/b/index',
+	redirect: '/b/b1',
 	meta: {
 		keepAlive: true,
 		showLink: true,
 	},
 	children: [
 		{
-			path: '/b/index',
+			path: '/b/b1',
 			name: 'PageB1',
 			component: () => import('@/components/b/index.vue'),
 			meta: {
@@ -21,7 +20,7 @@ const routes = {
 			},
 		},
 		{
-			path: '/b/index',
+			path: '/b/b2',
 			name: 'PageB2',
 			component: () => import('@/components/b/b2.vue'),
 			meta: {

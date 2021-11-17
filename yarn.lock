@@ -1954,6 +1954,11 @@ minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
+mitt@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.nlark.com/mitt/download/mitt-3.0.0.tgz?cache=0&sync_timestamp=1624481394885&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmitt%2Fdownload%2Fmitt-3.0.0.tgz#69ef9bd5c80ff6f57473e8d89326d01c414be0bd"
+  integrity sha1-ae+b1cgP9vV0c+jYkybQHEFL4L0=
+
 mkdirp@^1.0.3:
   version "1.0.4"
   resolved "https://registry.npmmirror.com/mkdirp/download/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
@@ -2463,6 +2468,11 @@ resolve@^1.10.0, resolve@^1.15.1, resolve@^1.20.0:
   dependencies:
     is-core-module "^2.2.0"
     path-parse "^1.0.6"
+
+responsive-storage@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.npmmirror.com/responsive-storage/download/responsive-storage-1.0.11.tgz#35d0c7825a0a3daed6c8ee0228a173f8aadbedd4"
+  integrity sha1-NdDHgloKPa7WyO4CKKFz+Krb7dQ=
 
 rimraf@^3.0.2:
   version "3.0.2"

@@ -1,6 +1,10 @@
-import { createRouter, createWebHistory, Router } from 'vue-router'
-import { routes } from './routes'
+import { createRouter, createWebHistory, Router, RouteComponent } from 'vue-router'
+import { routes } from './modules/routes'
 import NProgress from '@/utils/progress'
+import a from './modules/a'
+import b from './modules/b'
+
+const constantRoutes: Array<RouteComponent> = [a, b]
 
 const router: Router = createRouter({
 	history: createWebHistory(),
@@ -9,7 +13,7 @@ const router: Router = createRouter({
 
 router.beforeEach((to, from, next) => {
 	NProgress.start()
-	
+
 	// ...
 	// 返回 false 以取消导航
 	// return false

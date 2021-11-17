@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, Router, RouteComponent } from 'vue-router'
-import { routes } from './modules/routes'
 import NProgress from '@/utils/progress'
 import Layout from '@/layout/index.vue'
 import a from './modules/a'
@@ -16,7 +15,7 @@ export const filterTree = (data: any[]) => {
 }
 function getAsyncRoutes(date: object): Promise<any> {
 	return new Promise((resolve, reject) => {
-		resolve({ info: null })
+		resolve({ info: [] })
 	})
 }
 // 按照路由中meta下的rank等级升序来排序路由
@@ -49,7 +48,6 @@ export const addAsyncRoutes = (arrRoutes: Array<RouteComponent>) => {
 export function initRouter(name: string) {
 	return new Promise(resolve => {
 		getAsyncRoutes({ name }).then(({ info }) => {
-			console.log(info)
 			if (info.length === 0) {
 				usePermissionStoreHook().changeSetting(info)
 			} else {
@@ -79,7 +77,7 @@ const router: Router = createRouter({
 	history: createWebHistory(),
 	routes: filterTree(ascending(constantRoutes)).concat(...remaining),
 })
-
+initRouter('asd')
 router.beforeEach((to, from, next) => {
 	NProgress.start()
 

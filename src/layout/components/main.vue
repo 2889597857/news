@@ -1,11 +1,12 @@
 <template>
-    <router-view>
-        <!-- <transition>
+    <router-view />
+    <!-- <router-view>
+        <transition>
             <keep-alive v-if="keepAlive">
                 <component :is></component>
             </keep-alive>
-        </transition>-->
-    </router-view>
+        </transition>
+    </router-view>-->
 </template>
 
 <script lang="ts" setup>

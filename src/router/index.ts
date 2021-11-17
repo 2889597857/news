@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, Router, RouteComponent } from 'vue-router'
 import { routes } from './modules/routes'
 import NProgress from '@/utils/progress'
-import Layout from '@/layout'
+import Layout from '@/layout/index.vue'
 import a from './modules/a'
 import b from './modules/b'
 import remaining from './modules/remaining'
@@ -14,14 +14,21 @@ export const filterTree = (data: any[]) => {
 	newTree.forEach(v => v.children && (v.children = filterTree(v.children)))
 	return newTree
 }
+function getAsyncRoutes(date: object): Promise<any> {
+	return new Promise((resolve, reject) => {
+		resolve({ info: null })
+	})
+}
 // 按照路由中meta下的rank等级升序来排序路由
 export const ascending = (arr: any) => {
 	return arr.sort((a: any, b: any) => {
 		return a?.meta?.rank - b?.meta?.rank
 	})
 }
+
 // 静态路由
 const constantRoutes: Array<RouteComponent> = [a, b]
+
 export const constantRoutesArr = ascending(constantRoutes).concat(...remaining)
 // 过滤后端传来的动态路由 重新生成规范路由
 export const addAsyncRoutes = (arrRoutes: Array<RouteComponent>) => {
@@ -68,10 +75,9 @@ export function initRouter(name: string) {
 		})
 	})
 }
-
 const router: Router = createRouter({
 	history: createWebHistory(),
-	routes,
+	routes: filterTree(ascending(constantRoutes)).concat(...remaining),
 })
 
 router.beforeEach((to, from, next) => {
@@ -88,9 +94,3 @@ router.afterEach(() => {
 })
 
 export default router
-
-function getAsyncRoutes(date: object): Promise<any> {
-	return new Promise((resolve, reject) => {
-		resolve({ info: null })
-	})
-}

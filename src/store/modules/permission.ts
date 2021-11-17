@@ -37,7 +37,6 @@ export const usePermissionStore = defineStore({
 			await this.asyncActionRoutes(router)
 		},
 	},
-	getters: {},
 })
 
 export const usePermissionStoreHook = () => usePermissionStore(store)

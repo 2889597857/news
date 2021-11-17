@@ -1,10 +1,10 @@
 <template>
     <router-view>
-        <transition>
+        <!-- <transition>
             <keep-alive v-if="keepAlive">
                 <component :is></component>
             </keep-alive>
-        </transition>
+        </transition>-->
     </router-view>
 </template>
 

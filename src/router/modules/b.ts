@@ -4,26 +4,20 @@ const routes = {
 	path: '/b',
 	name: 'PageB',
 	component: Layout,
-	redirect: '/b/b1',
+	redirect: '/b/index',
 	meta: {
+		title: 'message.b',
 		keepAlive: true,
 		showLink: true,
+		rank: 0,
 	},
 	children: [
 		{
-			path: '/b/b1',
-			name: 'PageB1',
+			path: '/b/index',
+			name: 'PageB',
 			component: () => import('@/components/b/index.vue'),
 			meta: {
-				keepAlive: true,
-				showLink: true,
-			},
-		},
-		{
-			path: '/b/b2',
-			name: 'PageB2',
-			component: () => import('@/components/b/b2.vue'),
-			meta: {
+				title: 'message.b-1',
 				keepAlive: true,
 				showLink: true,
 			},

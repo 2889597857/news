@@ -10,11 +10,11 @@ export const useAppStore = defineStore({
 	state: (): IApp => ({
 		name: '张山',
 		age: 123,
-		score: 59,
+		score: 0,
 	}),
 	actions: {
-		changeA(value: number) {
-			this.score = value
+		changeA() {
+			this.score++
 		},
 	},
 	getters: {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import four from "/@/assets/404.png";
-import four_cloud from "/@/assets/404_cloud.png";
+import four from "@/assets/404.png";
+import four_cloud from "@/assets/404_cloud.png";
 
 const message = computed(() => {
   return "The webmaster said that you can not enter this page...";
@@ -9,24 +9,11 @@ const message = computed(() => {
 </script>
 
 <template>
-  <div class="wscn-http404-container">
-    <div class="wscn-http404">
-      <div class="pic-404">
-        <img class="pic-404__parent" :src="four" alt="404" />
-        <img class="pic-404__child left" :src="four_cloud" alt="404" />
-        <img class="pic-404__child mid" :src="four_cloud" alt="404" />
-        <img class="pic-404__child right" :src="four_cloud" alt="404" />
-      </div>
-      <div class="bullshit">
-        <div class="bullshit__oops">Pure Admin</div>
-        <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">
-          Please check that the URL you entered is correct, or click the button
-          below to return to the homepage.
-        </div>
-        <a href="" class="bullshit__return-home">Back to home</a>
-      </div>
-    </div>
+  <div class="pic-404">
+    <img class="pic-404__parent" :src="four" alt="404" />
+    <img class="pic-404__child left" :src="four_cloud" alt="404" />
+    <img class="pic-404__child mid" :src="four_cloud" alt="404" />
+    <img class="pic-404__child right" :src="four_cloud" alt="404" />
   </div>
 </template>
 

@@ -1,12 +1,20 @@
-import { createRouter, createWebHistory, Router, RouteComponent } from 'vue-router'
+import {
+	createRouter,
+	createWebHistory,
+	Router,
+	RouteComponent,
+	RouteRecordNormalized,
+} from 'vue-router'
 import NProgress from '@/utils/progress'
 import Layout from '@/layout/index.vue'
 import a from './modules/a'
 import b from './modules/b'
+import c from './modules/c'
 import remaining from './modules/remaining'
 import { usePermissionStoreHook } from '@/store/modules/permission'
 
 const modulesRoutes = import.meta.glob('/src/views/*/*/*.vue')
+
 // 过滤meta中showLink为false的路由
 export const filterTree = (data: any[]) => {
 	const newTree = data.filter(v => v.meta.showLink)
@@ -44,7 +52,33 @@ export const addAsyncRoutes = (arrRoutes: Array<RouteComponent>) => {
 	})
 	return arrRoutes
 }
+// 处理缓存路由（添加、删除、刷新）
+export const handleAliveRoute = (matched: RouteRecordNormalized[], mode?: string) => {
+	switch (mode) {
+		case 'add':
+			matched.forEach(v => {
+				usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name })
+			})
+			break
+		case 'delete':
+			usePermissionStoreHook().cacheOperate({
+				mode: 'delete',
+				name: matched[matched.length - 1].name,
+			})
+			break
+		default:
+			usePermissionStoreHook().cacheOperate({
+				mode: 'delete',
+				name: matched[matched.length - 1].name,
+			})
 
+			setTimeout(() => {
+				matched.forEach(v => {
+					usePermissionStoreHook().cacheOperate({ mode: 'add', name: v.name })
+				})
+			}, 100)
+	}
+}
 export function initRouter(name: string) {
 	return new Promise(resolve => {
 		getAsyncRoutes({ name }).then(({ info }) => {
@@ -80,10 +114,15 @@ const router: Router = createRouter({
 initRouter('asd')
 router.beforeEach((to, from, next) => {
 	NProgress.start()
-
-	// ...
-	// 返回 false 以取消导航
-	// return false
+	if (to.meta?.keepAlive) {
+		const newMatched = to.matched
+		console.log(newMatched)
+		handleAliveRoute(newMatched, 'add')
+		// 页面整体刷新和点击标签页刷新
+		if (from.name === undefined || from.name === 'redirect') {
+			handleAliveRoute(newMatched)
+		}
+	}
 	next()
 })
 

@@ -1,35 +1,33 @@
 import Layout from '@/layout/index.vue'
 
 const routes = {
-	path: '/a',
-	name: 'PageA',
+	path: '/error',
+	name: 'error',
 	component: Layout,
-	redirect: '/a/index',
+	redirect: '/error/401',
 	meta: {
-		title: 'message.a',
 		keepAlive: false,
-		showLink: true,
-		rank: 23,
+		showLink: false,
 	},
 	children: [
 		{
-			path: '/a/index',
-			name: 'PageA1',
-			component: () => import('@/components/a/pageA1.vue'),
+			path: '/error/401',
+			name: '401',
+			component: () => import('@/components/a/PageA.vue'),
 			meta: {
 				title: 'message.a1',
-				keepAlive: false,
-				showLink: true,
+				keepAlive: true,
+				showLink: false,
 			},
 		},
 		{
 			path: '/a/a-2',
-			name: 'PageA2',
+			name: '404',
 			component: () => import('@/components/a/PageA2.vue'),
 			meta: {
 				title: 'message.a2',
 				keepAlive: true,
-				showLink: true,
+				showLink: false,
 			},
 		},
 	],

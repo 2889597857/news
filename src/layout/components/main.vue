@@ -1,15 +1,16 @@
 <template>
-    <router-view />
-    <!-- <router-view>
-        <transition>
-            <keep-alive v-if="keepAlive">
-                <component :is></component>
+    <router-view>
+        <template #default="{ Component, route }">
+            <keep-alive v-if="keepAlive" :include="usePermissionStoreHook().cachePageList">
+                <component :is="Component"></component>
             </keep-alive>
-        </transition>
-    </router-view>-->
+            <!-- <component v-else :is="Component"></component> -->
+        </template>
+    </router-view>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, Ref } from 'vue';
-const keepAlive: Ref<Boolean> = ref(false)
+import { usePermissionStoreHook } from '@/store/modules/permission';
+import { ref, Ref } from 'vue';
+const keepAlive: Ref<Boolean> = ref(true)
 </script>

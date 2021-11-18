@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia'
 import { store } from '@/store'
-import { ascending, filterTree, constantRoutesArr } from '@/router/index'
-import { cacheType } from './type'
+import { ascending, filterTree } from '@/utils/route'
+import { routes } from '@/router/routes'
+import { cacheType } from '../type'
 
-export const usePermissionStore = defineStore({
+const permissionStore = defineStore({
 	id: 'permission',
 	state: () => ({
 		// 静态路由
-		constantRoutes: constantRoutesArr,
+		constantRoutes: routes,
 		// showLink 为 true 的路由
 		wholeRoutes: [],
 		// 按钮权限
@@ -58,4 +59,4 @@ export const usePermissionStore = defineStore({
 	},
 })
 
-export const usePermissionStoreHook = () => usePermissionStore(store)
+export const usePermissionStore = () => permissionStore(store)

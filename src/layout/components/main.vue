@@ -1,7 +1,7 @@
 <template>
     <router-view>
         <template #default="{ Component, route }">
-            <keep-alive v-if="keepAlive" :include="usePermissionStoreHook().cachePageList">
+            <keep-alive v-if="keepAlive" :include="usePermissionStore().cachePageList">
                 <component :is="Component"></component>
             </keep-alive>
             <!-- <component v-else :is="Component"></component> -->
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { usePermissionStoreHook } from '@/store/modules/permission';
+import { usePermissionStore } from '@/store/modules/permission';
 import { ref, Ref } from 'vue';
 const keepAlive: Ref<Boolean> = ref(true)
 </script>

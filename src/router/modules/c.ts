@@ -13,7 +13,7 @@ const routes = {
 	},
 	children: [
 		{
-			path: 'https://github.com/xiaoxian521/vue-pure-admin',
+			path: 'https://www.baidu.com',
 			meta: {
 				title: 'message.externalLink',
 				showLink: true,

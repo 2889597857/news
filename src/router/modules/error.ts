@@ -1,6 +1,6 @@
 import Layout from '@/layout/index.vue'
 
-const routes = {
+const errorRouter = {
 	path: '/error',
 	name: 'error',
 	component: Layout,
@@ -13,19 +13,19 @@ const routes = {
 		{
 			path: '/error/401',
 			name: '401',
-			component: () => import('@/components/a/PageA.vue'),
+			component: () => import('@/views/error/401.vue'),
 			meta: {
-				title: 'message.a1',
+				title: '401',
 				keepAlive: true,
 				showLink: false,
 			},
 		},
 		{
-			path: '/a/a-2',
+			path: '/error/404',
 			name: '404',
-			component: () => import('@/components/a/PageA2.vue'),
+			component: () => import('@/views/error/404.vue'),
 			meta: {
-				title: 'message.a2',
+				title: '404',
 				keepAlive: true,
 				showLink: false,
 			},
@@ -33,4 +33,4 @@ const routes = {
 	],
 }
 
-export default routes
+export default errorRouter

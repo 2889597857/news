@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useAppStore } from '@/store/modules/app';
 import path from 'path';
 import { PropType, ref, computed } from 'vue';
 import { childrenType } from '../../layout';

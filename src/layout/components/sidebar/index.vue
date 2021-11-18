@@ -1,6 +1,7 @@
 <template>
     <el-scrollbar>
         <!-- <logo /> -->
+        <Taba />
         <el-menu :default-active="activeMenu" @select="menuSelect" router>
             <SidebarItem
                 v-for="route in useRouer.wholeRoutes"
@@ -19,10 +20,12 @@ export default {
 <script setup lang='ts'>
 import { useRoute, useRouter } from "vue-router";
 import Logo from './logo.vue';
+import Taba from '../tab/index.vue';
 import SidebarItem from './sidebarItem.vue';
 import { usePermissionStore } from '@/store/modules/permission';
 import { computed } from 'vue-demi';
 import { emitter } from "@/utils/mitt";
+import { increaseIndexes } from "@/utils/route";
 const useRouer = usePermissionStore()
 const route = useRoute()
 const router = useRouter().options.routes;
@@ -38,13 +41,12 @@ const activeMenu = computed(() => {
 const menuSelect = (indexPath: string): void => {
     let parentPath = "";
     let parentPathIndex = indexPath.lastIndexOf("/");
-    console.log(parentPathIndex);
-
     if (parentPathIndex > 0) {
         parentPath = indexPath.slice(0, parentPathIndex);
     }
-    console.log(parentPath);
-    // 找到当前路由的信息
+    /**
+     * 找到当前路由的信息
+     */
     function findCurrentRoute(routes) {
         return routes.map(item => {
             if (item.path === indexPath) {
@@ -58,7 +60,7 @@ const menuSelect = (indexPath: string): void => {
             }
         });
     }
-    findCurrentRoute(router);
+    findCurrentRoute(increaseIndexes(router));
 };
 </script>
 

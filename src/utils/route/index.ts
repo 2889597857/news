@@ -18,3 +18,13 @@ export const filterTree = (data: any[]) => {
 	newTree.forEach(v => v.children && (v.children = filterTree(v.children)))
 	return newTree
 }
+export const increaseIndexes = val => {
+	return Object.keys(val)
+		.map(v => {
+			return {
+				...val[v],
+				key: v,
+			}
+		})
+		.filter(v => v.meta && v.meta.showLink)
+}

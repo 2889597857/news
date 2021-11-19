@@ -25,7 +25,7 @@ export type RouteConfigs = {
 }
 
 export type relativeStorageType = {
-	    : Array<RouteConfigs>
+	routesInStorage: Array<RouteConfigs>
 }
 
 export type tagsViewsType = {

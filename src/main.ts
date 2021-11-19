@@ -9,12 +9,15 @@ import { injectResponsiveStorage } from './utils/storage/responsive'
 
 const app = createApp(App)
 
-// 响应式 localStorage
-injectResponsiveStorage(app)
-// pinia 状态管理
-setupStore(app)
-// vue-router 路由
-await setupRouter(app)
-// ui 组件库
-app.use(ElementPlus)
-app.mount('#app')
+async function setupApp() {
+	// 响应式 localStorage
+	injectResponsiveStorage(app)
+	// pinia 状态管理
+	setupStore(app)
+	// vue-router 路由
+	await setupRouter(app)
+	// ui 组件库
+	app.use(ElementPlus)
+	app.mount('#app')
+}
+setupApp()

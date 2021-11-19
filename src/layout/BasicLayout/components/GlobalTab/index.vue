@@ -2,7 +2,7 @@
     <h5>tab</h5>
 </template>
 <script setup lang="ts">
-import { RouteConfigs } from '@/layout/layout';
+import { RouteConfigs } from '@/layout/BasicLayout/layout';
 import { emitter } from '@/utils/mitt';
 import { computed, ComputedRef } from 'vue';
 

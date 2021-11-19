@@ -1,7 +1,6 @@
-<template>
+   <template>
     <el-scrollbar>
-        <!-- <logo /> -->
-        <Taba />
+        <logo />
         <el-menu :default-active="activeMenu" @select="menuSelect" router>
             <SidebarItem
                 v-for="route in useRouer.wholeRoutes"
@@ -19,9 +18,8 @@ export default {
 </script>
 <script setup lang='ts'>
 import { useRoute, useRouter } from "vue-router";
-import Logo from './logo.vue';
-import Taba from '../tab/index.vue';
-import SidebarItem from './sidebarItem.vue';
+import Logo from '../common/logo.vue';
+import SidebarItem from './components/sidebarItem.vue';
 import { usePermissionStore } from '@/store/modules/permission';
 import { computed } from 'vue-demi';
 import { emitter } from "@/utils/mitt";

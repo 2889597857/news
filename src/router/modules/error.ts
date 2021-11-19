@@ -1,9 +1,9 @@
-import Layout from '@/layout/index.vue'
+import { BasicLayout } from '@/layout'
 
 const errorRouter = {
 	path: '/error',
 	name: 'error',
-	component: Layout,
+	component: BasicLayout,
 	redirect: '/error/401',
 	meta: {
 		keepAlive: false,

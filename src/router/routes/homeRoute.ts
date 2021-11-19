@@ -1,9 +1,9 @@
-import Layout from '@/layout/index.vue'
+import { BasicLayout } from '@/layout'
 
 const homeRouter = {
 	path: '/',
 	name: 'home',
-	component: Layout,
+	component: BasicLayout,
 	redirect: '/welcome',
 	meta: {
 		icon: 'HomeFilled',

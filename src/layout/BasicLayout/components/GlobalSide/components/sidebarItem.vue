@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import path from 'path';
 import { PropType, ref, computed } from 'vue';
-import { childrenType } from '../../layout';
+import { childrenType } from '../../../layout';
 
 const prop = defineProps({
     item: {

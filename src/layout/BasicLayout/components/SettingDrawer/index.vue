@@ -1,0 +1,1 @@
+../GlobalContent/index.vue

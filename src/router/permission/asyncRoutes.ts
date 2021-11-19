@@ -1,5 +1,5 @@
 import { RouteComponent, Router, RouteRecordNormalized } from 'vue-router'
-import Layout from '@/layout/index.vue'
+import { BasicLayout } from '@/layout'
 import { usePermissionStore } from '@/store'
 import { ascending } from '@/utils/route'
 
@@ -16,7 +16,7 @@ export const addAsyncRoutes = (arrRoutes: Array<RouteComponent>) => {
 	if (!arrRoutes || !arrRoutes.length) return
 	arrRoutes.forEach((v: any) => {
 		if (v.redirect) {
-			v.component = Layout
+			v.component = BasicLayout
 		} else {
 			v.component = modulesRoutes[`/src/views${v.path}/index.vue`]
 		}

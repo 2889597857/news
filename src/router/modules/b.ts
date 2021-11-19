@@ -1,9 +1,9 @@
-import Layout from '@/layout/index.vue'
+import { BasicLayout } from '@/layout'
 
 const routes = {
 	path: '/b',
 	name: 'PageB',
-	component: Layout,
+	component: BasicLayout,
 	redirect: '/b/index',
 	meta: {
 		title: 'message.b',

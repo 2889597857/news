@@ -2,14 +2,9 @@ import { RouteComponent, Router, RouteRecordNormalized } from 'vue-router'
 import { BasicLayout } from '@/layout'
 import { usePermissionStore } from '@/store'
 import { ascending } from '@/utils/route'
+import { getAsyncRoutes } from '@/api/router'
 
 const modulesRoutes = import.meta.glob('/src/views/*/*.vue')
-
-function getAsyncRoutes(date: object): Promise<any> {
-	return new Promise((resolve, reject) => {
-		resolve({ info: [] })
-	})
-}
 
 // 过滤后端传来的动态路由 重新生成规范路由
 export const addAsyncRoutes = (arrRoutes: Array<RouteComponent>) => {
@@ -53,6 +48,13 @@ export const handleAliveRoute = (matched: RouteRecordNormalized[], mode?: string
 			}, 100)
 	}
 }
+// 初始化路由
+/**
+ *
+ * @param name 用户名称 不同的用户有不同的权限
+ * @param router 路由实例
+ * @returns 路由列表 静态路由 + 动态路由
+ */
 export function initRouter(name: string, router: Router) {
 	return new Promise(resolve => {
 		// 从后端获取用户路由

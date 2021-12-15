@@ -1,4 +1,4 @@
-import axios from '@/utils/http'
+import axios from '@/utils/request'
 let photos = '/photos'
 interface photos {
 	id: number

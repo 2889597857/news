@@ -1,12 +1,13 @@
 import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios'
-import { defaultConfig } from './axios.config'
 import {
+	defaultConfig,
 	RequestMethods,
 	HttpError,
 	HttpRequestConfig,
 	HttpResponse,
 	cancelTokenType,
-} from './axios.d'
+} from './axios.config'
+import {} from './axios'
 import NProgress from '../progress'
 class HttpRequest {
 	constructor() {

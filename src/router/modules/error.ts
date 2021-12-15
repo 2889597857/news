@@ -7,7 +7,7 @@ const errorRouter = {
 	redirect: '/error/401',
 	meta: {
 		keepAlive: false,
-		showLink: false,
+		isNotMenu: false,
 	},
 	children: [
 		{
@@ -17,7 +17,7 @@ const errorRouter = {
 			meta: {
 				title: '401',
 				keepAlive: true,
-				showLink: false,
+				isNotMenu: false,
 			},
 		},
 		{
@@ -27,7 +27,7 @@ const errorRouter = {
 			meta: {
 				title: '404',
 				keepAlive: true,
-				showLink: false,
+				isNotMenu: false,
 			},
 		},
 	],

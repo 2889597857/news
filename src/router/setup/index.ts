@@ -10,7 +10,9 @@ export const router: Router = createRouter({
 })
 
 export async function setupRouter(app: App) {
+	// 挂载路由
 	app.use(router)
+	// 路由守卫
 	createRouterGuide(router)
 	await router.isReady()
 }

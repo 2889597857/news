@@ -8,7 +8,7 @@ const routes = {
 	meta: {
 		title: 'message.b',
 		keepAlive: true,
-		showLink: true,
+		isNotMenu: true,
 		rank: 0,
 	},
 	children: [
@@ -19,7 +19,7 @@ const routes = {
 			meta: {
 				title: 'message.b-1',
 				keepAlive: true,
-				showLink: true,
+				isNotMenu: true,
 			},
 		},
 	],

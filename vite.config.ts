@@ -1,15 +1,9 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-
-// export default ({ mode }) => {
-// 	console.log(loadEnv(mode, process.cwd()))
-// 	return defineConfig({})
-// })
-
+import { viteEnv, plugins, define } from './build'
 export default defineConfig({
-	base: './',
-	plugins: [vue(), vueJsx],
+	base: viteEnv.VITE_BASE_URL,
+	plugins,
+	define,
 	resolve: {
 		alias: {
 			'@/': new URL('./src/', import.meta.url).pathname,
@@ -25,13 +19,18 @@ export default defineConfig({
 		preprocessorOptions: {
 			scss: {
 				additionalData: '@import "./src/styles/global.scss";',
+				charset: false,
 			},
 		},
 	},
-	define: {
-		'process.env': {},
+	build: {
+		chunkSizeWarningLimit: 1500,
+		minify: 'terser',
+		terserOptions: {
+			compress: {
+				drop_console: true, // 生产环境去除console
+				drop_debugger: true, // 生产环境去除debugger
+			},
+		},
 	},
-	// build: {
-	// 	chunkSizeWarningLimit: 1500,
-	// },
 })

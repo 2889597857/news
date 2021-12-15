@@ -1,15 +1,16 @@
 import { defineStore } from 'pinia'
 import { store } from '@/store'
-import { ascending, filterTree } from '@/utils/route'
+import { ascending, filterTree, transformRouteToMenu } from '@/utils/route'
 import { routes } from '@/router/routes'
 import { cacheType } from '../type'
+import { CustomRoute } from '@/interface/common'
 
 const permissionStore = defineStore({
 	id: 'permission',
 	state: () => ({
 		// 静态路由
 		constantRoutes: routes,
-		// showLink 为 true 的路由
+		// isNotMenu 为 false 的路由
 		wholeRoutes: [],
 		// 按钮权限
 		buttonAuth: [],
@@ -17,25 +18,31 @@ const permissionStore = defineStore({
 		cachePageList: [],
 	}),
 	actions: {
-		asyncActionRoutes(routes: any[]) {
+		/**
+		 *
+		 * @param routes 动态路由
+		 * @returns
+		 */
+		asyncActionRoutes(routes: CustomRoute) {
 			if (this.wholeRoutes.length > 0) return
 			// 过滤 showLink 为 false  的路由，
 			// 按照 rank 升序对路由进行排序
-			this.wholeRoutes = filterTree(ascending(this.constantRoutes.concat(routes)))
+			// this.wholeRoutes = filterTree(ascending(this.constantRoutes.concat(routes)))
+			console.log()
+			this.wholeRoutes = transformRouteToMenu(this.constantRoutes.concat(routes))
+			// const getButtonAuth = (arrRoutes: Array<string>) => {
+			// 	if (!arrRoutes || !arrRoutes.length) return
+			// 	arrRoutes.forEach((v: any) => {
+			// 		if (v.meta && v.meta.authority) {
+			// 			this.buttonAuth.push(...v.meta.authority)
+			// 		}
+			// 		if (v.children) {
+			// 			getButtonAuth(v.children)
+			// 		}
+			// 	})
+			// }
 
-			const getButtonAuth = (arrRoutes: Array<string>) => {
-				if (!arrRoutes || !arrRoutes.length) return
-				arrRoutes.forEach((v: any) => {
-					if (v.meta && v.meta.authority) {
-						this.buttonAuth.push(...v.meta.authority)
-					}
-					if (v.children) {
-						getButtonAuth(v.children)
-					}
-				})
-			}
-
-			getButtonAuth(this.wholeRoutes)
+			// getButtonAuth(this.wholeRoutes)
 		},
 		async changeSetting(router: any) {
 			await this.asyncActionRoutes(router)

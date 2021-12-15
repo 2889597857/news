@@ -1,78 +1,59 @@
-<script lang="ts" setup>
-import path from 'path';
-import { PropType, ref, computed } from 'vue';
-import { childrenType } from '../../../layout';
+<script setup lang="ts">
+import { NScrollbar, NMenu } from 'naive-ui';
+import { useRouter, useRoute } from 'vue-router';
+import { usePermissionStore } from '@/store';
+import { computed, ref, watch } from 'vue';
+import type { MenuOption } from 'naive-ui';
+import { GlobalMenuOption } from '@/interface/common';
 
-const prop = defineProps({
-    item: {
-        type: Object as PropType<childrenType>
-    },
-    isNest: {
-        type: Boolean,
-        default: false
-    },
-    basePath: {
-        type: String,
-        default: ""
-    }
-})
+const router = useRouter();
+const route = useRoute();
+const activeKey = computed(() => route.name as string);
+const expandedKeys = ref<string[]>(getExpendedKeys());
 
-const onlyOneChild = ref(null)
+const menus = usePermissionStore().wholeRoutes
 
-const hasChildren = (children: childrenType[] = [], parent: childrenType) => {
-    try {
-        const showingChildren = children.filter((item: any) => {
-            onlyOneChild.value = item;
-            return true;
-        });
-
-        if (showingChildren.length === 1) {
-            return true;
+function getExpendedKeys() {
+    const keys: string[] = [];
+    route.matched.forEach(item => {
+        if (item.children && item.children.length) {
+            keys.push(item.name as string);
         }
-        if (showingChildren.length === 0) {
-            onlyOneChild.value = { ...parent, path: "", noShowingChildren: true };
-            return true;
-        }
-        return false;
-    } catch (error) {
-        console.log(error);
-
-    }
+    });
+    return keys;
 }
-
-// 查看路由中是否有多个 children
-const hasChild = computed(() => {
-    return hasChildren(prop.item.children, prop.item)
-})
-// 
-function resolvePath(routePath) {
-    const httpReg = /^http(s?):\/\//;
-    if (httpReg.test(routePath)) {
-        return prop.basePath + "/" + routePath;
-    } else {
-        return path.resolve(prop.basePath, routePath);
-    }
+/** 
+ * 页面跳转
+ * @param key 选中菜单项的 key
+ * @param item 是菜单项原始数据
+ */
+function handleUpdateMenu(key: string, item: MenuOption) {
+    const menuItem = item as GlobalMenuOption;
+    router.push(menuItem.routePath);
 }
-
+/**
+ * @param key 展开菜单项的 key 的数组
+ */
+function handleUpdateExpandedKeys(keys: string[]) {
+    expandedKeys.value = keys;
+}
+watch(
+    () => route.name,
+    () => {
+        expandedKeys.value = getExpendedKeys();
+    }
+);
 </script>
+
 <template>
-    <template v-if="hasChild && (!onlyOneChild.children || onlyOneChild.noShowingChildren)">
-        <el-menu-item
-            :index="resolvePath(onlyOneChild.path)"
-            style="display: flex; align-items: center"
-        >
-            <template #title>{{ onlyOneChild.meta.title }}</template>
-        </el-menu-item>
-    </template>
-    <el-sub-menu v-else :index="resolvePath(prop.item.path)">
-        <template #title>{{ prop.item.meta.title }}</template>
-        <!-- 多个 Children 递归调用自己 -->
-        <sidebar-item
-            v-for="child in prop.item.children"
-            :key="child.path"
-            :is-nest="true"
-            :item="child"
-            :base-path="resolvePath(child.path)"
-        />
-    </el-sub-menu>
+    <n-scrollbar>
+        <n-menu
+            :value="activeKey"
+            :options="menus"
+            :expanded-keys="expandedKeys"
+            :indent="18"
+            @update:value="handleUpdateMenu"
+            @update:expanded-keys="handleUpdateExpandedKeys"
+        ></n-menu>
+    </n-scrollbar>
 </template>

@@ -19,6 +19,7 @@ export const createRouterGuide = (router: Router) => {
 		}
 		const token = '是否登录'
 		if (token) {
+			// 已经登录
 			// 页面刷新
 			if (usePermissionStore().wholeRoutes.length === 0) {
 				// 初始化路由
@@ -29,6 +30,7 @@ export const createRouterGuide = (router: Router) => {
 					// 获取路由访问记录
 					const localRoutes = storageLocal.getItem('responsive-routesInStorage')
 					const newLocalRoutes = []
+					// 比较
 					optionsRoutes.forEach(ors => {
 						localRoutes.forEach(lrs => {
 							if (ors.path === lrs.parentPath) {
@@ -36,12 +38,15 @@ export const createRouterGuide = (router: Router) => {
 							}
 						})
 					})
+					// 存储路由访问记录
 					storageLocal.setItem('responsive-routesInStorage', uniqBy(newLocalRoutes, 'path'))
 				})
 			}
 			next()
 		} else {
+			// 未登录
 			if (to.path !== '/login') {
+				// 是否是路由白名单
 				if (whiteList.indexOf(to.path) !== -1) {
 					next()
 				} else {

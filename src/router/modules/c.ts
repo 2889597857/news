@@ -7,7 +7,7 @@ const routes = {
 	meta: {
 		icon: 'Link',
 		title: 'message.externalLink',
-		showLink: true,
+		isNotMenu: true,
 		i18n: true,
 		rank: 190,
 	},

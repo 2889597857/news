@@ -3,6 +3,6 @@ import customRoutes from '../modules'
 import constantRoutes from './constant'
 import { ascending } from '@/utils/route'
 
-/** 所有路由 */
+/** 所有静态路由 */
 export const routes = ascending([ROUTE_HOME, ...customRoutes, ...constantRoutes])
 export { ROUTE_HOME, customRoutes }

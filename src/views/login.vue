@@ -5,7 +5,8 @@
 <script setup lang='ts'>
 import { ref } from 'vue';
 const domRef = ref<HTMLElement | null>(null);
-// const { height: domRefHeight } = useElementSize(domRef);
+const a = ref<String>('12')
+
 </script>
 
 <style lang="scss" scoped>

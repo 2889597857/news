@@ -1,5 +1,4 @@
-import viteEnv from "./env";
-import plugins from "./plugins";
+import createVitePlugins from "./plugins";
 import define from "./define";
 
-export { viteEnv, plugins, define };
+export { createVitePlugins, define };

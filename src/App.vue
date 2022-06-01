@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 let b = reactive({
   a: 23231
 })
+console.log(import.meta.env);
 </script>
 
 <template>

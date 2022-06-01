@@ -4,7 +4,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { usePermissionStore } from '@/store';
 import { computed, ref, watch } from 'vue';
 import type { MenuOption } from 'naive-ui';
-import { GlobalMenuOption } from '@/interface/common';
+import { GlobalMenuOption } from '@/router/router';
 
 const router = useRouter();
 const route = useRoute();
@@ -48,14 +48,8 @@ watch(
 <template>
     <div class="a">
         <n-scrollbar>
-            <n-menu
-                :value="activeKey"
-                :options="menus"
-                :expanded-keys="expandedKeys"
-                :indent="18"
-                @update:value="handleUpdateMenu"
-                @update:expanded-keys="handleUpdateExpandedKeys"
-            ></n-menu>
+            <n-menu :value="activeKey" :options="menus" :expanded-keys="expandedKeys" :indent="18"
+                @update:value="handleUpdateMenu" @update:expanded-keys="handleUpdateExpandedKeys"></n-menu>
         </n-scrollbar>
     </div>
 </template>

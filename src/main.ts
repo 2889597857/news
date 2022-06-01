@@ -5,6 +5,6 @@ import { setupRouter } from "./router";
 import { setupStore } from "@/store";
 const app = createApp(App);
 
-// app.use(setupRouter);
+setupRouter(app);
 
 app.mount("#app");

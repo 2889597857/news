@@ -9,6 +9,7 @@ let b = reactive({
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
   {{ b.a }}
+  <router-view></router-view>
 </template>
 
 <style lang="scss">

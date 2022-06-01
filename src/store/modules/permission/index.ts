@@ -3,7 +3,7 @@ import { store } from "@/store";
 import { ascending, filterTree, transformRouteToMenu } from "@/utils/route";
 import { routes } from "@/router/routes";
 import { cacheType } from "../type";
-import { CustomRoute } from "@/interface/common";
+import { CustomRoute } from "@/router/router";
 
 const permissionStore = defineStore({
   id: "permission",
@@ -28,7 +28,6 @@ const permissionStore = defineStore({
       // 过滤 showLink 为 false  的路由，
       // 按照 rank 升序对路由进行排序
       // this.wholeRoutes = filterTree(ascending(this.constantRoutes.concat(routes)))
-      console.log();
       this.wholeRoutes = transformRouteToMenu(
         this.constantRoutes.concat(routes)
       );

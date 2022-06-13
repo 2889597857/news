@@ -11,7 +11,7 @@
 </template>
 <script lang="ts"  setup>
 import { NLayout } from "naive-ui";
-import { GlobalContent, GlobalSide, GlobalHeader } from './components';
+import { GlobalContent, GlobalSide, GlobalHeader } from '../common';
 </script>
 <style scoped lang="scss">
 .a {

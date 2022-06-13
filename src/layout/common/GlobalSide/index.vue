@@ -11,7 +11,7 @@ export default {
 </script>
 <script setup lang='ts'>
 import { NLayoutSider } from "naive-ui";
-import Logo from '../common/logo.vue';
+import Logo from '../GlobalLogo/index.vue';
 import SidebarItem from './components/sidebarItem.vue';
 </script>
 

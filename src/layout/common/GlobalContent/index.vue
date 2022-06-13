@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { usePermissionStore } from '@/store/modules/permission';
 import { NLayoutContent, NScrollbar } from "naive-ui"
-import { ref, Ref } from 'vue';
-const keepAlive: Ref<Boolean> = ref(true)
+
+const keepAlive = ref(true)
 
 </script>

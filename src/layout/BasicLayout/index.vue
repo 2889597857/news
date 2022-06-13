@@ -1,17 +1,18 @@
 <template>
-    <n-layout>
-        <div class="a">
+    <n-layout has-sider>
+        <n-layout-sider content-style="padding: 24px;">
             <global-side />
-            <n-layout>
-                <global-header />
-                <global-content />
-            </n-layout>
-        </div>
+        </n-layout-sider>
+        <n-layout>
+            <global-header />
+            <global-content />
+        </n-layout>
     </n-layout>
+    <setting-drawer />
 </template>
 <script lang="ts"  setup>
 import { NLayout } from "naive-ui";
-import { GlobalContent, GlobalSide, GlobalHeader } from '../common';
+import { GlobalContent, GlobalSide, GlobalHeader, SettingDrawer } from '../common';
 </script>
 <style scoped lang="scss">
 .a {

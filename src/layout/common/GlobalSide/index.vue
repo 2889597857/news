@@ -1,6 +1,6 @@
 <template>
     <n-layout-sider>
-        <logo />
+        <global-logo />
         <SidebarItem />
     </n-layout-sider>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 <script setup lang='ts'>
 import { NLayoutSider } from "naive-ui";
-import Logo from '../GlobalLogo/index.vue';
+import GlobalLogo from '../GlobalLogo/index.vue';
 import SidebarItem from './components/sidebarItem.vue';
 </script>
 

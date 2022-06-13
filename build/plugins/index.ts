@@ -1,6 +1,7 @@
 import vue from "./vue";
 import configHtmlPlugin from "./html";
 import autoImport from "./autoImport";
+import autoComponents from "./autoComponents";
 // import iconify from './iconify';
 // import windicss from './windicss';
 import visualizer from "./visualizer";
@@ -10,5 +11,11 @@ export default function createVitePlugins(
   viteEnv: ViteEnv,
   isBuild: boolean
 ): any[] {
-  return [...vue, visualizer, autoImport, configHtmlPlugin(viteEnv, isBuild)];
+  return [
+    ...vue,
+    visualizer,
+    autoImport,
+    autoComponents,
+    configHtmlPlugin(viteEnv, isBuild),
+  ];
 }

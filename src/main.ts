@@ -3,8 +3,14 @@ import App from "./App.vue";
 import "./styles/index.scss";
 import { setupRouter } from "./router";
 import { setupStore } from "@/store";
-const app = createApp(App);
 
-setupRouter(app);
+function setupApp() {
+  const app = createApp(App);
 
-app.mount("#app");
+  setupStore(app);
+  setupRouter(app);
+
+  app.mount("#app");
+}
+
+setupApp();

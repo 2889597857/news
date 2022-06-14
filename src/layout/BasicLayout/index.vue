@@ -1,12 +1,8 @@
 <template>
     <n-layout has-sider>
-        <n-layout-sider content-style="padding: 24px;">
-            <global-side />
-        </n-layout-sider>
-        <n-layout>
-            <global-header />
-            <global-content />
-        </n-layout>
+        <global-side />
+        <global-header />
+        <global-content />
     </n-layout>
     <setting-drawer />
 </template>

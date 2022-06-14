@@ -49,7 +49,8 @@ watch(
     <div class="a">
         <n-scrollbar>
             <n-menu :value="activeKey" :options="menus" :expanded-keys="expandedKeys" :indent="18"
-                @update:value="handleUpdateMenu" @update:expanded-keys="handleUpdateExpandedKeys"></n-menu>
+                @update:value="handleUpdateMenu" @update:expanded-keys="handleUpdateExpandedKeys">
+            </n-menu>
         </n-scrollbar>
     </div>
 </template>

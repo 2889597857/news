@@ -1,5 +1,8 @@
 <script setup lang="ts">
 
+withDefaults(defineProps<{ a: string, b?: string }>(), {
+  a: "123"
+})
 defineProps<{ msg: string }>()
 const count = ref(0)
 </script>

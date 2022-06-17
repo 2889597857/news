@@ -1,8 +1,7 @@
 <template>
-    <n-layout-header>
+    <div class="layout-header">
         <h1>header</h1>
-    </n-layout-header>
+    </div>
 </template>
 <script lang="ts" setup>
-import { NLayoutHeader } from "naive-ui";
 </script>

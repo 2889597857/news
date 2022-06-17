@@ -8,4 +8,4 @@ export const routes = ascending([
   //   ...customRoutes,
   //   ...constantRoutes,
 ]);
-export { ROUTE_HOME, customRoutes };
+export { ROUTE_HOME };

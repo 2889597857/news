@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NDrawer: typeof import('naive-ui')['NDrawer']
     NDrawerContent: typeof import('naive-ui')['NDrawerContent']
+    NewsItem: typeof import('./src/components/news/newsItem.vue')['default']
     NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     PageA1: typeof import('./src/components/a/pageA1.vue')['default']
     PageA2: typeof import('./src/components/a/pageA2.vue')['default']

@@ -7,5 +7,5 @@ export default autoImport({
     /\.md$/, // .md
   ],
   imports: ["vue", "vue-router", "pinia"],
-  dts: "src/auto-import.d.ts",
+  dts: "src/type/auto-import.d.ts",
 });

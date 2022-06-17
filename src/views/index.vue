@@ -1,5 +1,5 @@
 <template>
-    <h1>HOME</h1>
+    <h1>21</h1>
 </template>
 <style scoped lang="scss">
 h1 {

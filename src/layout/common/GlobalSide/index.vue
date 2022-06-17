@@ -1,8 +1,8 @@
 <template>
-    <n-layout-sider>
+    <div class="layout-sider">
         <global-logo />
         <SidebarItem />
-    </n-layout-sider>
+    </div>
 </template>
 <script lang="ts">
 export default {
@@ -16,4 +16,7 @@ import SidebarItem from './components/sidebarItem.vue';
 </script>
 
 <style lang="scss" scoped>
+.layout-sider{
+    width: 100%;
+}
 </style>

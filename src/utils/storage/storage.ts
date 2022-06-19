@@ -5,7 +5,6 @@ interface ProxyStorage {
   clear(): void;
 }
 
-// sessionStorage operate
 class sessionStorageProxy implements ProxyStorage {
   protected storage: ProxyStorage;
 
@@ -36,11 +35,14 @@ class sessionStorageProxy implements ProxyStorage {
 
 // localStorage operate
 class localStorageProxy extends sessionStorageProxy implements ProxyStorage {
+  // eslint-disable-next-line no-useless-constructor
   constructor(localStorage: ProxyStorage) {
     super(localStorage);
   }
 }
 
+// eslint-disable-next-line new-cap
 export const storageSession = new sessionStorageProxy(sessionStorage);
 
+// eslint-disable-next-line new-cap
 export const storageLocal = new localStorageProxy(localStorage);

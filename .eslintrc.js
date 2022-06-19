@@ -18,10 +18,10 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   extends: [
+    'plugin:prettier/recommended',
     'airbnb-base',
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
     '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier',
     '@vue/typescript/recommended'
@@ -211,11 +211,6 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true, varsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-use-before-define': ['error', { classes: true, functions: false, typedefs: false }],
-    endOfLine: 0,
-    semi: ['error', 'always'], // 未尾分号
-    singleQuote: 0, // 单引号
-    quoteProps: 0,
-    trailingComma: 0 //
+    '@typescript-eslint/no-use-before-define': ['error', { classes: true, functions: false, typedefs: false }]
   }
 };

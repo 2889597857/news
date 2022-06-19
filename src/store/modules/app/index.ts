@@ -15,7 +15,7 @@ export const useAppStore = defineStore({
   }),
   actions: {
     changeA() {
-      this.score++;
+      this.score += 1;
     }
   },
   getters: {

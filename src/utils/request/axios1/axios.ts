@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios';
 import NProgress from '../../progress';
 import { defaultConfig } from './axios.config';
-import { RequestMethods, HttpError, HttpRequestConfig, HttpResponse, cancelTokenType } from './axios.d';
+import { cancelTokenType, HttpError, HttpRequestConfig, HttpResponse, RequestMethods } from './axios.d';
 
 export class HttpRequest {
   constructor() {
@@ -113,9 +114,9 @@ export class HttpRequest {
           this.responseCb = undefined;
           return response.data;
         }
-        if (response.status == 200) {
+        if (response.status === 200) {
           const { code, data } = response.data;
-          if (code == 200) {
+          if (code === 200) {
             return data;
           }
         }

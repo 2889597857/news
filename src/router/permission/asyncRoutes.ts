@@ -1,8 +1,8 @@
+import { RouteComponent, Router, RouteRecordNormalized } from 'vue-router';
+import { usePermissionStore } from '@/store';
 import { getAsyncRoutes } from '@/api';
 import { BasicLayout } from '@/layout';
-import { usePermissionStore } from '@/store';
 import { ascending } from '@/utils/route';
-import { RouteComponent, Router, RouteRecordNormalized } from 'vue-router';
 
 const modulesRoutes = import.meta.glob('/src/views/*/*.vue');
 

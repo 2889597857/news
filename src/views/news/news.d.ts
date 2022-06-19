@@ -2,7 +2,7 @@ export type news = {
   _id: string;
   title: string;
   url: string;
-  content: string;
+  content: [string];
   segmentation: [{ keyword: string }];
   report: string;
 };

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import four from '@/assets/404.png';
+// eslint-disable-next-line camelcase
 import four_cloud from '@/assets/404_cloud.png';
 
 const message = computed(() => {

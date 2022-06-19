@@ -1,8 +1,8 @@
-import { RouteComponent, Router, RouteRecordNormalized } from 'vue-router';
-import { usePermissionStore } from '@/store';
-import { BasicLayout } from '@/layout';
-import { ascending } from '@/utils/route';
 import { getAsyncRoutes } from '@/api';
+import { BasicLayout } from '@/layout';
+import { usePermissionStore } from '@/store';
+import { ascending } from '@/utils/route';
+import { RouteComponent, Router, RouteRecordNormalized } from 'vue-router';
 
 const modulesRoutes = import.meta.glob('/src/views/*/*.vue');
 
@@ -19,6 +19,7 @@ export const addAsyncRoutes = (arrRoutes: Array<RouteComponent>) => {
       addAsyncRoutes(v.children);
     }
   });
+  // eslint-disable-next-line consistent-return
   return arrRoutes;
 };
 // 处理缓存路由（添加、删除、刷新）

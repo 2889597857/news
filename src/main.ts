@@ -1,8 +1,9 @@
+import { setupStore } from '@/store';
+// eslint-disable-next-line import/order
 import { createApp } from 'vue';
 import App from './App.vue';
-import './styles/index.scss';
 import { setupRouter } from './router';
-import { setupStore } from '@/store';
+import './styles/index.scss';
 
 function setupApp() {
   const app = createApp(App);

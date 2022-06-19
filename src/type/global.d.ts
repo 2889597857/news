@@ -1,12 +1,7 @@
-import type {
-  ComponentRenderProxy,
-  VNode,
-  ComponentPublicInstance,
-  FunctionalComponent,
-  PropType as VuePropType
-} from 'vue';
+import type { ComponentRenderProxy, PropType as VuePropType, VNode } from 'vue';
 
 declare global {
+  // eslint-disable-next-line no-underscore-dangle
   const __APP_INFO__: {
     pkg: {
       name: string;

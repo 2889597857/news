@@ -1,6 +1,6 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios";
-import CustomAxiosInstance from "./instance";
-import type { StatusConfig } from "./instance";
+import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
+import CustomAxiosInstance from './instance';
+import type { StatusConfig } from './instance';
 
 type ResponseSuccess = [null, any];
 type ResponseFail = [any, null];
@@ -64,10 +64,7 @@ class Request {
   }
 }
 
-export function createRequest(
-  axiosConfig: AxiosRequestConfig,
-  statusConfig?: StatusConfig
-) {
+export function createRequest(axiosConfig: AxiosRequestConfig, statusConfig?: StatusConfig) {
   const customInstance = new CustomAxiosInstance(axiosConfig, statusConfig);
   const request = new Request(customInstance.instance);
   return request;

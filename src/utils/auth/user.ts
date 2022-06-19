@@ -1,5 +1,5 @@
-import {  storageLocal } from "../storage";
+import { storageLocal } from '../storage';
 
-export function getToken(token: string = "token"): string {
+export function getToken(token = 'token'): string {
   return storageLocal.getItem(token);
 }

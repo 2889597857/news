@@ -1,6 +1,6 @@
-import { RouteRecordName } from 'vue-router'
+import { RouteRecordName } from 'vue-router';
 
 export type cacheType = {
-	mode: string
-	name?: RouteRecordName
-}
+  mode: string;
+  name?: RouteRecordName;
+};

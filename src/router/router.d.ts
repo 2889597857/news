@@ -1,5 +1,5 @@
-import type { RouteRecordRaw } from "vue-router";
-import type { MenuOption } from "naive-ui";
+import type { RouteRecordRaw } from 'vue-router';
+import type { MenuOption } from 'naive-ui';
 
 /** 路由描述 */
 interface RouteMeta {

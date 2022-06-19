@@ -1,1 +1,1 @@
-export { router, setupRouter } from './setup'
+export { router, setupRouter } from './setup';

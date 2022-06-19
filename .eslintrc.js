@@ -212,10 +212,10 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true, varsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': ['error', { classes: true, functions: false, typedefs: false }],
-    endOfLine: 'auto',
-    semi: false, // 未尾分号
-    singleQuote: true, // 单引号
-    quoteProps: 'as-needed',
-    trailingComma: 'none' //
+    endOfLine: 0,
+    semi: ['error', 'always'], // 未尾分号
+    singleQuote: 0, // 单引号
+    quoteProps: 0,
+    trailingComma: 0 //
   }
 };

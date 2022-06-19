@@ -1,12 +1,12 @@
-import { defineStore } from "pinia";
-import { store } from "@/store";
-import { ascending, filterTree, transformRouteToMenu } from "@/utils/route";
-import { routes } from "@/router/routes";
-import { cacheType } from "../type";
-import { CustomRoute } from "@/router/router";
+import { defineStore } from 'pinia';
+import { store } from '@/store';
+import { ascending, filterTree, transformRouteToMenu } from '@/utils/route';
+import { routes } from '@/router/routes';
+import { CustomRoute } from '@/router/router';
+import { cacheType } from '../type';
 
 const permissionStore = defineStore({
-  id: "permission",
+  id: 'permission',
   state: () => ({
     // 静态路由
     constantRoutes: routes,
@@ -15,7 +15,7 @@ const permissionStore = defineStore({
     // 按钮权限
     buttonAuth: [],
     // 缓存页面keepAlive
-    cachePageList: [],
+    cachePageList: []
   }),
   actions: {
     /**
@@ -28,9 +28,7 @@ const permissionStore = defineStore({
       // 过滤 showLink 为 false  的路由，
       // 按照 rank 升序对路由进行排序
       // this.wholeRoutes = filterTree(ascending(this.constantRoutes.concat(routes)))
-      this.wholeRoutes = transformRouteToMenu(
-        this.constantRoutes.concat(routes)
-      );
+      this.wholeRoutes = transformRouteToMenu(this.constantRoutes.concat(routes));
       // const getButtonAuth = (arrRoutes: Array<string>) => {
       // 	if (!arrRoutes || !arrRoutes.length) return
       // 	arrRoutes.forEach((v: any) => {
@@ -50,21 +48,21 @@ const permissionStore = defineStore({
     },
     cacheOperate({ mode, name }: cacheType) {
       switch (mode) {
-        case "add":
+        case 'add':
           // 把需要缓存的组件名称加入缓存数组
           this.cachePageList.push(name);
           // 去重
           this.cachePageList = [...new Set(this.cachePageList)];
           break;
-        case "delete":
+        case 'delete':
           // 查找需要删除缓存组件名称的位置
-          const delIndex = this.cachePageList.findIndex((v) => v === name);
+          const delIndex = this.cachePageList.findIndex(v => v === name);
           // 从缓存数组中删除组件名
           delIndex !== -1 && this.cachePageList.splice(delIndex, 1);
           break;
       }
-    },
-  },
+    }
+  }
 });
 
 export const usePermissionStore = () => permissionStore(store);

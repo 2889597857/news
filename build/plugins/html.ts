@@ -1,4 +1,4 @@
-import { createHtmlPlugin } from "vite-plugin-html"; // html插件(使用变量、压缩)
+import { createHtmlPlugin } from 'vite-plugin-html'; // html插件(使用变量、压缩)
 
 export default function configHtmlPlugin(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_APP_TITLE } = viteEnv;
@@ -9,9 +9,9 @@ export default function configHtmlPlugin(viteEnv: ViteEnv, isBuild: boolean) {
      */
     inject: {
       data: {
-        title: VITE_APP_TITLE,
-      },
-    },
+        title: VITE_APP_TITLE
+      }
+    }
   });
   return htmlPlugin;
 }

@@ -1,16 +1,17 @@
-import Vue, { VNode } from 'vue'
+import Vue, { VNode } from 'vue';
 
 declare module '*.tsx' {
-	import Vue from 'compatible-vue'
-	export default Vue
+  import Vue from 'compatible-vue';
+
+  export default Vue;
 }
 
 declare global {
-	namespace JSX {
-		interface Element extends VNode {}
-		interface ElementClass extends Vue {}
-		interface IntrinsicElements {
-			[elem: string]: any
-		}
-	}
+  namespace JSX {
+    interface Element extends VNode {}
+    interface ElementClass extends Vue {}
+    interface IntrinsicElements {
+      [elem: string]: any;
+    }
+  }
 }

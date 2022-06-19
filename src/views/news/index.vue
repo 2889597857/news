@@ -1,7 +1,13 @@
 <template>
   <n-pagination v-model:page="page" :page-count="100" />
   <n-scrollbar style="height: calc(100% - 100px)" trigger="hover">
-    <new-item v-for="(item, index) in newsList" :id="index" :key="item.title" :news-info="item" />
+    <new-item
+      v-for="(item, index) in newsList"
+      :id="index"
+      :key="item.title"
+      :news-info="item"
+      @update-news="updateNews"
+    />
     <div class="news"></div>
   </n-scrollbar>
 </template>
@@ -10,24 +16,17 @@ import { getNews } from '@/api';
 import newItem from './components/new_item.vue';
 import { news, newsLists } from './news.d';
 
-
 const newsList = ref<newsLists>();
 const page = ref(10);
 
 const updateNews = (index: number, content: string) => {
-  const item: news = newItem.value[index]
-
+  const item: news = newItem.value[index];
+  item.report = content;
 };
-let a = "231"
 onMounted(() => {
-  getNews()
-    .then((result: newsLists) => {
-      console.log(result);
-      newsList.value = result;
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  getNews().then((result: newsLists) => {
+    newsList.value = result;
+  });
 });
 </script>
 <style scoped lang="scss">

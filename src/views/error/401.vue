@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import imgs from "@/assets/401.gif";
-import { ref } from "vue";
+import { ref } from 'vue';
+import imgs from '@/assets/401.gif';
 
 const img = ref(`${imgs}?${new Date()}`);
 </script>

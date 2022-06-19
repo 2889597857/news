@@ -3,7 +3,7 @@ export type news = {
   title: string;
   url: string;
   content: string;
-  segmentation: [{ keyword: String }]
+  segmentation: [{ keyword: string }];
   report: string;
 };
 export type newsLists = [news];

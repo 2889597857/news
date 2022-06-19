@@ -22,13 +22,17 @@ export interface HttpError extends AxiosError {
 
 export default class Http {
   cancelTokenList: Array<cancelTokenType>;
+
   clearCancelTokenList(): void;
+
   request<T>(
     method: RequestMethods,
     url: string,
     param?: AxiosRequestConfig,
     axiosConfig?: HttpRequestConfig
   ): Promise<T>;
+
   post<T>(url: string, params?: T, config?: HttpRequestConfig): Promise<T>;
+
   get<T>(url: string, params?: T, config?: HttpRequestConfig): Promise<T>;
 }

@@ -1,20 +1,23 @@
 import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios';
+import NProgress from '../../progress';
 import { defaultConfig } from './axios.config';
 import { RequestMethods, HttpError, HttpRequestConfig, HttpResponse, cancelTokenType } from './axios.d';
-
-import NProgress from '../../progress';
 
 export class HttpRequest {
   constructor() {
     this.interceptorsRequest();
     this.interceptorsResponse();
   }
+
   // axios 实例
   private axiosInstance: AxiosInstance = Axios.create();
+
   // 取消请求
   private CancelToken: CancelTokenStatic = Axios.CancelToken;
+
   // 请求列表
   private sourceTokenList: Array<cancelTokenType> = [];
+
   // 记录当前这一次cancelToken的key
   private currentCancelTokenKey = '';
 
@@ -26,6 +29,7 @@ export class HttpRequest {
   // 自定义拦截器，不使用统一拦截器
   // 请求
   private requestCb: HttpRequestConfig['requestCb'] = undefined;
+
   // 响应
   private responseCb: HttpRequestConfig['responseCb'] = undefined;
 
@@ -49,17 +53,21 @@ export class HttpRequest {
       []
     );
   }
+
   private deleteCancelTokenByCancelKey(cancelKey: string): void {
     this.sourceTokenList = this.sourceTokenList.length < 1 ? this.filterTokenList(cancelKey) : [];
   }
+
   // 过滤掉已经发送的请求
   private filterTokenList(cancelKey: string): Array<cancelTokenType> {
     return this.sourceTokenList.filter(cancelToken => cancelToken.cancelKey !== cancelKey);
   }
+
   // 清空请求列表
   public clearCancelTokenList(): void {
     this.sourceTokenList.length = 0;
   }
+
   //  全局拦截器
   // 请求拦截器
   private interceptorsRequest(): void {
@@ -89,6 +97,7 @@ export class HttpRequest {
       error => Promise.reject(error)
     );
   }
+
   // 响应拦截器
   private interceptorsResponse() {
     this.axiosInstance.interceptors.response.use(
@@ -168,6 +177,7 @@ export class HttpRequest {
   public get(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig) {
     return this.request(url, 'get', date, interceptors);
   }
+
   public post(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig) {
     return this.request(url, 'post', date, interceptors);
   }

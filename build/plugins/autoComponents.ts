@@ -5,5 +5,3 @@ export default autoComponents({
   resolvers: [NaiveUiResolver()],
   dts: 'src/type/components.d.ts'
 });
-
-

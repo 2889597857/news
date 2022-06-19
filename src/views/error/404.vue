@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import four from "@/assets/404.png";
-import four_cloud from "@/assets/404_cloud.png";
+import { computed } from 'vue';
+import four from '@/assets/404.png';
+import four_cloud from '@/assets/404_cloud.png';
 
 const message = computed(() => {
-  return "The webmaster said that you can not enter this page...";
+  return 'The webmaster said that you can not enter this page...';
 });
 </script>
 

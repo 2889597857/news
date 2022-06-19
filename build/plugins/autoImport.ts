@@ -1,11 +1,12 @@
-import autoImport from "unplugin-auto-import/vite";
+import autoImport from 'unplugin-auto-import/vite';
+
 export default autoImport({
   include: [
     /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
     /\.vue$/,
     /\.vue\?vue/, // .vue
-    /\.md$/, // .md
+    /\.md$/ // .md
   ],
-  imports: ["vue", "vue-router", "pinia"],
-  dts: "src/type/auto-import.d.ts",
+  imports: ['vue', 'vue-router', 'pinia'],
+  dts: 'src/type/auto-import.d.ts'
 });

@@ -1,21 +1,10 @@
-import Axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  CancelTokenStatic,
-} from "axios";
+import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios';
+import { defaultConfig } from './axios.config';
+import { RequestMethods, HttpError, HttpRequestConfig, HttpResponse, cancelTokenType } from './axios.d';
 
-import {
-  defaultConfig,
-  RequestMethods,
-  HttpError,
-  HttpRequestConfig,
-  HttpResponse,
-  cancelTokenType,
-} from "./axios.config";
+import NProgress from '../../progress';
 
-import NProgress from "../../progress";
-
-class HttpRequest {
+export class HttpRequest {
   constructor() {
     this.interceptorsRequest();
     this.interceptorsResponse();
@@ -27,7 +16,7 @@ class HttpRequest {
   // 请求列表
   private sourceTokenList: Array<cancelTokenType> = [];
   // 记录当前这一次cancelToken的key
-  private currentCancelTokenKey = "";
+  private currentCancelTokenKey = '';
 
   // 生成 cancelKey
   private genUniqueKey(config: HttpRequestConfig): string {
@@ -36,9 +25,9 @@ class HttpRequest {
 
   // 自定义拦截器，不使用统一拦截器
   // 请求
-  private requestCb: HttpRequestConfig["requestCb"] = undefined;
+  private requestCb: HttpRequestConfig['requestCb'] = undefined;
   // 响应
-  private responseCb: HttpRequestConfig["responseCb"] = undefined;
+  private responseCb: HttpRequestConfig['responseCb'] = undefined;
 
   // 取消重复请求
   private cancelRepeatRequest(): void {
@@ -61,14 +50,11 @@ class HttpRequest {
     );
   }
   private deleteCancelTokenByCancelKey(cancelKey: string): void {
-    this.sourceTokenList =
-      this.sourceTokenList.length < 1 ? this.filterTokenList(cancelKey) : [];
+    this.sourceTokenList = this.sourceTokenList.length < 1 ? this.filterTokenList(cancelKey) : [];
   }
   // 过滤掉已经发送的请求
   private filterTokenList(cancelKey: string): Array<cancelTokenType> {
-    return this.sourceTokenList.filter(
-      (cancelToken) => cancelToken.cancelKey !== cancelKey
-    );
+    return this.sourceTokenList.filter(cancelToken => cancelToken.cancelKey !== cancelKey);
   }
   // 清空请求列表
   public clearCancelTokenList(): void {
@@ -85,7 +71,7 @@ class HttpRequest {
         // 生成 cancelKey
         const cancelKey = this.genUniqueKey(_config);
 
-        _config.cancelToken = new this.CancelToken((cancelExecutor) => {
+        _config.cancelToken = new this.CancelToken(cancelExecutor => {
           this.sourceTokenList.push({ cancelKey, cancelExecutor });
         });
         // 取消重复请求
@@ -93,14 +79,14 @@ class HttpRequest {
         // 记录当前的 cancelKey
         this.currentCancelTokenKey = cancelKey;
         // 自定义拦截器
-        if (typeof this.requestCb === "function") {
+        if (typeof this.requestCb === 'function') {
           this.requestCb(_config);
           this.requestCb = undefined;
           return _config;
         }
         return _config;
       },
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
   }
   // 响应拦截器
@@ -118,25 +104,24 @@ class HttpRequest {
           this.responseCb = undefined;
           return response.data;
         }
-        if (response.status) {
+        if (response.status == 200) {
+          const { code, data } = response.data;
+          if (code == 200) {
+            return data;
+          }
         }
-
-        return response.data;
       },
       (error: HttpError) => {
         const _error = error;
         if (this.currentCancelTokenKey) {
           // 查看请求列表中是否有这次请求
           const hasKey = this.sourceTokenList.filter(
-            (cancelToken) =>
-              cancelToken.cancelKey === this.currentCancelTokenKey
+            cancelToken => cancelToken.cancelKey === this.currentCancelTokenKey
           ).length;
           if (hasKey) {
             // 从请求列表中 删除此次请求
-            this.sourceTokenList = this.filterTokenList(
-              this.currentCancelTokenKey
-            );
-            this.currentCancelTokenKey = "";
+            this.sourceTokenList = this.filterTokenList(this.currentCancelTokenKey);
+            this.currentCancelTokenKey = '';
           }
         }
         // 取消请求
@@ -180,19 +165,10 @@ class HttpRequest {
     });
   }
 
-  public get(
-    url: string,
-    date?: AxiosRequestConfig,
-    interceptors?: HttpRequestConfig
-  ) {
-    return this.request(url, "get", date, interceptors);
+  public get(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig) {
+    return this.request(url, 'get', date, interceptors);
   }
-  public post(
-    url: string,
-    date?: AxiosRequestConfig,
-    interceptors?: HttpRequestConfig
-  ) {
-    return this.request(url, "post", date, interceptors);
+  public post(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig) {
+    return this.request(url, 'post', date, interceptors);
   }
 }
-export default HttpRequest;

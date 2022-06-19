@@ -2,7 +2,11 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+			"@/*": ["./src/*"],
+			"~/*": ["./*"]
+		},
   },
-  "include": ["vite.config.ts","build/*"]
+  "include": ["vite.config.ts","build/*","dist","src/type/*.d.ts"],
 }

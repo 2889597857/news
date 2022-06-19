@@ -2,7 +2,10 @@
     <div class="content-container">
         <router-view v-slot="{ Component, route }">
             <keep-alive>
-                <component :is="Component" :key="route.fullPath"></component>
+                <component
+                    :is="Component"
+                    :key="route.fullPath"
+                ></component>
             </keep-alive>
             <!-- <keep-alive v-if="keepAlive" :include="usePermissionStore().cachePageList">
                         <component :is="Component"></component>
@@ -22,7 +25,7 @@ const keepAlive = ref(true)
 </script>
 
 <style scoped lang="scss">
-.content-container{
+.content-container {
     width: 100%;
 }
 </style>

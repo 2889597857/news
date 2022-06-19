@@ -1,15 +1,9 @@
-import { ComponentResolver } from "unplugin-vue-components/types";
-import autoComponents from "unplugin-vue-components/vite";
+import autoComponents from 'unplugin-vue-components/vite';
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 
 export default autoComponents({
   resolvers: [NaiveUiResolver()],
+  dts: 'src/type/components.d.ts'
 });
 
-function NaiveUiResolver(): ComponentResolver {
-  return {
-    type: "component",
-    resolve: (name: string) => {
-      if (name.match(/^(N[A-Z]|n-[a-z])/)) return { name, from: "naive-ui" };
-    },
-  };
-}
+

@@ -211,6 +211,11 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true, varsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-use-before-define': ['error', { classes: true, functions: false, typedefs: false }]
+    '@typescript-eslint/no-use-before-define': ['error', { classes: true, functions: false, typedefs: false }],
+    endOfLine: 'auto',
+    semi: false, // 未尾分号
+    singleQuote: true, // 单引号
+    quoteProps: 'as-needed',
+    trailingComma: 'none' //
   }
 };

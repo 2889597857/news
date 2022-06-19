@@ -22,7 +22,11 @@ export default defineConfig(({ command, mode }) => {
       open: true, // 自动打开浏览器
       cors: true,
       proxy: {
-        // "/foo": "",
+        '/api': {
+          target: 'http://localhost:3100/',
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, '')
+        }
       },
     },
     css: {

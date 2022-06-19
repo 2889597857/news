@@ -1,6 +1,3 @@
-import { storageSession, storageLocal } from "./storage/storage";
-
-export function getToken(token: string = "token"): string {
-  return storageLocal.getItem(token);
-}
-export { storageSession, storageLocal };
+export * from './auth'
+export * from "./storage/storage"
+export * from './request'

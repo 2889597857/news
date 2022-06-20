@@ -1,8 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
-import type { MenuOption } from 'naive-ui';
 
 /** 路由描述 */
-interface RouteMeta {
+declare interface RouteMeta {
   /** 路由名称 */
   title?: string;
   /** 缓存页面 */
@@ -18,10 +17,4 @@ interface RouteMeta {
 }
 
 /** 路由配置 */
-export type CustomRoute = RouteRecordRaw & { meta: RouteMeta };
-
-/** 菜单项配置 */
-export type GlobalMenuOption = MenuOption & {
-  routeName: string;
-  routePath: string;
-};
+declare type CustomRoute = RouteRecordRaw & { meta: RouteMeta };

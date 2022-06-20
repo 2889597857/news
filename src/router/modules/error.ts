@@ -13,7 +13,7 @@ const errorRouter = {
     {
       path: '/error/401',
       name: '401',
-      component: () => import('@/views/error/error401.vue'),
+      component: () => import('@/views/error/errorPage_401.vue'),
       meta: {
         title: '401',
         keepAlive: true,

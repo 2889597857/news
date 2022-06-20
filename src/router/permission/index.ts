@@ -1,8 +1,8 @@
-import type { Router } from 'vue-router';
-import { uniqBy } from 'lodash-es';
 import { usePermissionStore } from '@/store';
 import NProgress from '@/utils/progress';
 import { storageLocal } from '@/utils/storage/storage';
+import { uniqBy } from 'lodash-es';
+import type { Router } from 'vue-router';
 import { handleAliveRoute, initRouter } from './asyncRoutes';
 
 const whiteList = [];
@@ -46,15 +46,11 @@ export const createRouterGuide = (router: Router) => {
       next();
     } else {
       // 未登录
-      if (to.path !== '/login') {
-        // 是否是路由白名单
-        if (whiteList.indexOf(to.path) !== -1) {
-          next();
-        } else {
-          next({ path: '/login' });
-        }
-      } else {
+      if (to.path == '/login') {
         next();
+      } else if (whiteList.indexOf(to.path) !== -1) {
+        next();
+        // 是否是路由白名单
       }
     }
   });

@@ -1,5 +1,5 @@
-import { h } from 'vue';
 import { Icon } from '@iconify/vue';
+import { h } from 'vue';
 
 /**
  * 动态渲染iconify

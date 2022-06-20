@@ -1,10 +1,8 @@
 import { createPinia } from 'pinia';
-// eslint-disable-next-line import/order
 import type { App } from 'vue';
 
-export const store = createPinia();
-
 export function setupStore(app: App<Element>) {
+  const store = createPinia();
   app.use(store);
 }
 

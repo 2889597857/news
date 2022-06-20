@@ -1,2 +1,2 @@
-export { usePermissionStore } from './permission';
+// export { usePermissionStore } from './permission';
 export { useAppStore } from './app';

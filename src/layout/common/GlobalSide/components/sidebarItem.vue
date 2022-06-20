@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { NScrollbar, NMenu } from 'naive-ui';
@@ -66,4 +66,4 @@ watch(
   font-size: 20px;
   font-weight: bold;
 }
-</style>
+</style> -->

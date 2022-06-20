@@ -13,10 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import { NLayoutContent, NScrollbar } from 'naive-ui';
-import { usePermissionStore } from '@/store/modules/permission';
+// import { usePermissionStore } from '@/store/modules/permission';
 
-const keepAlive = ref(true);
+// const keepAlive = ref(true);
 </script>
 
 <style scoped lang="scss">

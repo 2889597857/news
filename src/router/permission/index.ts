@@ -1,8 +1,8 @@
+import type { Router } from 'vue-router';
+import { uniqBy } from 'lodash-es';
 import { usePermissionStore } from '@/store';
 import NProgress from '@/utils/progress';
 import { storageLocal } from '@/utils/storage/storage';
-import { uniqBy } from 'lodash-es';
-import type { Router } from 'vue-router';
 import { handleAliveRoute, initRouter } from './asyncRoutes';
 
 const whiteList = [];

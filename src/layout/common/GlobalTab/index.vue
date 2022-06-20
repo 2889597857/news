@@ -1,7 +1,11 @@
 <template>
-  <h5>tab</h5>
+  <h5>{{ name }}</h5>
 </template>
-<!-- <script setup lang="ts"> -->
+<script setup lang="ts">
+const name = 'tab';
+</script>
+//
+<script setup lang="ts">
 // import { computed, ComputedRef } from 'vue';
 // import { RouteConfigs } from '@/layout/BasicLayout/layout';
 // import { emitter } from '@/utils/mitt';
@@ -24,4 +28,5 @@
 // function dynamicRouteTag(indexPath: any, parentPath: any) {}
 
 // function showMenuModel(indexPath: any) {}
-// </script>
+//
+</script>

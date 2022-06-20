@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import four from '@/assets/404.png';
-// eslint-disable-next-line camelcase
-import four_cloud from '@/assets/404_cloud.png';
-
-const message = computed(() => {
-  return 'The webmaster said that you can not enter this page...';
-});
+import fourCloud from '@/assets/404_cloud.png';
 </script>
 
 <template>
   <div class="pic-404">
     <img class="pic-404__parent" :src="four" alt="404" />
-    <img class="pic-404__child left" :src="four_cloud" alt="404" />
-    <img class="pic-404__child mid" :src="four_cloud" alt="404" />
-    <img class="pic-404__child right" :src="four_cloud" alt="404" />
+    <img class="pic-404__child left" :src="fourCloud" alt="404" />
+    <img class="pic-404__child mid" :src="fourCloud" alt="404" />
+    <img class="pic-404__child right" :src="fourCloud" alt="404" />
   </div>
 </template>
 

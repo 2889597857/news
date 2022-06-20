@@ -21,6 +21,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'airbnb-base',
     'eslint:recommended',
+    'plugin:import/recommended',
     'plugin:vue/vue3-recommended',
     '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier',
@@ -182,7 +183,7 @@ module.exports = {
         pathGroupsExcludedImportTypes: ['vue', 'vue-router', 'vuex', 'pinia', 'naive-ui']
       }
     ],
-    'import/no-unresolved': ['error', { ignore: ['uno.css', '~icons/*'] }],
+    'import/no-unresolved': ['error', { ignore: ['uno.css', '~icons/*', 'src/type/tsx.d.ts'] }],
     'import/prefer-default-export': 'off',
     'max-classes-per-file': 'off',
     'no-param-reassign': [

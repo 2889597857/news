@@ -18,8 +18,8 @@
 <script lang="ts" setup>
 import { GlobalContent, GlobalHeader, GlobalSide, GlobalTab, SettingDrawer } from '../common';
 
-type position = 'absolute' | 'static';
-const a = 123;
+// type position = 'absolute' | 'static';
+
 const state = reactive({
   sider: {
     width: 220

@@ -5,5 +5,6 @@ export type news = {
   content: [string];
   segmentation: [{ keyword: string }];
   report: string;
+  time: string;
 };
-export type newsLists = [news];
+export type newsLists = Array<news>;

@@ -7,6 +7,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/loginApp.vue'),
     meta: {
       showLink: false
+    },
+    {
+     path:'/news',
+     name:'news',
     }
   }
 ];

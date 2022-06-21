@@ -1,2 +1,5 @@
 @import './normalize.css';
 @import './global.scss';
+html, body, #app {
+	height: 100%;
+}

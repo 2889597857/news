@@ -42,6 +42,8 @@ const state = reactive({
 }
 
 .global-content-container {
+  width: 100%;
+  height: 100%;
 }
 
 .global-header-container {

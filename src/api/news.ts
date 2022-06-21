@@ -1,6 +1,9 @@
 import { axios } from './index';
 
-export async function getNews() {
-  // eslint-disable-next-line no-return-await
-  return await axios.get('/api/news');
+export function getNews() {
+  return axios.get('/api/news');
+}
+
+export function updateNews(data: { id: string; news: string }) {
+  return axios.post('/api/news/update', data);
 }

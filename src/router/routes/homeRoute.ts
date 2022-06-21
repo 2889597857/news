@@ -14,7 +14,7 @@ const homeRouter = {
     {
       path: '/welcome',
       name: 'welcome',
-      component: () => import('@/views/news/index.vue'),
+      component: () => import('@/views/index.vue'),
       meta: {
         title: 'message.hshome',
         showLink: true

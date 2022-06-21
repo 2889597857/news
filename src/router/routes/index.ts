@@ -1,11 +1,12 @@
-import { ascending } from '@/utils/route';
-import customRoutes from '../modules';
+// import { ascending } from '@/utils/route';
 import ROUTE_HOME from './homeRoute';
-import constantRoutes from './constant';
+import NEWS from './news';
 /** 所有静态路由 */
-export const routes = ascending([
-  ROUTE_HOME
+
+export const routes = [
+  ROUTE_HOME,
+  NEWS
   //   ...customRoutes,
   //   ...constantRoutes,
-]);
+];
 export { ROUTE_HOME };

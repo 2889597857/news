@@ -4,6 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 // import { createRouterGuide } from '../permission';
 import { routes } from '../routes';
 
+console.log(routes);
+
 export const router: Router = createRouter({
   history: createWebHistory(),
   routes

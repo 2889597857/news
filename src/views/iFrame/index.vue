@@ -1,10 +1,8 @@
 <template>
-  <iframe src="http://huanjing.ahwang.cn/hjbgt/20220621/15889.html"></iframe>
+  <iframe :src="route.query.url"></iframe>
 </template>
 <script lang="ts" setup>
-// LocationQuery;
-// const route = useRoute();
-// const iframeSrc: [] = route.query;
+const route = useRoute();
 </script>
 <style>
 iframe {

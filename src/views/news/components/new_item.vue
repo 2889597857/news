@@ -32,6 +32,7 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs';
 
+const router = useRouter();
 type NewItem = {
   _id: string;
   title: string;
@@ -51,14 +52,39 @@ const emit = defineEmits(['updateNews']);
 const onBlue = (): void => {
   console.log(132);
 };
-
+// 按钮文字
 const newsMen = ref('编辑');
+// 编辑新闻
 const editorNews = ref(false);
+// 编辑新闻内容
 const editorValue = ref('');
+// 是否显示全文
+const showAll = ref(false);
+// 默认只显示新闻前两段内容
+const defaultContent = computed(() => {
+  let content = '';
+  const contentLength = props.newsInfo.content.length >= 2;
 
-const editorNewBtn = (): void => {
+  if (!showAll.value && !props.newsInfo.report) {
+    // 默认只显示新闻前两段内容
+    content = contentLength ? `${props.newsInfo.content[0]}${props.newsInfo.content[1]}` : props.newsInfo.content[0];
+  } else {
+    // 显示全文
+    content = props.newsInfo.content.join('');
+  }
+  // 修改后的新闻
+  if (props.newsInfo.report) {
+    content = props.newsInfo.report;
+  }
+  // 编辑状态
+  if (editorNews.value) {
+    editorValue.value = content;
+  }
+  return content;
+});
+// 切换编辑状态
+function editorNewBtn(): void {
   if (!editorNews.value) {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     editorValue.value = defaultContent.value;
     editorNews.value = true;
     newsMen.value = '保存';
@@ -66,39 +92,25 @@ const editorNewBtn = (): void => {
     newsMen.value = '编辑';
     editorNews.value = false;
   }
-};
-const cancelEditor = (): void => {
+}
+// 取消编辑
+function cancelEditor(): void {
   emit('updateNews', {
     index: props.id,
     content: editorValue.value,
     // eslint-disable-next-line no-underscore-dangle
     id: props.newsInfo._id
   });
-};
-const gotoDetails = () => {
-  // eslint-disable-next-line no-console
-  console.log('123');
-};
-
-const showAll = ref(false);
-const defaultContent = computed(() => {
-  let content = '';
-  const contentLength = props.newsInfo.content.length >= 2;
-
-  // 默认只显示新闻前两段内容
-  if (!showAll.value && !props.newsInfo.report) {
-    content = contentLength ? `${props.newsInfo.content[0]}${props.newsInfo.content[1]}` : props.newsInfo.content[0];
-  } else {
-    content = props.newsInfo.content.join('');
-  }
-  if (props.newsInfo.report) {
-    content = props.newsInfo.report;
-  }
-  if (editorNews.value) {
-    editorValue.value = content;
-  }
-  return content;
-});
+}
+// 跳转到新闻详情页
+function gotoDetails() {
+  router.push({
+    path: '/news/details',
+    query: {
+      url: props.newsInfo.url
+    }
+  });
+}
 </script>
 
 <style lang="scss" scoped>

@@ -20,8 +20,8 @@ const newsRouter = {
       }
     },
     {
-      path: '/news/iframe',
-      name: 'iframe',
+      path: '/news/details',
+      name: 'newsDetails',
       component: () => import('@/views/iFrame/index.vue'),
       meta: {
         title: '新闻详情'

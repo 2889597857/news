@@ -24,7 +24,8 @@ const newsRouter = {
       name: 'newsDetails',
       component: () => import('@/views/iFrame/index.vue'),
       meta: {
-        title: '新闻详情'
+        title: '新闻详情',
+        icon: 'icon-park-outline:workbench'
       }
     }
   ]

@@ -1,10 +1,9 @@
-import vue from './vue';
-import configHtmlPlugin from './html';
-import autoImport from './autoImport';
 import autoComponents from './autoComponents';
+import autoImport from './autoImport';
+import configHtmlPlugin from './html';
 import unocss from './unocss';
+import vue from './vue';
 // import iconify from './iconify';
-// import windicss from './windicss';
 import visualizer from './visualizer';
 
 // const plugins = [vue, ...html, ...iconify, windicss, visualizer];

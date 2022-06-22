@@ -4,7 +4,7 @@ const homeRouter = {
   path: '/',
   name: 'home',
   component: BasicLayout,
-  redirect: '/welcome',
+  // redirect: '/welcome',
   meta: {
     icon: 'HomeFilled',
     showLink: true,

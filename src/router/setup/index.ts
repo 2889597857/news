@@ -4,8 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 // import { createRouterGuide } from '../permission';
 import { routes } from '../routes';
 
-console.log(routes);
-
 export const router: Router = createRouter({
   history: createWebHistory(),
   routes
@@ -14,6 +12,8 @@ export const router: Router = createRouter({
 export async function setupRouter(app: App) {
   // 挂载路由
   app.use(router);
+  console.log(router.getRoutes());
+
   // // 路由守卫
   // createRouterGuide(router)
   // await router.isReady()

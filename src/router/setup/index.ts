@@ -1,7 +1,7 @@
 import type { App } from 'vue';
 import type { Router } from 'vue-router';
 import { createRouter, createWebHistory } from 'vue-router';
-// import { createRouterGuide } from '../permission';
+import { createRouterGuard } from '../gurad';
 import { routes } from '../routes';
 
 export const router: Router = createRouter({
@@ -10,11 +10,7 @@ export const router: Router = createRouter({
 });
 
 export async function setupRouter(app: App) {
-  // 挂载路由
   app.use(router);
-  console.log(router.getRoutes());
-
-  // // 路由守卫
-  // createRouterGuide(router)
-  // await router.isReady()
+  createRouterGuard(router);
+  await router.isReady();
 }

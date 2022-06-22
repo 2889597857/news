@@ -7,7 +7,8 @@ const errorRouter = {
   redirect: '/error/401',
   meta: {
     keepAlive: false,
-    isNotMenu: false
+    isNotMenu: false,
+    icon: 'icon-park-outline:workbench'
   },
   children: [
     {
@@ -17,7 +18,8 @@ const errorRouter = {
       meta: {
         title: '401',
         keepAlive: true,
-        isNotMenu: false
+        isNotMenu: false,
+        icon: 'icon-park-outline:workbench'
       }
     },
     {
@@ -27,7 +29,8 @@ const errorRouter = {
       meta: {
         title: '404',
         keepAlive: true,
-        isNotMenu: false
+        isNotMenu: false,
+        icon: 'icon-park-outline:workbench'
       }
     }
   ]

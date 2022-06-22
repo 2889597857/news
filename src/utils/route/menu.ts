@@ -1,27 +1,32 @@
-export function transformRouteToMenu(routes: CustomRoute[]) {
+import { RouteRecordRaw } from 'vue-router';
+import { iconifyRender } from '../common';
+
+export function transformRouteToMenu(routes: RouteRecordRaw[]) {
   const globalMenu: GlobalMenuOption[] = [];
   routes.forEach(route => {
     const { name, path, meta } = route;
+
     const routeName = name as string;
     let menuChildren: GlobalMenuOption[] | undefined;
     if (route.children) {
-      menuChildren = transformRouteToMenu(route.children as CustomRoute[]);
+      menuChildren = transformRouteToMenu(route.children);
     }
     const menuItem: GlobalMenuOption = addPartialProps(
       {
         key: routeName,
-        label: meta?.title ?? routeName,
+        label: (meta?.title as string) ?? routeName,
         routeName,
         routePath: path
       },
-      meta?.icon,
+      meta?.icon as string,
       menuChildren
     );
-    if (asMenu(route)) {
-      globalMenu.push(menuItem);
-    } else if (menuChildren) {
-      globalMenu.push(...menuChildren);
-    }
+    globalMenu.push(menuItem);
+    // if (asMenu(route)) {
+    //   globalMenu.push(menuItem);
+    // } else if (menuChildren) {
+    //   globalMenu.push(...menuChildren);
+    // }
   });
   return globalMenu;
 }
@@ -29,7 +34,7 @@ export function transformRouteToMenu(routes: CustomRoute[]) {
 function addPartialProps(menuItem: GlobalMenuOption, icon?: string, children?: GlobalMenuOption[]) {
   const item = { ...menuItem };
   if (icon) {
-    // Object.assign(item, { icon: iconifyRender(icon) })
+    Object.assign(item, { icon: iconifyRender(icon) });
   }
   if (children) {
     Object.assign(item, { children });
@@ -37,7 +42,7 @@ function addPartialProps(menuItem: GlobalMenuOption, icon?: string, children?: G
   return item;
 }
 /** 判断路由是否作为菜单 */
-function asMenu(route: CustomRoute) {
+function asMenu(route) {
   return route.meta?.isNotMenu;
 }
 

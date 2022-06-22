@@ -1,12 +1,7 @@
 // import { ascending } from '@/utils/route';
+import moduleRouter from '../modules';
 import ROUTE_HOME from './homeRoute';
-import NEWS from './news';
 /** 所有静态路由 */
 
-export const routes = [
-  ROUTE_HOME,
-  NEWS
-  //   ...customRoutes,
-  //   ...constantRoutes,
-];
+export const routes = [ROUTE_HOME, ...moduleRouter];
 export { ROUTE_HOME };

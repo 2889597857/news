@@ -6,25 +6,33 @@ const newsRouter = {
   component: BasicLayout,
   redirect: '/news/list',
   meta: {
-    icon: 'HomeFilled',
-    showLink: true,
-    rank: 0
+    icon: 'icon-park-outline:analysis'
   },
   children: [
     {
       path: '/news/list',
-      name: 'welcome',
+      name: 'newsLists',
       component: () => import('@/views/news/index.vue'),
       meta: {
-        title: '新闻列表'
+        title: '新闻列表',
+        icon: 'icon-park-outline:workbench'
       }
     },
     {
       path: '/news/details',
       name: 'newsDetails',
-      component: () => import('@/views/iFrame/index.vue'),
+      component: () => import('@/views/newsDetails/index.vue'),
       meta: {
         title: '新闻详情',
+        icon: 'icon-park-outline:workbench'
+      }
+    },
+    {
+      path: '/news/site',
+      name: 'newsSite',
+      component: () => import('@/views/newsSite/index.vue'),
+      meta: {
+        title: '新闻站点',
         icon: 'icon-park-outline:workbench'
       }
     }

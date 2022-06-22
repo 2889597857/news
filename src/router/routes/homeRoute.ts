@@ -4,9 +4,9 @@ const homeRouter = {
   path: '/',
   name: 'home',
   component: BasicLayout,
-  // redirect: '/welcome',
+  redirect: '/welcome',
   meta: {
-    icon: 'HomeFilled',
+    icon: 'icon-park-outline:workbench',
     showLink: true,
     rank: 0
   },
@@ -16,8 +16,9 @@ const homeRouter = {
       name: 'welcome',
       component: () => import('@/views/index.vue'),
       meta: {
-        title: 'message.hshome',
-        showLink: true
+        title: '',
+        showLink: true,
+        icon: 'icon-park-outline:workbench'
       }
     }
   ]

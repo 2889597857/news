@@ -74,8 +74,8 @@ export class HttpRequest {
   private interceptorsRequest(): void {
     this.axiosInstance.interceptors.request.use(
       (config: HttpRequestConfig) => {
-        NProgress.start();
-
+        // NProgress.start();
+        window.$loadingBar?.start();
         const _config = config;
         // 生成 cancelKey
         const cancelKey = this.genUniqueKey(_config);
@@ -103,7 +103,7 @@ export class HttpRequest {
   private interceptorsResponse() {
     this.axiosInstance.interceptors.response.use(
       (response: HttpResponse) => {
-        NProgress.done();
+        window.$loadingBar?.finish();
         // 生成 cancelKey
         const cancelKey = this.genUniqueKey(response.config);
         // 从请求列表中删除这次请求

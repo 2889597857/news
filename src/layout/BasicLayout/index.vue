@@ -1,6 +1,6 @@
 <template>
   <div class="admins-layout">
-    <aside :style="{ width: state.sider.width + 'px' }" :inlist="a" class="global-side-container">
+    <aside :style="{ width: state.sider.width + 'px' }" class="global-side-container">
       <global-side />
     </aside>
     <header class="global-header-container" :style="{ paddingLeft: state.sider.width + 'px' }">
@@ -53,5 +53,6 @@ const state = reactive({
   position: fixed;
   top: 0;
   left: 0;
+  height: 100%;
 }
 </style>

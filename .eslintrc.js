@@ -69,7 +69,7 @@ module.exports = {
     ],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true, peerDependencies: true }],
     'import/order': [
-      'error',
+      'off',
       {
         'newlines-between': 'never',
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],

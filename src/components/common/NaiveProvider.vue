@@ -1,7 +1,11 @@
 <template>
+  <!-- 加载条组件 -->
   <n-loading-bar-provider>
+    <!-- 对话框组件 -->
     <n-dialog-provider>
+      <!-- 通知框组件 -->
       <n-notification-provider>
+        <!-- 信息组件 -->
         <n-message-provider>
           <slot></slot>
           <naive-provider-content />

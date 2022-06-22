@@ -1,11 +1,5 @@
 import type { ComponentRenderProxy, PropType as VuePropType, VNode } from 'vue';
 
-interface Window {
-  $loadingBar?: import('naive-ui').LoadingBarProviderInst;
-  $dialog?: import('naive-ui').DialogProviderInst;
-  $message?: import('naive-ui').MessageProviderInst;
-  $notification?: import('naive-ui').NotificationProviderInst;
-}
 declare global {
   // eslint-disable-next-line no-underscore-dangle
   const __APP_INFO__: {
@@ -17,6 +11,7 @@ declare global {
     };
     lastBuildTime: string;
   };
+
   interface Window {
     // Global vue app instance
     __APP__: App<Element>;
@@ -29,6 +24,11 @@ declare global {
     mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
     oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
     msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
+
+    $loadingBar?: import('naive-ui').LoadingBarProviderInst;
+    $dialog?: import('naive-ui').DialogProviderInst;
+    $message?: import('naive-ui').MessageProviderInst;
+    $notification?: import('naive-ui').NotificationProviderInst;
   }
 
   // vue

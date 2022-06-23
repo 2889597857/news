@@ -12,7 +12,7 @@
   </n-scrollbar>
 </template>
 <script setup lang="ts">
-import { getNews, updateNews as update } from '@/api';
+import { getNews } from '@/api';
 import newItem from './components/new_item.vue';
 import { newsLists } from './news.d';
 
@@ -20,8 +20,8 @@ const newsList = ref<newsLists>();
 const page = ref(10);
 
 const updateNews = async (data: { index: number; content: string }) => {
-  const { index, content, _id } = data;
-  await update();
+  // const { index, content, _id } = data;
+  // await update();
   // const item: news = newItem.value[index];
   // item.report = content;
 };

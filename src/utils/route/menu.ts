@@ -76,3 +76,19 @@ export const increaseIndexes = val => {
     })
     .filter(v => v.meta && v.meta.showLink);
 };
+
+export function getActiveKeyPathsOfMenus(activeKey: string, menus: GlobalMenuOption[]) {
+  const keys = menus.map(menu => getActiveKeyPathsOfMenu(activeKey, menu)).flat(1);
+  return keys;
+}
+
+function getActiveKeyPathsOfMenu(activeKey: string, menu: GlobalMenuOption) {
+  const keys: string[] = [];
+  if (activeKey.includes(menu.routeName)) {
+    keys.push(menu.routeName);
+  }
+  if (menu.children) {
+    keys.push(...menu.children.map(item => getActiveKeyPathsOfMenu(activeKey, item)).flat(1));
+  }
+  return keys;
+}

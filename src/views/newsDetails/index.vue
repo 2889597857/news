@@ -1,6 +1,6 @@
 <template>
-  <iframe v-if="showIframe" ref="iframe" :src="query"></iframe>
-  <div v-else>
+  <iframe v-show="showIframe" ref="iframe" :src="query"></iframe>
+  <div v-show="!showIframe">
     <n-input v-model:value="iframeURL" type="text" placeholder="基本的 Input" />
   </div>
 </template>
@@ -11,9 +11,10 @@ const query = ref('');
 const iframeURL = ref('');
 const iframe = ref(null);
 onMounted(() => {
-  query.value = route.query.url;
-  if (query) {
+  if (route.query.url) {
+    query.value = route.query.url as string;
     showIframe.value = true;
+  } else {
     console.log(iframe.value);
   }
 });

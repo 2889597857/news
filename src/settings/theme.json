@@ -61,7 +61,7 @@
 	"showReload": true,
 	"header": {
 		"inverted": false,
-		"height": 56,
+		"height": 68,
 		"crumb": {
 			"visible": true,
 			"showIcon": true

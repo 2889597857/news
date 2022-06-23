@@ -8,6 +8,7 @@ const homeRouter = {
   meta: {
     icon: 'icon-park-outline:workbench',
     showLink: true,
+    title: 'welcome',
     rank: 0
   },
   children: [

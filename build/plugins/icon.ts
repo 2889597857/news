@@ -17,7 +17,7 @@ export default (srcPath: string) => {
       defaultClass: 'inline-block'
     }),
     Components({
-      dts: 'src/typings/components.d.ts',
+      dts: 'src/type/components.d.ts',
       types: [{ from: 'vue-router', names: ['RouterLink', 'RouterView'] }],
       resolvers: [NaiveUiResolver(), IconsResolver({ customCollections: ['custom'], componentPrefix: 'icon' })]
     })

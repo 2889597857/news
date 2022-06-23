@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import { createVitePlugins } from './build';
+
 /**
  * command: serve/build
  * mode：development/production
@@ -8,6 +9,9 @@ export default defineConfig(({ command, mode }) => {
   const root = process.cwd();
   const isBuild = command === 'build';
   const env = loadEnv(mode, root);
+  const srcPath = `${root}/src`;
+  console.log(srcPath);
+
   return {
     root,
     base: './',
@@ -16,7 +20,7 @@ export default defineConfig(({ command, mode }) => {
         '@/': new URL('./src/', import.meta.url).pathname
       }
     },
-    plugins: createVitePlugins(env, isBuild),
+    plugins: createVitePlugins(env, isBuild, srcPath),
     server: {
       host: '0.0.0.0',
       open: true, // 自动打开浏览器

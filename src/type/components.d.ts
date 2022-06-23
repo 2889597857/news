@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IconCustomLogoFill: typeof import('~icons/custom/logo-fill')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']

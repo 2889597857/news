@@ -1,5 +1,8 @@
 import { createHtmlPlugin } from 'vite-plugin-html'; // html插件(使用变量、压缩)
 
+// html 模板编译
+// <%= title %>
+
 export default function configHtmlPlugin(viteEnv: ViteEnv, isBuild: boolean) {
   const { VITE_APP_TITLE } = viteEnv;
   const htmlPlugin = createHtmlPlugin({

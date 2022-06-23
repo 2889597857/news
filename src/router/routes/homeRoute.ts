@@ -17,7 +17,7 @@ const homeRouter = {
       name: 'welcome',
       component: () => import('@/views/index.vue'),
       meta: {
-        title: '',
+        title: '首页',
         showLink: true,
         icon: 'icon-park-outline:workbench'
       }

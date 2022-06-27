@@ -6,8 +6,8 @@ const newsRouter = {
   component: BasicLayout,
   redirect: '/news/list',
   meta: {
-    icon: 'icon-park-outline:analysis',
-    title: '信息报送'
+    icon: 'material-symbols:newspaper',
+    title: '新闻'
   },
   children: [
     {
@@ -16,7 +16,7 @@ const newsRouter = {
       component: () => import('@/views/news/index.vue'),
       meta: {
         title: '新闻列表',
-        icon: 'icon-park-outline:workbench'
+        icon: 'mdi:newspaper-variant-multiple-outline'
       }
     },
 
@@ -35,7 +35,7 @@ const newsRouter = {
       component: () => import('@/views/newsDetails/index.vue'),
       meta: {
         title: '新闻详情',
-        icon: 'icon-park-outline:workbench'
+        icon: 'ic:outline-web-asset'
       }
     }
   ]

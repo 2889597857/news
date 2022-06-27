@@ -8,7 +8,7 @@ const homeRouter = {
   meta: {
     icon: 'icon-park-outline:workbench',
     showLink: true,
-    title: 'welcome',
+    title: '首页',
     rank: 0
   },
   children: [

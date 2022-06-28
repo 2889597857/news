@@ -2,7 +2,7 @@
   <div
     class="layout-sider h-full dark:bg-[#18181c] dark:text-white dark:text-opacity-82 transition-all duration-300 ease-in-out"
   >
-    <h1 @click="appStore.toggleSiderCollapse">折叠</h1>
+    <!-- <h1 @click="appStore.toggleSiderCollapse">折叠</h1> -->
     <global-logo :show-title="showTitle" />
     <n-menu
       :collapsed="appStore.siderCollapse"

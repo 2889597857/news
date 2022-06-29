@@ -26,18 +26,6 @@ const currentSiderWidth = computed(() => {
   const width = appStore.siderCollapse ? themeStore.sider.collapsedWidth : themeStore.sider.width;
   return width;
 });
-
-const state = reactive({
-  sider: {
-    width: 220
-  },
-  header: {
-    height: 60
-  },
-  tab: {
-    height: 50
-  }
-});
 </script>
 <style scoped lang="scss">
 .admins-layout {

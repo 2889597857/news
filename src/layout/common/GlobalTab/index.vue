@@ -21,7 +21,6 @@ const route = useRoute();
 const theme = useThemeStore();
 const tab = useTabStore();
 const deviceInfo = useDeviceInfo();
-
 const bsWrapper = ref<HTMLElement>();
 const { width: bsWrapperWidth, left: bsWrapperLeft } = useElementBounding(bsWrapper);
 

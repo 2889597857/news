@@ -9,7 +9,7 @@ export function setTabRoutes(data: GlobalTabRoute[]) {
 /** 获取缓存的多页签数据 */
 export function getTabRoutes() {
   const routes: GlobalTabRoute[] = [];
-  const data = storageLocal.getItem<GlobalTabRoute[]>(EnumStorageKey['multi-tab-routes']);
+  const data = storageLocal.getItem(EnumStorageKey['multi-tab-routes']);
   if (data) {
     const defaultTabRoutes = data.map(item => ({
       ...item,

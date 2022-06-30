@@ -6,7 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BetterScroll: typeof import('./../components/common/BetterScroll.vue')['default']
-    IconCustomLogoFill: typeof import('~icons/custom/logo-fill')['default']
+    IconMdiRefresh: typeof import('~icons/mdi/refresh')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']

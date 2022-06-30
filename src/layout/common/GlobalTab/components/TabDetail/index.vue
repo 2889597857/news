@@ -1,7 +1,6 @@
 <template>
   <div ref="tabRef" class="h-full" :class="[isChromeMode ? 'flex items-end' : 'flex-y-center']">
-    <component
-      :is="activeComponent"
+    <page-tab
       v-for="(item, index) in tab.tabs"
       :key="item.fullPath"
       :is-active="tab.activeTab === item.fullPath"
@@ -15,7 +14,7 @@
     >
       <Icon v-if="item.meta.icon" :icon="item.meta.icon" class="inline-block align-text-bottom mr-4px text-16px" />
       {{ item.meta.title }}
-    </component>
+    </page-tab>
   </div>
   <context-menu
     v-model:visible="dropdown.visible"
@@ -29,10 +28,9 @@
 import { useTabStore, useThemeStore } from '@/store';
 import { setTabRoutes } from '@/utils';
 import { Icon } from '@iconify/vue';
-import { ButtonTab, ChromeTab } from '@soybeanjs/vue-admin-tab';
 import { useEventListener } from '@vueuse/core';
 import { computed, nextTick, reactive, ref, watch } from 'vue';
-import { ContextMenu } from './components';
+import { ContextMenu, PageTab } from './components';
 
 interface Emits {
   (e: 'scroll', clientX: number): void;
@@ -44,7 +42,6 @@ const theme = useThemeStore();
 const tab = useTabStore();
 
 const isChromeMode = computed(() => theme.tab.mode === 'chrome');
-const activeComponent = computed(() => (isChromeMode.value ? ChromeTab : ButtonTab));
 
 // 获取当前激活的tab的clientX
 const tabRef = ref<HTMLElement>();

@@ -10,7 +10,6 @@
 import type { Options } from '@better-scroll/core';
 import BScroll from '@better-scroll/core';
 import { useElementSize } from '@vueuse/core';
-import { computed, onMounted, ref, watch } from 'vue';
 
 interface Props {
   /** better-scroll的配置: https://better-scroll.github.io/docs/zh-CN/guide/base-scroll-options.html */

@@ -1,5 +1,4 @@
 import { setupStore } from '@/store';
-// eslint-disable-next-line import/order
 import 'uno.css';
 import { createApp } from 'vue';
 import App from './App.vue';

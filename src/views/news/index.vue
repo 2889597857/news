@@ -1,5 +1,5 @@
 <template>
-  <n-pagination v-model:page="page" :page-count="100" />
+  <n-pagination v-model:page="page" :page-count="totalPages" />
   <n-scrollbar style="height: 100%" trigger="hover">
     <new-item
       v-for="(item, index) in newsList"
@@ -17,8 +17,8 @@ import newItem from './components/new_item.vue';
 import { newsLists } from './news.d';
 
 const newsList = ref<newsLists>();
-const page = ref(10);
-
+const page = ref();
+const totalPages = ref();
 const updateNews = async (data: { index: number; content: string }) => {
   // const { index, content, _id } = data;
   // await update();
@@ -27,7 +27,10 @@ const updateNews = async (data: { index: number; content: string }) => {
 };
 onMounted(() => {
   getNews().then((result: newsLists) => {
-    newsList.value = result;
+    console.log(result);
+    page.value = result.currentPage;
+    totalPages.value = result.totalPages;
+    newsList.value = result.data;
   });
 });
 </script>

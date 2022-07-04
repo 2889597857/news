@@ -11,7 +11,7 @@
         链接：
         <span class="news-url" @click="gotoDetails">{{ props.newsInfo.url }}</span>
       </li>
-      <li v-show="!editorNews">摘要：{{ props.newsInfo.report ? props.newsInfo.report : defaultContent }}</li>
+      <li v-show="!editorNews">摘要：{{ defaultContent }}</li>
       <n-input
         v-show="editorNews"
         v-model:value="editorValue"
@@ -23,7 +23,9 @@
       <li>时间：{{ dayjs(props.newsInfo.time).format('YY-MM-DD hh:mm') }}</li>
       <li class="news-segmentation">
         关键字：
-        <n-tag v-for="item in props.newsInfo.segmentation" :key="item.keyword" type="info">{{ item.keyword }} </n-tag>
+        <n-tag v-for="item in props.newsInfo.segmentation" :key="item" type="info">
+          {{ item }}
+        </n-tag>
       </li>
     </ul>
     <n-divider />
@@ -37,7 +39,7 @@ type NewItem = {
   _id: string;
   title: string;
   url: string;
-  content: Array<string>;
+  content: string;
   segmentation: Array<{ keyword: string }>;
   report: string;
   time: string;
@@ -61,26 +63,21 @@ const editorValue = ref('');
 // 是否显示全文
 const showAll = ref(false);
 // 默认只显示新闻前两段内容
-const defaultContent = computed(() => {
-  let content = '';
-  const contentLength = props.newsInfo.content.length >= 2;
 
-  if (!showAll.value && !props.newsInfo.report) {
+const defaultContent = ref('');
+
+watchEffect(() => {
+  if (showAll.value) {
     // 默认只显示新闻前两段内容
-    content = contentLength ? `${props.newsInfo.content[0]}${props.newsInfo.content[1]}` : props.newsInfo.content[0];
+    defaultContent.value = props.newsInfo.content;
   } else {
     // 显示全文
-    content = props.newsInfo.content.join('');
-  }
-  // 修改后的新闻
-  if (props.newsInfo.report) {
-    content = props.newsInfo.report;
+    defaultContent.value = props.newsInfo.report;
   }
   // 编辑状态
   if (editorNews.value) {
-    editorValue.value = content;
+    editorValue.value = defaultContent.value;
   }
-  return content;
 });
 // 切换编辑状态
 function editorNewBtn(): void {
@@ -130,9 +127,11 @@ function gotoDetails() {
   display: flex;
   margin: 10px 0;
 }
+
 .news-menu > * {
   margin-right: 10px;
 }
+
 .news-segmentation > div {
   margin-right: 5px;
 }

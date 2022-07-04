@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 import Axios, { AxiosInstance, AxiosRequestConfig, CancelTokenStatic } from 'axios';
-import NProgress from '../../progress';
 import { defaultConfig } from './axios.config';
 import { cancelTokenType, HttpError, HttpRequestConfig, HttpResponse, RequestMethods } from './axios.d';
 
@@ -23,6 +22,7 @@ export class HttpRequest {
   private currentCancelTokenKey = '';
 
   // 生成 cancelKey
+  // eslint-disable-next-line class-methods-use-this
   private genUniqueKey(config: HttpRequestConfig): string {
     return `${config.url}--${JSON.stringify(config.data)}`;
   }
@@ -136,7 +136,7 @@ export class HttpRequest {
         }
         // 取消请求
         _error.isCancelRequest = Axios.isCancel(_error);
-        NProgress.done();
+        // NProgress.done();
         Promise.reject(_error);
       }
     );

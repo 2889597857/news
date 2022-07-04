@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <n-dropdown
     :show="dropdownVisible"
     :options="options"
@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import type { DropdownOption } from 'naive-ui';
 import { useAppStore, useTabStore } from '@/store';
 import { iconifyRender } from '@/utils';
+import type { DropdownOption } from 'naive-ui';
+import { computed } from 'vue';
 
 interface Props {
   /** 右键菜单可见性 */
@@ -132,4 +132,4 @@ function handleDropdown(optionKey: string) {
 }
 </script>
 
-<style scoped></style>
+<style scoped></style> -->

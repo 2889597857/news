@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div ref="tabRef" class="h-full" :class="[isChromeMode ? 'flex items-end' : 'flex-y-center']">
     <page-tab
       v-for="(item, index) in tab.tabs"
@@ -99,4 +99,4 @@ useEventListener(window, 'beforeunload', () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped></style> -->

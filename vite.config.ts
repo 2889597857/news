@@ -10,7 +10,6 @@ export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build';
   const env = loadEnv(mode, root);
   const srcPath = `${root}/src`;
-  console.log(srcPath);
 
   return {
     root,

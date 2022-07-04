@@ -14,9 +14,8 @@
 <script setup lang="ts">
 import { getNews } from '@/api';
 import newItem from './components/new_item.vue';
-import { newsLists } from './news.d';
 
-const newsList = ref<newsLists>();
+const newsList = ref<NEWS.NewsList>();
 const page = ref();
 const totalPages = ref();
 const updateNews = async (data: { index: number; content: string }) => {
@@ -26,8 +25,7 @@ const updateNews = async (data: { index: number; content: string }) => {
   // item.report = content;
 };
 onMounted(() => {
-  getNews().then((result: newsLists) => {
-    console.log(result);
+  getNews().then(result => {
     page.value = result.currentPage;
     totalPages.value = result.totalPages;
     newsList.value = result.data;

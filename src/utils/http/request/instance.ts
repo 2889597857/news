@@ -1,40 +1,20 @@
-import { REFRESH_TOKEN_CODE } from '@/config';
-import {
-  getToken,
-  handleAxiosError,
-  handleBackendError,
-  handleResponseError,
-  handleServiceResult,
-  transformRequestData
-} from '@/utils';
+import { getToken } from '@/utils/auth';
 import type { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
-/**
- * 封装axios请求类
- * @author Soybean<honghuangdc@gmail.com>
- */
+type Result = {
+  code: number;
+  msg?: string;
+  data?: T;
+};
+
 export default class CustomAxiosInstance {
   instance: AxiosInstance;
 
-  backendConfig: Service.BackendResultConfig;
-
-  /**
-   *
-   * @param axiosConfig - axios配置
-   * @param backendConfig - 后端返回的数据配置
-   */
-  constructor(
-    axiosConfig: AxiosRequestConfig,
-    backendConfig: Service.BackendResultConfig = {
-      codeKey: 'code',
-      dataKey: 'data',
-      msgKey: 'msg',
-      successCode: 200
-    }
-  ) {
-    this.backendConfig = backendConfig;
-    this.instance = axios.create(axiosConfig);
+  constructor(config: AxiosRequestConfig) {
+    /** axios 实例 */
+    this.instance = axios.create(config);
+    /** 拦截器 */
     this.setInterceptor();
   }
 
@@ -42,20 +22,21 @@ export default class CustomAxiosInstance {
   setInterceptor() {
     // 请求拦截器
     this.instance.interceptors.request.use(
-      async config => {
+      async (config: AxiosRequestConfig) => {
         const handleConfig = { ...config };
         if (handleConfig.headers) {
           // 数据转换
-          const contentType = handleConfig.headers['Content-Type'] as string;
-          handleConfig.data = await transformRequestData(handleConfig.data, contentType);
+          // const contentType = handleConfig.headers['Content-Type'] as string;
+          // handleConfig.data = await transformRequestData(handleConfig.data, contentType);
           // 设置token
-          handleConfig.headers.Authorization = getToken();
+          handleConfig.headers.Authorization = `Bearer ${getToken()}`;
         }
         return handleConfig;
       },
       (axiosError: AxiosError) => {
-        const error = handleAxiosError(axiosError);
-        return handleServiceResult(error, null);
+        return Promise.reject(axiosError);
+        // const error = handleAxiosError(axiosError);
+        // return handleServiceResult(error, null);
       }
     );
     // 响应拦截器
@@ -64,9 +45,8 @@ export default class CustomAxiosInstance {
         const { status } = response;
         if (status === 200 || status < 300 || status === 304) {
           const { data } = response;
-          const { codeKey, dataKey, successCode } = this.backendConfig;
           // 请求成功
-          if (data[codeKey] === successCode) {
+          if (data.code === 200) {
             return handleServiceResult(null, data[dataKey]);
           }
 

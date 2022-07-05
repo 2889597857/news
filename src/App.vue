@@ -17,6 +17,6 @@ import { subscribeStore, useThemeStore } from '@/store';
 import { dateZhCN, zhCN } from 'naive-ui';
 
 const theme = useThemeStore();
-
+console.log(import.meta.env);
 subscribeStore();
 </script>

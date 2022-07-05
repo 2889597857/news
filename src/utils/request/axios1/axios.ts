@@ -175,7 +175,7 @@ export class HttpRequest {
     });
   }
 
-  public get(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig) {
+  public get<T>(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig): Promise<T> {
     return this.request(url, 'get', date, interceptors);
   }
 

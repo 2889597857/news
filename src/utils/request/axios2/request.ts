@@ -69,7 +69,7 @@ export function createRequest(axiosConfig: AxiosRequestConfig, backendConfig?: S
    * @param config - axios配置
    */
   function put<T>(url: string, data?: any, config?: AxiosRequestConfig) {
-    return asyncRequest<T>({ url, method: 'put', data, axiosConfig: config });
+    return asyncRequest<T>({ url, method: 'put', data, axSiosConfig: config });
   }
 
   /**

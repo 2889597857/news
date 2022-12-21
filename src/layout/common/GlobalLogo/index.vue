@@ -1,6 +1,6 @@
 <template>
   <router-link to="/" class="flex-center w-full nowrap-hidden">
-    <img style="width: 30px" src="@/assets/logo.png" />
+    <system-logo class="text-32px text-primary" />
     <h2 v-show="showTitle" class="pl-8px text-25px font-bold text-primary transition duration-300 ease-in-out">
       {{ title }}
     </h2>

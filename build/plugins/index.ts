@@ -9,6 +9,9 @@ import vue from './vue';
 
 // const plugins = [vue, ...html, ...iconify, windicss, visualizer];
 export default function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, srcPath: string): any[] {
+  // eslint-disable-next-line no-console
+  console.log(srcPath);
+
   return [
     ...vue,
     visualizer,

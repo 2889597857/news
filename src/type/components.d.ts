@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BetterScroll: typeof import('./../components/common/BetterScroll.vue')['default']
+    IconCustomLogo: typeof import('~icons/custom/logo')['default']
     IconCustomLogoFill: typeof import('~icons/custom/logo-fill')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
@@ -19,6 +20,7 @@ declare module '@vue/runtime-core' {
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SystemLogo: typeof import('./../components/common/SystemLogo.vue')['default']
   }
 }
 

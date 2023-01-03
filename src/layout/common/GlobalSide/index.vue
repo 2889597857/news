@@ -2,7 +2,6 @@
   <div
     class="layout-sider h-full dark:bg-[#18181c] dark:text-white dark:text-opacity-82 transition-all duration-300 ease-in-out"
   >
-    <h1 @click="appStore.toggleSiderCollapse">折叠</h1>
     <global-logo :style="{ height: themeStore.header.height + 'px' }" :show-title="showTitle" />
     <n-menu
       :collapsed="appStore.siderCollapse"
@@ -14,7 +13,6 @@
       @update:value="handleUpdateMenu"
       @update:expanded-keys="handleUpdateExpandedKeys"
     />
-    <!-- <SidebarItem /> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -52,6 +50,6 @@ watch(
 <style lang="scss" scoped>
 .layout-sider {
   width: 100%;
-  box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+  box-shadow: 0 1px 2px rgb(0 21 41 / 8%);
 }
 </style>

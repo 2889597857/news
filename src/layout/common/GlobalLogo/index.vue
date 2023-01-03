@@ -1,9 +1,9 @@
 <template>
   <router-link to="/" class="flex-center w-full nowrap-hidden">
-    <system-logo class="text-32px text-primary" />
-    <h2 v-show="showTitle" class="pl-8px text-25px font-bold text-primary transition duration-300 ease-in-out">
+    <system-logo class="text-32px text-primary" style="width: 26px; fill: var(--primary-color)" />
+    <p v-show="showTitle" class="pl-8px text-25px font-bold text-primary transition duration-300 ease-in-out">
       {{ title }}
-    </h2>
+    </p>
   </router-link>
 </template>
 

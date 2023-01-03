@@ -43,6 +43,7 @@ const currentSiderWidth = computed(() => {
 }
 
 .global-header-container {
+  height: 56px;
 }
 
 .global-side-container {

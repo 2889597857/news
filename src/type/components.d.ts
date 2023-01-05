@@ -6,8 +6,11 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BetterScroll: typeof import('./../components/common/BetterScroll.vue')['default']
+    HoverContainer: typeof import('./../components/common/HoverContainer.vue')['default']
     IconCustomLogo: typeof import('~icons/custom/logo')['default']
     IconCustomLogoFill: typeof import('~icons/custom/logo-fill')['default']
+    IconLineMdMenuFoldLeft: typeof import('~icons/line-md/menu-fold-left')['default']
+    IconLineMdMenuUnfoldLeft: typeof import('~icons/line-md/menu-unfold-left')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
@@ -18,6 +21,7 @@ declare module '@vue/runtime-core' {
     NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
+    NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SystemLogo: typeof import('./../components/common/SystemLogo.vue')['default']

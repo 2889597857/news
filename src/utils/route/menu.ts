@@ -2,16 +2,16 @@ import { RouteRecordRaw } from 'vue-router';
 import { iconifyRender } from '../common';
 
 export function transformRouteToMenu(routes: RouteRecordRaw[]) {
-  const globalMenu: GlobalMenuOption[] = [];
+  const globalMenu: App.GlobalMenuOption[] = [];
   routes.forEach(route => {
     const { name, path, meta } = route;
 
     const routeName = name as string;
-    let menuChildren: GlobalMenuOption[] | undefined;
+    let menuChildren: App.GlobalMenuOption[] | undefined;
     if (route.children) {
       menuChildren = transformRouteToMenu(route.children);
     }
-    const menuItem: GlobalMenuOption = addPartialProps(
+    const menuItem: App.GlobalMenuOption = addPartialProps(
       {
         key: routeName,
         label: (meta?.title as string) ?? routeName,
@@ -31,7 +31,7 @@ export function transformRouteToMenu(routes: RouteRecordRaw[]) {
   return globalMenu;
 }
 /** 给菜单添加可选属性 */
-function addPartialProps(menuItem: GlobalMenuOption, icon?: string, children?: GlobalMenuOption[]) {
+function addPartialProps(menuItem: App.GlobalMenuOption, icon?: string, children?: App.GlobalMenuOption[]) {
   const item = { ...menuItem };
   if (icon) {
     Object.assign(item, { icon: iconifyRender(icon) });
@@ -77,12 +77,12 @@ export const increaseIndexes = val => {
     .filter(v => v.meta && v.meta.showLink);
 };
 
-export function getActiveKeyPathsOfMenus(activeKey: string, menus: GlobalMenuOption[]) {
+export function getActiveKeyPathsOfMenus(activeKey: string, menus: App.GlobalMenuOption[]) {
   const keys = menus.map(menu => getActiveKeyPathsOfMenu(activeKey, menu)).flat(1);
   return keys;
 }
 
-function getActiveKeyPathsOfMenu(activeKey: string, menu: GlobalMenuOption) {
+function getActiveKeyPathsOfMenu(activeKey: string, menu: App.GlobalMenuOption) {
   const keys: string[] = [];
   if (activeKey.includes(menu.routeName)) {
     keys.push(menu.routeName);

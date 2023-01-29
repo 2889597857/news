@@ -1,5 +1,5 @@
+import GlobalBreadcrumb from './GlobalBreadcrumb.vue';
 import MenuCollapse from './MenuCollapse.vue';
-// import GlobalBreadcrumb from './GlobalBreadcrumb.vue';
 // import HeaderMenu from './HeaderMenu.vue';
 // import GithubSite from './GithubSite.vue';
 // import FullScreen from './FullScreen.vue';
@@ -9,8 +9,8 @@ import MenuCollapse from './MenuCollapse.vue';
 // import SettingButton from './SettingButton.vue';
 
 export {
-  MenuCollapse
-  // GlobalBreadcrumb,
+  MenuCollapse,
+  GlobalBreadcrumb,
   // HeaderMenu,
   // GithubSite,
   // FullScreen,
@@ -19,3 +19,4 @@ export {
   // SystemMessage,
   // SettingButton
 };
+

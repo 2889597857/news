@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <n-breadcrumb class="px-12px">
     <template v-for="breadcrumb in breadcrumbs" :key="breadcrumb.key">
       <n-breadcrumb-item>
@@ -27,27 +27,23 @@
 </template>
 
 <script setup lang="ts">
-import { useRouterPush } from '@/composables';
-import { routePath } from '@/router';
 import { useRouteStore, useThemeStore } from '@/store';
 import { getBreadcrumbByRouteKey } from '@/utils';
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 
 defineOptions({ name: 'GlobalBreadcrumb' });
 
 const route = useRoute();
+const router = useRouter();
 const theme = useThemeStore();
 const routeStore = useRouteStore();
-const { routerPush } = useRouterPush();
 
 const breadcrumbs = computed(() =>
-  getBreadcrumbByRouteKey(route.name as string, routeStore.menus as App.GlobalMenuOption[], routePath('root'))
+  getBreadcrumbByRouteKey(route.name as string, routeStore.menus as App.GlobalMenuOption[], '/')
 );
 
 function dropdownSelect(key: string) {
-  routerPush({ name: key });
+  router.push(key);
 }
 </script>
 
-<style scoped></style> -->
+<style scoped></style>

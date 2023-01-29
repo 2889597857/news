@@ -5,6 +5,8 @@
  * @param rootPath - 根路由路径
  */
 export function getBreadcrumbByRouteKey(activeKey: string, menus: App.GlobalMenuOption[], rootPath: string) {
+  console.log(arguments);
+
   const breadcrumbMenu = getBreadcrumbMenu(activeKey, menus);
   const breadcrumb = breadcrumbMenu.map(item => transformBreadcrumbMenuToBreadcrumb(item, rootPath));
   return breadcrumb;

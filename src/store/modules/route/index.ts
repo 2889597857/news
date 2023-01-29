@@ -1,4 +1,4 @@
-import { routes } from '@/router/routes';
+import { allRoutes } from '@/router/routes';
 import { transformRouteToMenu } from '@/utils';
 import { defineStore } from 'pinia';
 
@@ -9,7 +9,7 @@ export const useRouteStore = defineStore('route-store', {
   }),
   actions: {
     initMenu() {
-      this.menus = transformRouteToMenu(routes);
+      this.menus = transformRouteToMenu(allRoutes);
       this.isInitAuthRoute = true;
     }
   }

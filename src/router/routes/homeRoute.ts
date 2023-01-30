@@ -1,10 +1,10 @@
 import { BasicLayout } from '@/layout';
 
 const homeRouter = {
-  path: '/',
+  path: '/home',
   name: 'home',
   component: BasicLayout,
-  redirect: '/home',
+  redirect: '/home/welcome',
   meta: {
     icon: 'icon-park-outline:workbench',
     showLink: true,
@@ -14,7 +14,7 @@ const homeRouter = {
   children: [
     {
       name: 'welcome',
-      path: '/welcome',
+      path: '/home/welcome',
       component: () => import('@/views/index.vue'),
       meta: {
         title: '首页',

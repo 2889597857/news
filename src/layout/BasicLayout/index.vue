@@ -40,10 +40,21 @@ const currentSiderWidth = computed(() => {
 .global-content-container {
   width: 100%;
   height: 100%;
+  margin-top: 90px;
+  overflow: hidden;
 }
 
 .global-header-container {
+  position: fixed;
   height: 56px;
+  width: 100%;
+}
+
+.global-tab-container {
+  position: fixed;
+  top: 56px;
+  height: 44px;
+  width: 100%;
 }
 
 .global-side-container {
@@ -52,6 +63,7 @@ const currentSiderWidth = computed(() => {
   left: 0;
   height: 100%;
 }
+
 .global-transition {
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;

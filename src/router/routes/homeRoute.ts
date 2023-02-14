@@ -1,7 +1,7 @@
 import { BasicLayout } from '@/layout';
 
 const homeRouter = {
-  path: '/home',
+  path: '/',
   name: 'home',
   component: BasicLayout,
   redirect: '/home/welcome',

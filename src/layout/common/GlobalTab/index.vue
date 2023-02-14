@@ -3,7 +3,9 @@
   <!-- <div ref="bsWrapper" class="flex-1-hidden h-full"> -->
   <!-- <better-scroll ref="bsScroll" :options="{ scrollX: true, scrollY: false, click: canClick }"> -->
   <!-- <tab-detail @scroll="handleScroll" /> -->
-  <h1>TAB</h1>
+  <div class="global-tab flex-y-center w-full pl-16px" :style="{ height: theme.tab.height + 'px' }">
+    <h1>TAB</h1>
+  </div>
   <!-- </better-scroll> -->
   <!-- </div> -->
   <!-- <reload-button /> -->
@@ -12,13 +14,13 @@
 
 <script setup lang="ts">
 // import { useDeviceInfo } from '@/composables';
-// import { useTabStore, useThemeStore } from '@/store';
+import { useThemeStore } from '@/store';
 // import { useElementBounding } from '@vueuse/core';
 // import { ref } from 'vue';
 // import { useRoute } from 'vue-router';
 
 // const route = useRoute();
-// const theme = useThemeStore();
+const theme = useThemeStore();
 // const tab = useTabStore();
 // const deviceInfo = useDeviceInfo();
 // const bsWrapper = ref<HTMLElement>();

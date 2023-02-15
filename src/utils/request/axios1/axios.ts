@@ -104,6 +104,8 @@ export class HttpRequest {
   private interceptorsResponse() {
     this.axiosInstance.interceptors.response.use(
       (response: HttpResponse) => {
+        console.log(response);
+
         window.$loadingBar?.finish();
         // 生成 cancelKey
         const cancelKey = this.genUniqueKey(response.config);
@@ -180,7 +182,9 @@ export class HttpRequest {
     return this.request(url, 'get', date, interceptors);
   }
 
-  public post(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig) {
+  public post<T>(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig): Promise<T> {
+    console.log(date);
+
     return this.request(url, 'post', date, interceptors);
   }
 }

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { getNews } from '@/api';
 import { useReportStore } from '@/store';
-import { NButton, NForm, NFormItem, NInput, NModal, NSpace, useMessage } from 'naive-ui';
+import { useMessage } from 'naive-ui';
 import { ref } from 'vue';
 import NewsItem from './item.vue';
 import reportNewsHook from './report';
@@ -63,7 +63,8 @@ function getNewsContent() {
           showLoading.value = false;
         });
     }
-  } else return false;
+  }
+  return false;
 }
 
 const { reportLoading, changeNewsState } = reportNewsHook(reportStore, showModal);
@@ -82,8 +83,13 @@ const { reportLoading, changeNewsState } = reportNewsHook(reportStore, showModal
       <n-space vertical>
         <news-item :id="0" :menu="false" :news-info="modalNews" />
         <n-space>
-          <n-button :loading="reportLoading" :disabled="modalNews.state == 1" type="primary"
-            @click="changeNewsState(modalNews)">报送</n-button>
+          <n-button
+            :loading="reportLoading"
+            :disabled="modalNews.state == 1"
+            type="primary"
+            @click="changeNewsState(modalNews)"
+            >报送</n-button
+          >
           <n-button type="error" @click="showModal = false">关闭</n-button>
         </n-space>
       </n-space>

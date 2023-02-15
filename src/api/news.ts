@@ -11,11 +11,18 @@ export function updateNews(data: { id: string; news: string }) {
   return axios.post('/api/news/update', { data });
 }
 
+export function getContent(_id: string) {
+  if (_id) {
+    return axios.get(`/news/details?_id=${_id}`);
+  }
+  return false;
+}
+
 export function getReportNews(date = getTodayZeroHour()) {
   return axios.get<Array<NEWS.NewsItem>>(`/news/report?date=${date}`);
 }
 
-export function updateNewsState(data: NEWS.updateNewsState) {
+export function updateNewsState(data) {
   return axios.post<NEWS.updateNewsState>(`/news/updateNewsState`, data);
 }
 

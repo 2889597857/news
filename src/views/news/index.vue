@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { getNewsLists, getReportNews } from '@/api';
 import { useReportStore } from '@/store';
-import { NPagination } from 'naive-ui';
 import GetNews from './components/getNews.vue';
 import NewsItem from './components/item.vue';
 

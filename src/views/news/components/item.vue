@@ -20,13 +20,9 @@
 import { useChangeNewsState } from '@/hooks';
 import { useReportStore } from '@/store';
 import dayjs from 'dayjs';
-import { NButton, NDivider } from 'naive-ui';
-import reportNewsHook from './report';
-
-console.log(useChangeNewsState);
 
 const reportStore = useReportStore();
-const { changeNewsState } = reportNewsHook(reportStore);
+const { changeNewsState } = useChangeNewsState(reportStore);
 
 const props = defineProps<{
   newsInfo: NEWS.NewsItem;

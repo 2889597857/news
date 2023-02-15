@@ -10,6 +10,7 @@
       <!-- <global-tab /> -->
       <h1>TAB</h1>
     </div>
+
     <main class="global-content-container global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
       <global-content />
     </main>
@@ -47,6 +48,7 @@ const currentSiderWidth = computed(() => {
 .global-header-container {
   position: fixed;
   height: 56px;
+  top: 0;
   width: 100%;
 }
 

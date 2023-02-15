@@ -6,6 +6,8 @@ export function setupStore(app: App<Element>) {
   app.use(store);
 }
 
+export * from './counter';
 export * from './modules';
 export * from './subscribe';
+export * from './timeStore';
 

@@ -26,7 +26,7 @@ export default defineConfig(({ command, mode }) => {
       cors: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:3100/',
+          target: 'https://www.whcss.xyz/api/newsCrawler/',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
         }

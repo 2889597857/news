@@ -76,5 +76,6 @@
         "soybeanjs",
         "unplugin",
         "vueuse"
-    ]
+    ],
+    "commentTranslate.source": "Bing"
 }

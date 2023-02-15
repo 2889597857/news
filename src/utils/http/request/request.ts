@@ -31,13 +31,13 @@ export function createRequest(config: AxiosRequestConfig) {
   };
 }
 
-const App = createRequest({
-  baseURL: 'http://jsonplaceholder.typicode.com/',
-  timeout: 1000
-});
-type a = {
-  data: number;
-  da: string;
-};
-const aget = await App.get<a>('getToken');
-aget.data.data = 123;
+// const App = createRequest({
+//   baseURL: 'http://jsonplaceholder.typicode.com/',
+//   timeout: 1000
+// });
+// type a = {
+//   data: number;
+//   da: string;
+// };
+// const aget = await App.get<a>('getToken');
+// aget.data.data = 123;

@@ -93,6 +93,7 @@ export class HttpRequest {
           this.requestCb = undefined;
           return _config;
         }
+        _config.headers.Authorization = 'akgjklcjvoipop54565';
         return _config;
       },
       error => Promise.reject(error)

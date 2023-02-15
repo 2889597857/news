@@ -3,10 +3,10 @@ declare namespace NEWS {
     _id: string;
     title: string;
     time: Date;
+    reportTime: Date;
     url: string;
-    content?: string;
     report?: string;
-    segmentation: Array<string>;
+    state?: number;
   }
   interface NewsList {
     /** 当前页 */
@@ -15,5 +15,9 @@ declare namespace NEWS {
     totalPages: number;
     /** 新闻列表 */
     data: Array<NewsItem>;
+  }
+  interface updateNewsState {
+    _id: string;
+    state: number;
   }
 }

@@ -3,3 +3,43 @@
 html, body, #app {
 	height: 100%;
 }
+.news-item,
+.news-content {
+  font-size: 16px;
+}
+
+.news-item li {
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.news-item li:last-child {
+  margin: 0;
+}
+
+.news-menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.news-menu > * {
+  margin-right: 10px;
+}
+
+.news-segmentation > div {
+  margin-right: 5px;
+}
+
+.news-url {
+  color: #178bcf;
+  cursor: pointer;
+}
+
+.router-link-active {
+  color: #178bcf;
+}
+.n-space {
+  align-items: center;
+}

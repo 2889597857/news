@@ -1,40 +1,75 @@
-<template>
-  <n-pagination v-model:page="page" :page-count="totalPages" />
-  <n-scrollbar style="height: 100%" trigger="hover">
-    <new-item
-      v-for="(item, index) in newsList"
-      :id="index"
-      :key="item.title"
-      :news-info="item"
-      @update-news="updateNews"
-    />
-    <div class="news"></div>
-  </n-scrollbar>
-</template>
-<script setup lang="ts">
-import { getNews } from '@/api';
-import newItem from './components/new_item.vue';
+<script lang="ts" setup>
+import { getNewsLists, getReportNews } from '@/api';
+import { useReportStore } from '@/store';
+import { NPagination } from 'naive-ui';
+import GetNews from './components/getNews.vue';
+import NewsItem from './components/item.vue';
 
-const newsList = ref<NEWS.NewsList>();
-const page = ref();
-const totalPages = ref();
-const updateNews = async (data: { index: number; content: string }) => {
-  // const { index, content, _id } = data;
-  // await update();
-  // const item: news = newItem.value[index];
-  // item.report = content;
-};
+const page = ref(1);
+const pageCount = ref(1);
+const newsList = ref([]);
+const reportStore = useReportStore();
+
+const getNewsList = (newPage: number) =>
+  getNewsLists(newPage).then(res => {
+    if (res) {
+      page.value = res.currentPage;
+      pageCount.value = res.totalPages;
+      newsList.value = res.data;
+    }
+  });
+const reportNews = () => getNewsList(page.value);
+
 onMounted(() => {
-  getNews().then(result => {
-    page.value = result.currentPage;
-    totalPages.value = result.totalPages;
-    newsList.value = result.data;
+  getReportNews().then(res => {
+    if (res) reportStore.addReport(res);
   });
 });
+
+onMounted(() => getNewsList(page.value));
+
+watch(
+  () => page.value,
+  newPage => getNewsList(newPage)
+);
 </script>
-<style scoped lang="scss">
-h1 {
-  color: $color-primary;
-  font-size: $font-size;
+
+<template>
+  <div class="news">
+    <div class="get-news">
+      <get-news />
+    </div>
+    <n-scrollbar>
+      <news-item
+        v-for="(item, index) in newsList"
+        :id="index"
+        :key="item._id"
+        :menu="true"
+        :news-info="item"
+        @report-news="reportNews"
+      />
+    </n-scrollbar>
+
+    <div class="pagination">
+      <n-pagination v-model:page="page" size="large" :page-count="pageCount" :page-slot="4" />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.news {
+  padding: 10px 10px 10px;
+}
+
+.pagination {
+  position: fixed;
+  width: 100%;
+  height: 48px;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

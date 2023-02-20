@@ -4,7 +4,7 @@ const homeRouter = {
   path: '/',
   name: 'home',
   component: BasicLayout,
-  redirect: '/home/welcome',
+  redirect: '/home',
   meta: {
     icon: 'icon-park-outline:workbench',
     showLink: true,
@@ -14,7 +14,7 @@ const homeRouter = {
   children: [
     {
       name: 'welcome',
-      path: '/home/welcome',
+      path: '/home',
       component: () => import('@/views/index.vue'),
       meta: {
         title: '首页',

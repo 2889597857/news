@@ -1,5 +1,5 @@
+import crawlerRouter from './crawler';
+import managementRouter from './management';
 import newsRouter from './news';
-import reportRouter from './report';
-import taskRouter from './task';
 
-export default [newsRouter, reportRouter, taskRouter];
+export default [newsRouter, crawlerRouter, managementRouter];

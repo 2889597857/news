@@ -7,7 +7,7 @@ const newsRouter = {
   redirect: '/news/list',
   meta: {
     icon: 'material-symbols:newspaper',
-    title: '新闻'
+    title: '信息管理'
   },
   children: [
     {
@@ -23,19 +23,10 @@ const newsRouter = {
     {
       path: '/news/site',
       name: 'newsSite',
-      component: () => import('@/views/newsSite/index.vue'),
+      component: () => import('@/views/reportNews/index.vue'),
       meta: {
-        title: '新闻站点',
+        title: '今日报送',
         icon: 'icon-park-outline:workbench'
-      }
-    },
-    {
-      path: '/news/details',
-      name: 'newsDetails',
-      component: () => import('@/views/newsDetails/index.vue'),
-      meta: {
-        title: '新闻详情',
-        icon: 'ic:outline-web-asset'
       }
     }
   ]

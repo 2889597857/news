@@ -31,7 +31,7 @@ const activeKey = computed(() => route.name as string);
 const expandedKeys = ref<string[]>([]);
 
 function handleUpdateMenu(key: string, item) {
-  const menuItem = item as GlobalMenuOption;
+  const menuItem = item;
   router.push(menuItem.routePath);
 }
 function handleUpdateExpandedKeys(keys: string[]) {

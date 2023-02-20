@@ -1,31 +1,30 @@
 import { BasicLayout } from '@/layout';
 
 const reportRouter = {
-  path: '/report',
-  name: 'report',
+  path: '/crawler',
+  name: 'crawler',
   component: BasicLayout,
-  redirect: '/report/list',
+  redirect: '/crawler/list',
   meta: {
     icon: 'icon-park-outline:analysis',
-    title: '报送'
+    title: '爬虫管理'
   },
   children: [
     {
-      path: '/report/list',
-      name: 'reportLists',
+      path: '/crawler/list',
+      name: 'crawlerLists',
       component: () => import('@/views/reportNews/index.vue'),
       meta: {
-        title: '今日报送',
+        title: '站点管理',
         icon: 'icon-park-outline:workbench'
       }
     },
-
     {
-      path: '/report/history',
-      name: 'reportHistory',
+      path: '/crawler/history',
+      name: 'crawlerHistory',
       component: () => import('@/views/reportHistory/index.vue'),
       meta: {
-        title: '历史报送',
+        title: '任务管理',
         icon: 'cil:history'
       }
     }

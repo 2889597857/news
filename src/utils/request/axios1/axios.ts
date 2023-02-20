@@ -104,8 +104,6 @@ export class HttpRequest {
   private interceptorsResponse() {
     this.axiosInstance.interceptors.response.use(
       (response: HttpResponse) => {
-        console.log(response);
-
         window.$loadingBar?.finish();
         // 生成 cancelKey
         const cancelKey = this.genUniqueKey(response.config);
@@ -153,19 +151,8 @@ export class HttpRequest {
    * @param interceptors 自定义拦截器
    * @returns 请求结果
    */
-  public request<T>(
-    url: string,
-    method: RequestMethods,
-    date?: AxiosRequestConfig,
-    interceptors?: HttpRequestConfig
-  ): Promise<T> {
-    const config = Object.assign(defaultConfig, { url, method, date });
-    if (interceptors?.requestCb) {
-      this.requestCb = interceptors.requestCb;
-    }
-    if (interceptors?.responseCb) {
-      this.responseCb = interceptors.responseCb;
-    }
+  public request<T>(url: string, method: RequestMethods, data?: AxiosRequestConfig): Promise<T> {
+    const config = Object.assign(defaultConfig, { url, method, data });
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request(config)
@@ -178,13 +165,11 @@ export class HttpRequest {
     });
   }
 
-  public get<T>(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig): Promise<T> {
-    return this.request(url, 'get', date, interceptors);
+  public get<T>(url: string, data?: AxiosRequestConfig): Promise<T> {
+    return this.request(url, 'get', data);
   }
 
-  public post<T>(url: string, date?: AxiosRequestConfig, interceptors?: HttpRequestConfig): Promise<T> {
-    console.log(date);
-
-    return this.request(url, 'post', date, interceptors);
+  public post<T>(url: string, data?: AxiosRequestConfig): Promise<T> {
+    return this.request(url, 'post', data);
   }
 }

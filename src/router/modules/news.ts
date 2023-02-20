@@ -1,19 +1,19 @@
 import { BasicLayout } from '@/layout';
 
 const newsRouter = {
-  path: '/news',
-  name: 'news',
+  path: '/information',
+  name: 'information',
   component: BasicLayout,
-  redirect: '/news/list',
+  redirect: '/information/news',
   meta: {
     icon: 'material-symbols:newspaper',
     title: '信息管理'
   },
   children: [
     {
-      path: '/news/list',
+      path: '/information/news',
       name: 'newsLists',
-      component: () => import('@/views/news/index.vue'),
+      component: () => import('@/views/information/news/index.vue'),
       meta: {
         title: '新闻列表',
         icon: 'mdi:newspaper-variant-multiple-outline'
@@ -22,8 +22,8 @@ const newsRouter = {
 
     {
       path: '/news/site',
-      name: 'newsSite',
-      component: () => import('@/views/reportNews/index.vue'),
+      name: 'newsReport',
+      component: () => import('@/views/information/report/index.vue'),
       meta: {
         title: '今日报送',
         icon: 'icon-park-outline:workbench'

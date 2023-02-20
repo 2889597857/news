@@ -10,13 +10,13 @@ export const useTimeStore = defineStore('time', () => {
   function changePickDate(time) {
     pickDate.value = time;
   }
-  function isAM(date) {
+  function isAM(date?: string | number): boolean {
     return dayjs(date).valueOf() <= pickDate.value + hourToMillisecond(12);
   }
   return {
     pickDate,
     showContentMenu,
     changePickDate,
-    isAM,
+    isAM
   };
 });

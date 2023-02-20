@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { getNewsLists, getReportNews } from '@/api';
 import { useReportStore } from '@/store';
-import GetNews from './components/getNews.vue';
-import NewsItem from './components/item.vue';
+import GetNews from '../components/getNews.vue';
+import NewsItem from '../components/item.vue';
 
 const page = ref(1);
 const pageCount = ref(1);

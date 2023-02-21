@@ -3,16 +3,12 @@ import { getNewsLists, getReportNewsCount } from '@/api';
 import { useReportStore } from '@/store';
 import DragCount from './components/dragCount.vue';
 import GetNews from './components/getNews.vue';
-import NewsItem from './components/item.vue';
+import NewsItem from './components/newsItem.vue';
 
 const reportStore = useReportStore();
 
 const page = ref(1);
 const pageCount = ref(1);
-const w = reactive({
-  x: 300,
-  y: 300
-});
 const newsList = ref([]);
 
 const getNewsList = async (newPage: number) => {

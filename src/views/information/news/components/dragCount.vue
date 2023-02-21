@@ -4,8 +4,11 @@ import { useReportStore } from '@/store';
 
 <template>
   <drag-box>
-    <n-badge :value="useReportStore().count" :max="99">
-      <span style="margin: 0 14px">报送信息</span>
+    <n-badge show-zero :value="useReportStore().count" :max="99">
+      <div class="text-50px">
+        <svg-icon v-if="useReportStore().count > 0" icon="vscode-icons:default-root-folder-opened"></svg-icon>
+        <svg-icon v-else icon="vscode-icons:default-root-folder"></svg-icon>
+      </div>
     </n-badge>
   </drag-box>
 </template>

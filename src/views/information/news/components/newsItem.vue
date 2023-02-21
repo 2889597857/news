@@ -1,7 +1,7 @@
 <template>
   <div class="news-item">
-    <div v-if="menu" class="news-menu">
-      <n-button :loading="loading.report" size="small" type="primary" @click="reportNews">报送</n-button>
+    <div v-if="menu" class="mb-1">
+      <n-button class="mr-2" :loading="loading.report" size="small" type="primary" @click="reportNews">报送</n-button>
       <n-button :loading="loading.delete" size="small" type="error" @click="deleteNews">删除</n-button>
     </div>
     <ul class="news-content">

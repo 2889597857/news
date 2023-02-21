@@ -3,7 +3,7 @@ import { getNews } from '@/api';
 import { useReportStore } from '@/store';
 import { useMessage } from 'naive-ui';
 import { ref } from 'vue';
-import NewsItem from './item.vue';
+import NewsItem from './newsItem.vue';
 import reportNewsHook from './report';
 
 const message = useMessage();

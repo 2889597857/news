@@ -13,7 +13,7 @@ const { isSupported, copy } = useClipboard();
 
 const reportStore = useReportStore();
 
-const copyNews = key => {
+const copyNews = (key: number) => {
   if (!isSupported) {
     window.$message.warning('您的浏览器不支持一键复制功能');
     return;

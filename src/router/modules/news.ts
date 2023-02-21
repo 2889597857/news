@@ -21,7 +21,7 @@ const newsRouter = {
     },
 
     {
-      path: '/news/site',
+      path: '/information/report',
       name: 'newsReport',
       component: () => import('@/views/information/report/index.vue'),
       meta: {

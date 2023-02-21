@@ -12,17 +12,16 @@ const newsRouter = {
   children: [
     {
       path: '/information/news',
-      name: 'newsLists',
+      name: 'informationNews',
       component: () => import('@/views/information/news/index.vue'),
       meta: {
         title: '新闻列表',
         icon: 'mdi:newspaper-variant-multiple-outline'
       }
     },
-
     {
       path: '/information/report',
-      name: 'newsReport',
+      name: 'informationReport',
       component: () => import('@/views/information/report/index.vue'),
       meta: {
         title: '今日报送',

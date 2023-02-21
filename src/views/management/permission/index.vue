@@ -1,3 +1,3 @@
 <template>
-  <h1>任务列表</h1>
+  <h1>权限管理</h1>
 </template>

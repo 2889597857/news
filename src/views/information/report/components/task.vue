@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { getTaskInfo, startTask } from '@/api';
 import dayjs from 'dayjs';
 import { NButton, NSpace, useMessage } from 'naive-ui';

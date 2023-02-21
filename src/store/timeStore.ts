@@ -7,7 +7,7 @@ export const useTimeStore = defineStore('time', () => {
   const pickDate = ref(getTodayZeroHour());
   const showContentMenu = computed(() => pickDate.value >= getTodayZeroHour());
 
-  function changePickDate(time) {
+  function changePickDate(time: number) {
     pickDate.value = time;
   }
   function isAM(date?: string | number): boolean {

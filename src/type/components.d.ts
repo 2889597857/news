@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BetterScroll: typeof import('./../components/common/BetterScroll.vue')['default']
+    DragBox: typeof import('./../components/common/DragBox.vue')['default']
     HoverContainer: typeof import('./../components/common/HoverContainer.vue')['default']
     IconCustomLogo: typeof import('~icons/custom/logo')['default']
     IconCustomLogoFill: typeof import('~icons/custom/logo-fill')['default']

@@ -55,6 +55,7 @@ function getNewsContent() {
           modalNews.value = res;
           showModal.value = true;
           showLoading.value = false;
+          news.value.url = '';
         })
         .catch(e => {
           message.error('获取失败', {
@@ -82,7 +83,7 @@ const { reportLoading, changeNewsState } = reportNewsHook(reportStore, showModal
     <div class="modal-news">
       <n-space vertical>
         <news-item :id="0" :menu="false" :news-info="modalNews" />
-        <n-space>
+        <n-space size="small">
           <n-button
             :loading="reportLoading"
             :disabled="modalNews.state == 1"

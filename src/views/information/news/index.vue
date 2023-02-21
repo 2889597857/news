@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { getNewsLists, getReportNewsCount } from '@/api';
 import { useReportStore } from '@/store';
+import DragCount from './components/dragCount.vue';
 import GetNews from './components/getNews.vue';
 import NewsItem from './components/item.vue';
 
@@ -41,11 +42,7 @@ watch(
 </script>
 
 <template>
-  <div class="report-count" :style="{ top: w.x + 'px', left: w.y + 'px' }">
-    <n-badge :value="reportStore.count" :max="99">
-      <span style="margin: 0 14px">报送信息</span>
-    </n-badge>
-  </div>
+  <drag-count />
   <div class="news">
     <div class="get-news">
       <get-news />
@@ -68,11 +65,6 @@ watch(
 </template>
 
 <style scoped>
-.report-count {
-  position: fixed;
-  z-index: 50;
-}
-
 .news {
   padding: 10px 10px 10px;
 }

@@ -2,9 +2,6 @@
 import { useReportStore, useTimeStore } from '@/store';
 import { copyNewsList } from '@/utils';
 import { useClipboard } from '@vueuse/core';
-import { NButton, NButtonGroup, NDropdown, NIcon, useMessage } from 'naive-ui';
-
-const message = useMessage();
 
 const props = defineProps<{
   model: boolean;
@@ -18,7 +15,7 @@ const reportStore = useReportStore();
 
 const copyNews = key => {
   if (!isSupported) {
-    message.warning('您的浏览器不支持一键复制功能');
+    window.$message.warning('您的浏览器不支持一键复制功能');
     return;
   }
   let text = '';
@@ -28,7 +25,7 @@ const copyNews = key => {
     text = copyNewsList(reportStore.list[key].list, reportStore.list[key].count);
   }
   copy(text).then(() => {
-    message.success('复制成功');
+    window.$message.success('复制成功');
   });
 };
 

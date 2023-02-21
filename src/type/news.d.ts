@@ -3,7 +3,7 @@ declare namespace NEWS {
     _id: string;
     title: string;
     time: Date;
-    reportTime: Date;
+    reportTime: string | number;
     url: string;
     report?: string;
     state?: number;

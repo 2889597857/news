@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     IconLineMdMenuUnfoldLeft: typeof import('~icons/line-md/menu-unfold-left')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
     NBackTop: typeof import('naive-ui')['NBackTop']
+    NBadge: typeof import('naive-ui')['NBadge']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
     NButton: typeof import('naive-ui')['NButton']

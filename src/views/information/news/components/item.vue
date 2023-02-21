@@ -17,12 +17,12 @@
   <n-divider />
 </template>
 <script lang="ts" setup>
-import { useChangeNewsState } from '@/hooks';
+import { useChangeNewsStateHook } from '@/hooks';
 import { useReportStore } from '@/store';
 import dayjs from 'dayjs';
 
 const reportStore = useReportStore();
-const { changeNewsState } = useChangeNewsState(reportStore);
+const { changeNewsState } = useChangeNewsStateHook(reportStore);
 
 const props = defineProps<{
   newsInfo: NEWS.NewsItem;

@@ -1,31 +1,38 @@
 <script lang="ts" setup>
-import { getNewsLists, getReportNews } from '@/api';
+import { getNewsLists, getReportNewsCount } from '@/api';
 import { useReportStore } from '@/store';
-import GetNews from '../components/getNews.vue';
-import NewsItem from '../components/item.vue';
+import GetNews from './components/getNews.vue';
+import NewsItem from './components/item.vue';
+
+const reportStore = useReportStore();
 
 const page = ref(1);
 const pageCount = ref(1);
+const w = reactive({
+  x: 300,
+  y: 300
+});
 const newsList = ref([]);
-const reportStore = useReportStore();
 
-const getNewsList = (newPage: number) =>
-  getNewsLists(newPage).then(res => {
-    if (res) {
-      page.value = res.currentPage;
-      pageCount.value = res.totalPages;
-      newsList.value = res.data;
-    }
+const getNewsList = async (newPage: number) => {
+  const res = await getNewsLists(newPage);
+  if (res) {
+    page.value = res.currentPage;
+    pageCount.value = res.totalPages;
+    newsList.value = res.data;
+  }
+};
+
+const getReportCount = () =>
+  getReportNewsCount().then(res => {
+    if (res) reportStore.count = res as number;
   });
 const reportNews = () => getNewsList(page.value);
 
 onMounted(() => {
-  getReportNews().then(res => {
-    if (res) reportStore.addReport(res);
-  });
+  getNewsList(page.value);
+  getReportCount();
 });
-
-onMounted(() => getNewsList(page.value));
 
 watch(
   () => page.value,
@@ -34,6 +41,11 @@ watch(
 </script>
 
 <template>
+  <div class="report-count" :style="{ top: w.x + 'px', left: w.y + 'px' }">
+    <n-badge :value="reportStore.count" :max="99">
+      <span style="margin: 0 14px">报送信息</span>
+    </n-badge>
+  </div>
   <div class="news">
     <div class="get-news">
       <get-news />
@@ -56,6 +68,11 @@ watch(
 </template>
 
 <style scoped>
+.report-count {
+  position: fixed;
+  z-index: 50;
+}
+
 .news {
   padding: 10px 10px 10px;
 }

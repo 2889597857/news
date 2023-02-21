@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { updateNewsState } from '@/api';
+import { getReportNewsCount, updateNewsState } from '@/api';
 import { useMessage } from 'naive-ui';
 import { ref, Ref } from 'vue';
 
-export default function useChangeNewsState(store, showModal?: Ref<boolean>) {
+export default function useChangeNewsStateHook(store, showModal?: Ref<boolean>) {
   const changeLoading: Ref<boolean> = ref(false);
   const reportStore = store;
   const message = useMessage();
@@ -15,11 +15,9 @@ export default function useChangeNewsState(store, showModal?: Ref<boolean>) {
       const data = await updateNewsState({ _id: news._id, state });
       switch (data.state) {
         case 1:
-          reportStore.addReport({
-            title: news.title,
-            url: news.url,
-            report: news.report
-          });
+          // eslint-disable-next-line no-case-declarations
+          const res = await getReportNewsCount();
+          if (res) reportStore.addReport(res);
           if (showModal) showModal.value = false;
           message.success('添加成功', {
             keepAliveOnHover: true

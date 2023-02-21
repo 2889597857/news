@@ -22,7 +22,7 @@ export const useReportStore = defineStore('report', () => {
 
   const currentReport = ref({});
 
-  const count = computed(() => report.value.length);
+  const count = ref(0);
 
   const list = computed((): Array<Temp> => {
     const timeStore = useTimeStore();
@@ -38,11 +38,11 @@ export const useReportStore = defineStore('report', () => {
 
     return [morning, afternoon];
   });
-  function addReport(news: Array<NEWS.NewsItem> | NEWS.NewsItem) {
+  function addReport(news: Array<NEWS.NewsItem> | number) {
     if (Array.isArray(news)) {
       report.value = [...news];
     } else {
-      report.value.push(news);
+      count.value = news;
     }
   }
 

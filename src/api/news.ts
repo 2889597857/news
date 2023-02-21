@@ -18,8 +18,11 @@ export function getContent(_id: string) {
   return false;
 }
 
-export function getReportNews(date = getTodayZeroHour()) {
-  return axios.get<Array<NEWS.NewsItem>>(`/news/report?date=${date}`);
+export function getReportNews(date = getTodayZeroHour(), isCount = false) {
+  return axios.get<Array<NEWS.NewsItem> | number>(`/news/report?date=${date}&isCount=${isCount}`);
+}
+export function getReportNewsCount() {
+  return getReportNews(getTodayZeroHour(), true);
 }
 
 export function updateNewsState(data) {

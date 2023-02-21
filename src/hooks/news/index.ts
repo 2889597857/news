@@ -1,3 +1,3 @@
-import useChangeNewsState from './useChangeNewsState';
+import useChangeNewsStateHook from './useChangeNewsState';
 
-export { useChangeNewsState };
+export { useChangeNewsStateHook };

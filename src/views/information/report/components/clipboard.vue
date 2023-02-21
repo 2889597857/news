@@ -1,15 +1,18 @@
 <script lang="ts" setup>
 import { useReportStore, useTimeStore } from '@/store';
 import { copyNewsList } from '@/utils';
-import { useClipboard, usePermission } from '@vueuse/core';
+import { useClipboard } from '@vueuse/core';
 import { NButton, NButtonGroup, NDropdown, NIcon, useMessage } from 'naive-ui';
 
 const message = useMessage();
-const props = defineProps(['model']);
+
+const props = defineProps<{
+  model: boolean;
+}>();
+
 const timeStore = useTimeStore();
 
-const { text, isSupported, copy } = useClipboard();
-const permissionWrite = usePermission('clipboard-write');
+const { isSupported, copy } = useClipboard();
 
 const reportStore = useReportStore();
 
@@ -19,7 +22,7 @@ const copyNews = key => {
     return;
   }
   let text = '';
-  if (key == 2) {
+  if (key === 2) {
     text = copyNewsList(reportStore.report);
   } else {
     text = copyNewsList(reportStore.list[key].list, reportStore.list[key].count);
@@ -44,7 +47,7 @@ const options = [
   }
 ];
 
-function handleSelect(key) {
+function handleSelect(key: number) {
   copyNews(key);
 }
 

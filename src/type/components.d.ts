@@ -18,7 +18,9 @@ declare module '@vue/runtime-core' {
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
     NButton: typeof import('naive-ui')['NButton']
+    NButtonGroup: typeof import('naive-ui')['NButtonGroup']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDatePicker: typeof import('naive-ui')['NDatePicker']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NDivider: typeof import('naive-ui')['NDivider']
     NDrawer: typeof import('naive-ui')['NDrawer']
@@ -27,6 +29,7 @@ declare module '@vue/runtime-core' {
     NewsItem: typeof import('./../components/news/newsItem.vue')['default']
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
+    NIcon: typeof import('naive-ui')['NIcon']
     NInput: typeof import('naive-ui')['NInput']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMenu: typeof import('naive-ui')['NMenu']
@@ -39,6 +42,7 @@ declare module '@vue/runtime-core' {
     NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgIcon: typeof import('./../components/common/SvgIcon.vue')['default']
     SystemLogo: typeof import('./../components/common/SystemLogo.vue')['default']
   }
 }

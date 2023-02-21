@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useDraggable } from '@vueuse/core';
-import { ref } from 'vue';
-
 const el = ref<HTMLElement | null>(null);
 const { innerWidth } = window;
 const { x, y, style } = useDraggable(el, {

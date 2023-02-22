@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import { ItemInfo, WebsiteForm } from './components';
+</script>
 <template>
-  <h1>任务列表</h1>
+  <website-form />
+  <item-info />
 </template>

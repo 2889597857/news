@@ -2,9 +2,7 @@
   <div class="content-container p-16px h-full bg-[#f6f9f8] dark:bg-[#101014] transition duration-300 ease-in-out">
     <n-scrollbar>
       <router-view v-slot="{ Component, route }">
-        <keep-alive>
-          <component :is="Component" :key="route.fullPath"></component>
-        </keep-alive>
+        <component :is="Component" :key="route.fullPath"></component>
         <!-- <keep-alive v-if="keepAlive" :include="usePermissionStore().cachePageList">
                         <component :is="Component"></component>
                     </keep-alive>

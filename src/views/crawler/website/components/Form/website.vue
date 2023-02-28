@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 const listItem: {
   url: string;
   selector?: string;
@@ -29,6 +30,23 @@ const options = [
   }
 ];
 const handleSearch = () => site.value.newsList.push(listItem.url);
+
+const siteInfo = reactive({
+  _id: '',
+  name: '',
+  url: '',
+  linkSelector: {
+    default: true,
+    selector: ''
+  },
+  contentSelector: {
+    title: '',
+    time: '',
+    content: ''
+  }
+});
+// eslint-disable-next-line no-underscore-dangle
+const isNewSite = computed(() => Boolean(siteInfo._id));
 </script>
 <template>
   <n-form label-width="auto">
@@ -37,6 +55,7 @@ const handleSearch = () => site.value.newsList.push(listItem.url);
         <template #action> 如果你点开了这个例子，你可能需要它 </template>
       </n-select>
     </n-form-item>
+    {{ isNewSite }}
     <n-form-item label="网站链接：" path="siteUrl">
       <n-input v-model:value="site.siteUrl" placeholder="请输入链接" />
     </n-form-item>

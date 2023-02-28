@@ -24,60 +24,55 @@ const info = ref();
 //   { deep: true }
 // );
 const a = el => {
-  console.log(el);
+  el.loading = true;
+  setTimeout(() => {
+    el.state = !el.state;
+    el.loading = false;
+  }, 3000);
 };
-const createColumns = a => {
+const createColumns = () => {
   return [
     {
       title: '网站名称',
       key: 'name',
-      rowSpan: (rowData, rowIndex) => rowData.url.length
+      rowSpan: rowData => rowData.col
     },
     {
       title: '链接',
-      key: 'url'
+      key: 'url',
+      render(row) {
+        return h(
+          'a',
+          {
+            class: 'news-url',
+            href: row.url,
+            target: '_blank'
+          },
+          [row.url]
+        );
+      }
     },
     {
       title: '开启爬虫',
       key: 'crawler',
       render(row) {
-        // console.log(row);
-
-        return h(
-          NSwitch,
-          {
-            size: 'small',
-            onUpdate: () => a(row)
-          },
-          { default: () => 'Send Email' }
-        );
+        return h(NSwitch, {
+          value: row.state,
+          size: 'small',
+          loading: row.loading,
+          'onUpdate:value': () => a(row)
+        });
       }
     }
   ];
 };
-// [
-//   { key: '63fc1c71fb50bd5db286b0f8', name: '凤凰网安徽', url: ['https://ah.ifeng.com/shanklist/200-214-216353-'] },
-//   { key: '63fc655ef6c4504866fd16cd', name: '中安在线', url: ['http://ah.anhuinews.com/szxw/'] },
-//   {
-//     key: '63fc65baf6c4504866fd16d3',
-//     name: '安徽财经网',
-//     url: 'http://www.ahcaijing.com/html/24h/'
-//   },
-//   {
-//     key: '63fc65baf6c4504866fd16d3',
-//     name: '安徽财经网',
-//     url: 'http://www.ahcaijing.com/html/anhui/'
-//   }
-// ]
 const data = ref([]);
 onMounted(async () => {
   const website = await getWebsite();
   website.forEach(el => {
     const links = el.newsLinks;
-
     links.forEach(e => {
-      console.log({ key: el._id, name: el.name, url: e.url });
-      data.value.push({ key: el._id, name: el.name, url: e.url });
+      data.value.push({ key: el._id, name: el.name, url: e.url, state: e.state, loading: false, col: links.length });
     });
   });
   if (website) info.value = website;
@@ -86,20 +81,20 @@ onMounted(async () => {
 
 <template>
   <!-- <n-card>
-            <n-space v-for="site in info" :key="info._id" vertical align="start">
-              <n-space class="mb-1">
-                <a class="text-22px font-medium news-url" style="letter-spacing: 0.1em" target="_blank" :href="site.url">{{
-                  site.name
-                }}</a>
-                <n-switch v-model:value="site.state" />
+              <n-space v-for="site in info" :key="info._id" vertical align="start">
+                <n-space class="mb-1">
+                  <a class="text-22px font-medium news-url" style="letter-spacing: 0.1em" target="_blank" :href="site.url">{{
+                    site.name
+                  }}</a>
+                  <n-switch v-model:value="site.state" />
+                </n-space>
+                <n-space v-for="item in site.newsLinks" :key="item.url">
+                  <a class="news-url" target="_blank" :href="item.url">{{ item.url }}</a>
+                  <n-switch v-model:value="item.state" :disabled="!site.state" />
+                  <n-button size="small" :disabled="!item.state">测试</n-button>
+                </n-space>
               </n-space>
-              <n-space v-for="item in site.newsLinks" :key="item.url">
-                <a class="news-url" target="_blank" :href="item.url">{{ item.url }}</a>
-                <n-switch v-model:value="item.state" :disabled="!site.state" />
-                <n-button size="small" :disabled="!item.state">测试</n-button>
-              </n-space>
-            </n-space>
-          </n-card> -->
+            </n-card> -->
 
-  <n-data-table :columns="createColumns(a)" :data="data" :single-line="false" />
+  <n-data-table :columns="createColumns()" :data="data" :single-line="false" />
 </template>

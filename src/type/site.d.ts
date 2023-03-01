@@ -4,12 +4,14 @@ declare namespace Site {
     url: string;
     state?: boolean;
     lastTime?: string;
+    selector?: string;
   }
   interface Info {
     _id: string;
     name: string;
     url?: string;
     state?: boolean;
+    defaultListSelector?: string;
     newsLinks: Array<INewsLinks>;
   }
 }

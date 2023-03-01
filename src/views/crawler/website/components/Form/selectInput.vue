@@ -1,15 +1,18 @@
 <template>
-  <n-form-item label="网站名称：" path="siteName">
+  <n-form-item :label="label" path="siteName">
     <n-select
-      v-model:value="value"
+      v-model:value="checkedValue"
       filterable
       :options="options"
       :loading="loading"
       clearable
       remote
       @search="handleSearch"
+      @blur="onBlur(clear)"
     >
-      <template #action> 如果你点开了这个例子，你可能需要它 </template>
+      <template v-if="isSlot" #action>
+        <n-button @click="$emit('checkValue', value)">添加新网站</n-button>
+      </template>
     </n-select>
   </n-form-item>
 </template>
@@ -17,15 +20,27 @@
 <script lang="ts" setup>
 import { SelectOption } from 'naive-ui';
 
-const props = defineProps<{
-  options: SelectOption[];
-  checkedSite: string;
-  loading: boolean;
-}>();
-const emit = defineEmits(['checkValue', 'searchValue']);
-const value = computed({
-  get: () => props.checkedSite,
+const props = withDefaults(
+  defineProps<{
+    value: string | null;
+    options: SelectOption[];
+    loading: boolean;
+    label: string;
+    isSlot: boolean;
+    clear: boolean;
+  }>(),
+  {
+    isSlot: true,
+    clear: true
+  }
+);
+const emit = defineEmits(['checkValue', 'searchValue', 'clearOption']);
+const checkedValue = computed({
+  get: () => props.value,
   set: newVal => emit('checkValue', newVal)
 });
 const handleSearch = (query: string) => emit('searchValue', query);
+const onBlur = clear => {
+  if (clear) emit('clearOption');
+};
 </script>

@@ -1,4 +1,5 @@
 import WebsiteForm from './Form/websiteForm.vue';
-import ItemInfo from './ItemInfo/index.vue';
+import SelectorTable from './Table/contentSelector.vue';
+import InfoTable from './Table/SiteInfo.vue';
 
-export { ItemInfo, WebsiteForm };
+export { InfoTable, SelectorTable, WebsiteForm };

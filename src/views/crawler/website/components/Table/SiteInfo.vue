@@ -46,57 +46,55 @@ const a = (rowData: ITableData) => {
     rowData.loading = false;
   }, 3000);
 };
-const createColumns = () => {
-  return [
-    {
-      title: '网站名称',
-      key: 'name',
-      width: 130,
-      rowSpan: (rowData: ITableData) => rowData.row
+const createColumns = [
+  {
+    title: '网站名称',
+    key: 'name',
+    width: 130,
+    rowSpan: (rowData: ITableData) => rowData.row
+  },
+  {
+    title: '默认链接选择器',
+    key: 'defaultSelector',
+    width: 160,
+    ellipsis: {
+      tooltip: true
     },
-    {
-      title: '默认链接选择器',
-      key: 'defaultSelector',
-      width: 160,
-      ellipsis: {
-        tooltip: true
-      },
-      rowSpan: (rowData: ITableData) => rowData.row
-    },
-    {
-      title: '链接',
-      key: 'url',
-      render(rowData: ITableData) {
-        return h(
-          'a',
-          {
-            class: 'news-url',
-            href: rowData.url,
-            target: '_blank'
-          },
-          [rowData.url]
-        );
-      }
-    },
-    {
-      title: '链接选择器',
-      key: 'selector'
-    },
-    {
-      title: '开启爬虫',
-      key: 'crawler',
-      width: 100,
-      render(rowData: ITableData) {
-        return h(NSwitch, {
-          value: rowData.state,
-          size: 'small',
-          loading: rowData.loading,
-          'onUpdate:value': () => a(rowData)
-        });
-      }
+    rowSpan: (rowData: ITableData) => rowData.row
+  },
+  {
+    title: '链接',
+    key: 'url',
+    render(rowData: ITableData) {
+      return h(
+        'a',
+        {
+          class: 'news-url',
+          href: rowData.url,
+          target: '_blank'
+        },
+        [rowData.url]
+      );
     }
-  ];
-};
+  },
+  {
+    title: '链接选择器',
+    key: 'selector'
+  },
+  {
+    title: '开启爬虫',
+    key: 'crawler',
+    width: 100,
+    render(rowData: ITableData) {
+      return h(NSwitch, {
+        value: rowData.state,
+        size: 'small',
+        loading: rowData.loading,
+        'onUpdate:value': () => a(rowData)
+      });
+    }
+  }
+];
 const data = ref<Array<ITableData>>([]);
 onMounted(async () => {
   const website = await getWebsite();
@@ -122,5 +120,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <n-data-table :loading="tableLoading" :columns="createColumns()" :data="data" :single-line="false" />
+  <data-table :loading="tableLoading" :columns="createColumns" :data="data" />
 </template>

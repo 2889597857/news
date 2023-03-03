@@ -1,8 +1,9 @@
 import { getTodayZeroHour } from '@/utils';
+import { AxiosRequestConfig } from 'axios';
 import { axios } from './index';
 
 export async function getNews(url: string) {
-  return axios.get<NEWS.NewsItem>(`/news/getNews?url=${url}`);
+  return axios.get<NEWS.NewsItem>(`/news/crawler?url=${url}`);
 }
 export function getNewsLists(page = 1) {
   return axios.get<NEWS.NewsList>(`/news?page=${page}`);
@@ -24,13 +25,13 @@ export function getReportNews(date = getTodayZeroHour(), isCount = 0) {
 export function getReportNewsCount() {
   return getReportNews(getTodayZeroHour(), 1);
 }
-
-export function updateNewsState(data) {
-  return axios.post<NEWS.updateNewsState>(`/news/updateNewsState`, data);
+type NewsState = 0 | 1 | 2;
+export function updateNewsState(data: AxiosRequestConfig<NewsState>) {
+  return axios.post<NEWS.updateNewsState>(`/news/update/state`, data);
 }
 
 export function updateReportTime(data) {
-  return axios.post(`/news/updateReportTime`, data);
+  return axios.post(`/news/update/time`, data);
 }
 
 export function getTaskInfo() {

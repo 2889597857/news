@@ -1,6 +1,6 @@
 <!-- eslint-disable no-param-reassign -->
 <script lang="ts" setup>
-import { getWebsite } from '@/api';
+import { getContentSelector } from '@/api';
 import { useBoolean } from '@/hooks/common';
 import { NSwitch } from 'naive-ui';
 
@@ -13,14 +13,6 @@ interface ITableData {
    * 网站名称
    */
   name: string;
-  /**
-   * 默认链接选择器
-   */
-  defaultSelector: string;
-  /**
-   * 链接选择器
-   */
-  selector: string;
   /**
    * 网站链接
    */
@@ -54,35 +46,20 @@ const createColumns = [
     rowSpan: (rowData: ITableData) => rowData.row
   },
   {
-    title: '默认链接选择器',
-    key: 'defaultSelector',
-    width: 160,
-    ellipsis: {
-      tooltip: true
-    },
-    rowSpan: (rowData: ITableData) => rowData.row
+    title: '标题选择器',
+    key: 'title'
   },
   {
-    title: '链接',
-    key: 'url',
-    render(rowData: ITableData) {
-      return h(
-        'a',
-        {
-          class: 'news-url',
-          href: rowData.url,
-          target: '_blank'
-        },
-        [rowData.url]
-      );
-    }
+    title: '时间选择器',
+    key: 'time'
+  },
+
+  {
+    title: '内容选择器',
+    key: 'content'
   },
   {
-    title: '链接选择器',
-    key: 'selector'
-  },
-  {
-    title: '开启爬虫',
+    title: '编辑',
     key: 'crawler',
     width: 100,
     render(rowData: ITableData) {
@@ -95,26 +72,29 @@ const createColumns = [
     }
   }
 ];
-const data = ref<Array<ITableData>>([]);
+const data = ref([]);
 onMounted(async () => {
-  const website = await getWebsite();
+  const website = await getContentSelector();
   if (website) {
     website.forEach(site => {
-      const links = site.newsLinks;
-      links.forEach(link => {
-        data.value.push({
-          key: link._id,
-          name: site.name,
-          defaultSelector: site.defaultListSelector,
-          url: link.url,
-          selector: link.selector ?? '默认选择器',
-          state: link.state,
-          loading: false,
-          row: links.length
+      const links = site.list;
+      if (links && links.length > 0) {
+        links.forEach(link => {
+          data.value.push({
+            key: link._id,
+            name: site.name,
+            title: link.title,
+            time: link.time,
+            content: link.content,
+            loading: false,
+            row: links.length
+          });
         });
-      });
+      }
     });
+
     offTableLoading();
+    console.log(tableLoading.value);
   }
 });
 </script>

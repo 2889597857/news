@@ -93,7 +93,7 @@ export class HttpRequest {
           this.requestCb = undefined;
           return _config;
         }
-        _config.headers.Authorization = 'akgjklcjvoipop54565';
+        _config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
         return _config;
       },
       error => Promise.reject(error)

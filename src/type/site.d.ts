@@ -12,6 +12,6 @@ declare namespace Site {
     url?: string;
     state?: boolean;
     defaultListSelector?: string;
-    newsLinks: Array<INewsLinks>;
+    list: Array<INewsLinks>;
   }
 }

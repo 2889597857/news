@@ -79,7 +79,8 @@ const createColumns = [
   },
   {
     title: '链接选择器',
-    key: 'selector'
+    key: 'selector',
+    width: 200
   },
   {
     title: '开启爬虫',
@@ -99,8 +100,9 @@ const data = ref<Array<ITableData>>([]);
 onMounted(async () => {
   const website = await getWebsite();
   if (website) {
+    console.log(website);
     website.forEach(site => {
-      const links = site.newsLinks;
+      const links = site.list;
       links.forEach(link => {
         data.value.push({
           key: link._id,

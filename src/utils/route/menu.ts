@@ -8,7 +8,7 @@ export function transformRouteToMenu(routes: RouteRecordRaw[]) {
 
     const routeName = name as string;
     let menuChildren: App.GlobalMenuOption[] | undefined;
-    if (route.children) {
+    if (route.children && route.children.length > 1) {
       menuChildren = transformRouteToMenu(route.children);
     }
     const menuItem: App.GlobalMenuOption = addPartialProps(

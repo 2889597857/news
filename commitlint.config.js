@@ -1,6 +1,16 @@
-/** @type {import('cz-git').UserConfig} */
+// 提交格式
+// <type>(<scope>): <subject></subject>
+// 1. type 为必填项，用于指定 commit 的类型
+// 2. scope 为非必填项，用于描述改动的影响范围
+// 3. subject 是必填项，代表此次提交的日志信息
+
 module.exports = {
   extends: ['@commitlint/config-conventional'],
+
+  // "rule-name": [Level,Applicable,Value]
+  // Level可取值有0,1,2：0-禁用 1-警告 2-错误
+  // Applicable可取值有always和never：always - 应用 never - 应用其反面，类似"取反"
+  // Value：用于此规则的值，可以为number/string/array等类型
   rules: {
     /**
      * body 以空行开始
@@ -10,19 +20,52 @@ module.exports = {
      * body 的最大长度
      */
     'body-max-line-length': [2, 'always', 100],
+    /**
+     * footer 是否以空行开始
+     */
     'footer-leading-blank': [1, 'always'],
+    /**
+     * footer 最大行号
+     */
     'footer-max-line-length': [2, 'always', 100],
+    /**
+     * header 最大长度
+     */
     'header-max-length': [2, 'always', 100],
+    /**
+     * subject 的格式
+     * 默认其中之一：['sentence-case', 'start-case', 'pascal-case', 'upper-case']
+     */
     'subject-case': [2, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']],
+    /**
+     * subject 是否为空
+     */
     'subject-empty': [2, 'never'],
+    /**
+     * subject 结尾符
+     * 以'.'结尾
+     */
     'subject-full-stop': [2, 'never', '.'],
+    /**
+     * type 的输入格式 大写 小写 驼峰 ...
+     */
     'type-case': [2, 'always', 'lower-case'],
+    /**
+     * type 是否为空
+     */
     'type-empty': [2, 'never'],
+    /**
+     * type 类型列表
+     */
     'type-enum': [
       2,
       'always',
       ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']
-    ]
+    ],
+    /**
+     * 自定义规则
+     */
+    'forbidan-keyword': [2, 'always']
   },
   prompt: {
     alias: { fd: 'docs: fix typos' },
@@ -102,7 +145,19 @@ module.exports = {
     defaultIssues: '',
     defaultScope: '',
     defaultSubject: ''
-  }
+  },
+  // 插件 可以自定义规则
+  plugins: [
+    // {
+    //   rules: {
+    //     'forbidan-keyword': ({ subject }) => {
+    //       const reg = new RegExp(`(${keyword.join('|')})`, 'g');
+    //       return [!reg.test(subject), `含有敏感词--${subject?.match(reg)?.join('')}`];
+    //     }
+    //   }
+    // }
+  ]
 };
 
 // https://blog.csdn.net/qq_21197033/article/details/128609033
+// https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md

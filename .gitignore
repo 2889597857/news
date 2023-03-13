@@ -22,3 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 stats.html
+.vscode
+src/type/auto-import.d.ts
+src/type/components.d.ts

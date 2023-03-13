@@ -1,6 +1,6 @@
 <!-- eslint-disable no-param-reassign -->
 <script lang="ts" setup>
-import { getWebsite } from '@/api';
+import { changeLinkState as linkCrawler, getWebsite } from '@/api';
 import { useBoolean } from '@/hooks/common';
 import { NSwitch } from 'naive-ui';
 
@@ -39,12 +39,14 @@ interface ITableData {
   row: number;
 }
 const { bool: tableLoading, setFalse: offTableLoading } = useBoolean(true);
-const a = (rowData: ITableData) => {
+const changeLinkState = async (rowData: ITableData) => {
+  const state = rowData.state ? 0 : 1;
+  const res = await linkCrawler(rowData.key, state);
   rowData.loading = true;
-  setTimeout(() => {
+  if (res) {
     rowData.state = !rowData.state;
-    rowData.loading = false;
-  }, 3000);
+  }
+  rowData.loading = false;
 };
 const createColumns = [
   {
@@ -91,7 +93,7 @@ const createColumns = [
         value: rowData.state,
         size: 'small',
         loading: rowData.loading,
-        'onUpdate:value': () => a(rowData)
+        'onUpdate:value': () => changeLinkState(rowData)
       });
     }
   }
@@ -100,7 +102,6 @@ const data = ref<Array<ITableData>>([]);
 onMounted(async () => {
   const website = await getWebsite();
   if (website) {
-    console.log(website);
     website.forEach(site => {
       const links = site.list;
       links.forEach(link => {

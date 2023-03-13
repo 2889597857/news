@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { getContentSelector } from '@/api';
 import { useBoolean } from '@/hooks/common';
-import { NSwitch } from 'naive-ui';
+import { NButton } from 'naive-ui';
 
 interface ITableData {
   /**
@@ -32,11 +32,7 @@ interface ITableData {
 }
 const { bool: tableLoading, setFalse: offTableLoading } = useBoolean(true);
 const a = (rowData: ITableData) => {
-  rowData.loading = true;
-  setTimeout(() => {
-    rowData.state = !rowData.state;
-    rowData.loading = false;
-  }, 3000);
+  console.log(rowData);
 };
 const createColumns = [
   {
@@ -63,12 +59,16 @@ const createColumns = [
     key: 'crawler',
     width: 100,
     render(rowData: ITableData) {
-      return h(NSwitch, {
-        value: rowData.state,
-        size: 'small',
-        loading: rowData.loading,
-        'onUpdate:value': () => a(rowData)
-      });
+      return h(
+        NButton,
+        {
+          value: rowData.state,
+          size: 'small',
+          loading: rowData.loading,
+          onClick: () => a(rowData)
+        },
+        () => '编辑'
+      );
     }
   }
 ];
@@ -86,15 +86,12 @@ onMounted(async () => {
             title: link.title,
             time: link.time,
             content: link.content,
-            loading: false,
             row: links.length
           });
         });
       }
     });
-
     offTableLoading();
-    console.log(tableLoading.value);
   }
 });
 </script>

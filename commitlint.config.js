@@ -5,8 +5,6 @@
 // 3. subject 是必填项，代表此次提交的日志信息
 
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
-
   // "rule-name": [Level,Applicable,Value]
   // Level可取值有0,1,2：0-禁用 1-警告 2-错误
   // Applicable可取值有always和never：always - 应用 never - 应用其反面，类似"取反"

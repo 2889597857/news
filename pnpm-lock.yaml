@@ -26,6 +26,8 @@ specifiers:
   cross-env: ^7.0.3
   cz-conventional-changelog: ^3.3.0
   cz-customizable: ^6.3.0
+  cz-git: ^1.6.0
+  czg: ^1.6.0
   dayjs: ^1.11.2
   dotenv: ^16.0.1
   eslint: ^8.17.0
@@ -105,6 +107,8 @@ devDependencies:
   cross-env: 7.0.3
   cz-conventional-changelog: 3.3.0
   cz-customizable: 6.9.2
+  cz-git: 1.6.0
+  czg: 1.6.0
   dotenv: 16.0.3
   eslint: 8.34.0
   eslint-config-airbnb-base: 15.0.0_mvgyw3chnqkp6sgfmmtihyjpnm
@@ -2538,6 +2542,15 @@ packages:
       lodash: 4.17.21
       temp: 0.9.4
       word-wrap: 1.2.3
+    dev: true
+
+  /cz-git/1.6.0:
+    resolution: {integrity: sha512-eOGpDlYtY9qcJ+PC9Rg+Dk0aDrk6azkOOU5z52MJzKm11mtIMQIzqCtvsM7fHYschiQ0NCcrg5pNr9JaxtVA1A==}
+    dev: true
+
+  /czg/1.6.0:
+    resolution: {integrity: sha512-bFAXzGUrwanQ/VDL+s6zhoXxZbZNHCoAF0R2VAaHoFNpyAFeOrQ66TLP7FydaRsnXdBzRazfN+BUVdKUkyoHGw==}
+    hasBin: true
     dev: true
 
   /dargs/7.0.0:

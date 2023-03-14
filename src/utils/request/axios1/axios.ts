@@ -103,6 +103,7 @@ export class HttpRequest {
   // 响应拦截器
   private interceptorsResponse() {
     this.axiosInstance.interceptors.response.use(
+      // eslint-disable-next-line consistent-return
       (response: HttpResponse) => {
         window.$loadingBar?.finish();
         // 生成 cancelKey
@@ -110,7 +111,7 @@ export class HttpRequest {
         // 从请求列表中删除这次请求
         this.deleteCancelTokenByCancelKey(cancelKey);
         // 自定义拦截器
-        if (this.responseCb != undefined) {
+        if (this.responseCb !== undefined) {
           this.responseCb(response);
           this.responseCb = undefined;
           return response.data;
@@ -120,7 +121,7 @@ export class HttpRequest {
           if (code === 200) {
             return data;
           }
-        }
+        } else return undefined;
       },
       (error: HttpError) => {
         const _error = error;
@@ -169,7 +170,7 @@ export class HttpRequest {
     return this.request(url, 'get', data);
   }
 
-  public post<T>(url: string, data?: AxiosRequestConfig): Promise<T> {
+  public post<T>(url: string, data?: any): Promise<T> {
     return this.request(url, 'post', data);
   }
 }

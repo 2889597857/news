@@ -59,11 +59,11 @@ module.exports = {
       2,
       'always',
       ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']
-    ],
+    ]
     /**
      * 自定义规则
      */
-    'forbidan-keyword': [2, 'always']
+    // 'forbidan-keyword': [2, 'always']
   },
   prompt: {
     alias: { fd: 'docs: fix typos' },

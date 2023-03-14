@@ -2,12 +2,6 @@ import { getToken } from '@/utils/auth';
 import type { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
-type Result = {
-  code: number;
-  msg?: string;
-  data?: T;
-};
-
 export default class CustomAxiosInstance {
   instance: AxiosInstance;
 

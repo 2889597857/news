@@ -2,7 +2,7 @@ declare namespace NEWS {
   interface NewsItem {
     _id: string;
     title: string;
-    time: Date;
+    time: string;
     reportTime: string | number;
     url: string;
     report?: string;

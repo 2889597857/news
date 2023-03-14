@@ -1,6 +1,7 @@
 import Vue, { VNode } from 'vue';
 
 declare module '*.tsx' {
+  // eslint-disable-next-line @typescript-eslint/no-shadow, import/no-unresolved
   import Vue from 'compatible-vue';
 
   export default Vue;

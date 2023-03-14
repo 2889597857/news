@@ -4,13 +4,13 @@ import dayjs from 'dayjs';
 
 const taskInfo = reactive({
   isExecuting: false,
-  creationTime: '-',
-  success: 0,
+  creationTime: '',
+  success: '',
   difference: 0
 });
 
 const start = async () => {
-  if (taskInfo.difference === '-' || taskInfo.difference >= 1 * 60 * 60 * 1000) {
+  if (taskInfo.difference || taskInfo.difference >= 1 * 60 * 60 * 1000) {
     const res = await startTask();
     if (res.cooldown) {
       taskInfo.isExecuting = true;
@@ -23,9 +23,7 @@ const start = async () => {
   }
 };
 
-const creationTime = computed(() =>
-  taskInfo.creationTime == '-' ? '-' : dayjs(taskInfo.creationTime).format('MM-DD HH:mm')
-);
+const creationTime = computed(() => (taskInfo.creationTime ? '-' : dayjs(taskInfo.creationTime).format('MM-DD HH:mm')));
 
 onMounted(() => {
   getTaskInfo().then(res => {

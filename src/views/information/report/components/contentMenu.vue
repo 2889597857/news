@@ -1,4 +1,3 @@
-<!-- eslint-disable no-underscore-dangle -->
 <template>
   <n-dropdown
     :show="dropdownVisible"
@@ -23,13 +22,15 @@ import { computed } from 'vue';
 
 const reportStore = useReportStore();
 const message = useMessage();
-const { text, isSupported, copy } = useClipboard();
+const { isSupported, copy } = useClipboard();
 
 const props = defineProps({
   visible: Boolean,
   /** 鼠标x坐标 */
+  // eslint-disable-next-line vue/require-default-prop
   x: Number,
   /** 鼠标y坐标 */
+  // eslint-disable-next-line vue/require-default-prop
   y: Number,
   model: Boolean
 });
@@ -67,7 +68,7 @@ function getTodyReportNews() {
   });
 }
 
-async function handleSelect(key) {
+async function handleSelect(key: number) {
   const { currentReport } = reportStore;
 
   if (key === 0) {

@@ -1,4 +1,4 @@
-import GlobalBreadcrumb from './GlobalBreadcrumb.vue';
+import GlobalBreadcrumb from './GlobalBreadCrumb.vue';
 import MenuCollapse from './MenuCollapse.vue';
 // import HeaderMenu from './HeaderMenu.vue';
 // import GithubSite from './GithubSite.vue';

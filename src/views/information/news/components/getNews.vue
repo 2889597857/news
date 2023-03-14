@@ -57,7 +57,7 @@ function getNewsContent() {
           showLoading.value = false;
           news.value.url = '';
         })
-        .catch(e => {
+        .catch(() => {
           message.error('获取失败', {
             keepAliveOnHover: true
           });

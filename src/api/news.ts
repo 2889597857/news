@@ -1,5 +1,4 @@
 import { getTodayZeroHour } from '@/utils';
-import { AxiosRequestConfig } from 'axios';
 import { axios } from './index';
 
 export async function getNews(url: string) {
@@ -25,8 +24,12 @@ export function getReportNews(date = getTodayZeroHour(), isCount = 0) {
 export function getReportNewsCount() {
   return getReportNews(getTodayZeroHour(), 1);
 }
-type NewsState = 0 | 1 | 2;
-export function updateNewsState(data: AxiosRequestConfig<NewsState>) {
+type NewsState = {
+  _id: string;
+  state: 0 | 1 | 2;
+};
+
+export function updateNewsState(data: NewsState) {
   return axios.post<NEWS.updateNewsState>(`/news/update/state`, data);
 }
 
@@ -39,5 +42,5 @@ export function getTaskInfo() {
 }
 
 export function startTask() {
-  return axios.get(`/task/create`);
+  return axios.get<{ cooldown: boolean; creationTime: string }>(`/task/create`);
 }

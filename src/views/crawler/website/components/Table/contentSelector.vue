@@ -31,9 +31,7 @@ interface ITableData {
   row: number;
 }
 const { bool: tableLoading, setFalse: offTableLoading } = useBoolean(true);
-const a = (rowData: ITableData) => {
-  console.log(rowData);
-};
+const a = () => 123;
 const createColumns = [
   {
     title: '网站名称',

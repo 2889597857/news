@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { getReportNews } from '@/api';
-import { useReportStore } from '@/store/counter';
+import { Temp, useReportStore } from '@/store/counter';
 import { useTimeStore } from '@/store/timeStore';
 import { NCard, NDivider, NSpace, NSwitch } from 'naive-ui';
 import Clipboard from './components/clipboardMenu.vue';
 import ContentMenu from './components/contentMenu.vue';
 import datePicker from './components/datePicker.vue';
 import ReportItem from './components/reportItem.vue';
-import Task from './components/task.vue';
+import Task from './components/taskMenu.vue';
 
 const timeStore = useTimeStore();
 const reportStore = useReportStore();
@@ -23,34 +23,31 @@ const dropdown = reactive({
 function showDropdown() {
   dropdown.visible = true;
 }
-function hideDropdown() {
-  dropdown.visible = false;
-}
-function setDropdown(x, y) {
+
+function setDropdown(x: number, y: number) {
   Object.assign(dropdown, { x, y });
 }
 
 const isClickContextMenu = false;
 
-function handleDropdownVisible(visible) {
+function handleDropdownVisible(visible: boolean) {
   if (!isClickContextMenu) {
     dropdown.visible = visible;
   }
 }
 
-const handleContextMenu = (e, news) => {
+// eslint-disable-next-line consistent-return
+const handleContextMenu = (e: MouseEvent, news: NEWS.NewsItem) => {
+  e.preventDefault();
   if (timeStore.showContentMenu) {
-    e.preventDefault();
     const { clientX, clientY } = e;
-    reportStore.addCurrentReport(news);
+    reportStore.setCurrentReport(news);
     setDropdown(clientX, clientY);
     showDropdown();
   } else return false;
 };
 const reportNewsList = computed(() => {
-  if (newsShowModel.value) {
-    return reportStore.report;
-  }
+  if (newsShowModel.value) return reportStore.report as NEWS.NewsItem[];
   return timeStore.isAM() ? reportStore.list : [...reportStore.list].reverse();
 });
 
@@ -75,7 +72,7 @@ onMounted(() => {
     <div v-if="newsShowModel">
       <n-divider class="time-title" title-placement="left"> 全部 </n-divider>
       <report-item
-        v-for="(item, index) in reportNewsList"
+        v-for="(item, index) in reportNewsList as  NEWS.NewsItem[]"
         :id="index"
         :key="item._id"
         :report-info="item"
@@ -83,7 +80,7 @@ onMounted(() => {
       />
     </div>
     <div v-else>
-      <div v-for="list in reportNewsList" :key="list.title">
+      <div v-for="list in reportNewsList as Temp[]" :key="list.title">
         <n-divider class="time-title" title-placement="left">
           {{ list.title }}
         </n-divider>

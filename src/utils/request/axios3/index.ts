@@ -1,3 +1,3 @@
-import createRequest from './axios.js';
+// import createRequest from './axios.js';
 
-export const request = createRequest();
+// export const request = createRequest();

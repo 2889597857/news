@@ -4,7 +4,7 @@ import { useTimeStore } from './timeStore';
 
 type TempTitle = '上午' | '下午';
 
-type Temp = {
+export type Temp = {
   title: TempTitle;
   list: Array<NEWS.NewsItem>;
   count: number;
@@ -20,7 +20,7 @@ const tempObj = (title: TempTitle): Temp => {
 export const useReportStore = defineStore('report', () => {
   const report: Ref<Array<NEWS.NewsItem>> = ref([]);
 
-  const currentReport = ref({});
+  const currentReport = ref<NEWS.NewsItem>();
 
   const count = ref(0);
 
@@ -46,7 +46,7 @@ export const useReportStore = defineStore('report', () => {
     }
   }
 
-  function addCurrentReport(news: NEWS.NewsItem) {
+  function setCurrentReport(news: NEWS.NewsItem) {
     currentReport.value = news;
   }
 
@@ -56,6 +56,6 @@ export const useReportStore = defineStore('report', () => {
     list,
     currentReport,
     addReport,
-    addCurrentReport
+    setCurrentReport
   };
 });

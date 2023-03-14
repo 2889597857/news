@@ -2,9 +2,9 @@
   <n-data-table :columns="columns" :data="data" :pagination="pagination" :single-line="false" />
 </template>
 
-<script>
-import { h, defineComponent } from 'vue';
-import { NTag, NButton, NSwitch, useMessage } from 'naive-ui';
+<script lang="ts">
+import { NButton, NTag, useMessage } from 'naive-ui';
+import { defineComponent, h } from 'vue';
 
 const createColumns = ({ sendMail }) => {
   return [

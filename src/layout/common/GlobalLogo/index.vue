@@ -9,13 +9,11 @@
 
 <script setup lang="ts">
 import { useAppInfo } from '@/composables';
-import { useThemeStore } from '@/store';
 
 interface Props {
   /** 显示名字 */
   showTitle: boolean;
 }
-const themeStore = useThemeStore();
 
 defineProps<Props>();
 

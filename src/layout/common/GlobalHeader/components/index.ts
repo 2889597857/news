@@ -10,7 +10,7 @@ import MenuCollapse from './MenuCollapse.vue';
 
 export {
   MenuCollapse,
-  GlobalBreadcrumb,
+  GlobalBreadcrumb
   // HeaderMenu,
   // GithubSite,
   // FullScreen,
@@ -19,4 +19,3 @@ export {
   // SystemMessage,
   // SettingButton
 };
-

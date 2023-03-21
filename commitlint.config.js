@@ -4,6 +4,8 @@
 // 2. scope 为非必填项，用于描述改动的影响范围
 // 3. subject 是必填项，代表此次提交的日志信息
 
+// 类型提示
+/** @type {import('cz-git').UserConfig} */
 module.exports = {
   // "rule-name": [Level,Applicable,Value]
   // Level可取值有0,1,2：0-禁用 1-警告 2-错误

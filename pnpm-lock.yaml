@@ -5,8 +5,8 @@ specifiers:
   '@better-scroll/core': ^2.4.2
   '@commitlint/cli': ^17.4.4
   '@commitlint/config-conventional': ^17.4.4
-  '@iconify/json': ^2.1.62
-  '@iconify/vue': ^3.2.1
+  '@iconify/json': ^2.2.33
+  '@iconify/vue': ^4.1.0
   '@types/bmapgl': ^0.0.5
   '@types/crypto-js': ^4.1.1
   '@types/node': ^17.0.44
@@ -89,8 +89,8 @@ devDependencies:
   '@amap/amap-jsapi-types': 0.0.8
   '@commitlint/cli': 17.4.4
   '@commitlint/config-conventional': 17.4.4
-  '@iconify/json': 2.2.26
-  '@iconify/vue': 3.2.1_vue@3.2.47
+  '@iconify/json': 2.2.33
+  '@iconify/vue': 4.1.0_vue@3.2.47
   '@types/bmapgl': 0.0.5
   '@types/crypto-js': 4.1.1
   '@types/node': 17.0.45
@@ -725,8 +725,8 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: true
 
-  /@iconify/json/2.2.26:
-    resolution: {integrity: sha512-ATRMh64npEpb/ZGDHwNugZfXxy8m7MdH3MZHJPOBO39oEnNZg93jhglqGZnbDjPNffTFET+JUlImF3CXF2QE3w==}
+  /@iconify/json/2.2.33:
+    resolution: {integrity: sha512-e5PVSGmEXWMijHi396h3hfx5hBzbCiI5AcqvGOSJIaaZyRB4pdPIHCrQ//xRBeFRw+TtATRlDJUkE2XBC05b4g==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.0
@@ -766,11 +766,12 @@ packages:
       - supports-color
     dev: true
 
-  /@iconify/vue/3.2.1_vue@3.2.47:
-    resolution: {integrity: sha512-c4R6ZgFo1JrJ8aPMMgOPgfU7lBswihMGR+yWe/P4ZukC3kTkeT4+lkt9Pc/itVFMkwva/S/7u9YofmYv57fnNQ==}
+  /@iconify/vue/4.1.0_vue@3.2.47:
+    resolution: {integrity: sha512-rBQVxNoSDooqgWkQg2MqkIHkH/huNuvXGqui5wijc1zLnU7TKzbBHW9VGmbnV4asNTmIHmqV4Nvt0M2rZ/9nHA==}
     peerDependencies:
-      vue: 3.x
+      vue: '>=3'
     dependencies:
+      '@iconify/types': 2.0.0
       vue: 3.2.47
     dev: true
 

@@ -12,9 +12,10 @@
     </div>
 
     <main class="global-content-container global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
-      <global-content />
+      <n-scrollbar> <global-content /></n-scrollbar>
     </main>
     <setting-drawer />
+    <n-back-top bottom="50" />
   </div>
 </template>
 <script lang="ts" setup>

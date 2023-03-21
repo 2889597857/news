@@ -1,26 +1,28 @@
 <template>
-  <div class="content-container p-16px h-full bg-[#f6f9f8] dark:bg-[#101014] transition duration-300 ease-in-out">
-    <n-scrollbar>
-      <router-view v-slot="{ Component, route }">
-        <component :is="Component" :key="route.fullPath"></component>
-        <!-- <keep-alive v-if="keepAlive" :include="usePermissionStore().cachePageList">
-                        <component :is="Component"></component>
-                    </keep-alive>
-                    <component v-else :is="Component"></component> -->
-      </router-view>
-      <n-back-top bottom="50" />
-    </n-scrollbar>
-  </div>
+  <router-view v-slot="{ Component, route }">
+    <transition name="fade-slide" mode="out-in" :appear="true">
+      <div>
+        <keep-alive :include="['about', 'b']">
+          <component :is="Component" :key="route.fullPath" />
+        </keep-alive>
+      </div>
+    </transition>
+  </router-view>
+
+  <!-- <router-view v-slot="{ Component, route }">
+    <transition name="fade-slide" mode="out-in" :appear="true">
+      <keep-alive :include="['about', 'b']">
+        <component
+          :is="Component"
+          :key="route.fullPath"
+          :class="{ 'p-16px': true }"
+          class="flex-grow bg-#f6f9f8 dark:bg-#101014 transition duration-300 ease-in-out"
+        />
+      </keep-alive>
+    </transition>
+  </router-view> -->
 </template>
 
 <script lang="ts" setup>
 // import { usePermissionStore } from '@/store/modules/permission';
-
-// const keepAlive = ref(true);
 </script>
-
-<style scoped lang="scss">
-.content-container {
-  width: 100%;
-}
-</style>

@@ -1,11 +1,9 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition name="fade-slide" mode="out-in" :appear="true">
-      <div>
-        <keep-alive :include="['about', 'b']">
-          <component :is="Component" :key="route.fullPath" />
-        </keep-alive>
-      </div>
+      <keep-alive :include="['about', 'b']">
+        <component :is="Component" :key="route.fullPath" />
+      </keep-alive>
     </transition>
   </router-view>
 

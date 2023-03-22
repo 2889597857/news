@@ -5,9 +5,18 @@
  * @param rootPath - 根路由路径
  */
 export function getBreadcrumbByRouteKey(activeKey: string, menus: App.GlobalMenuOption[], rootPath: string) {
-  // console.log(arguments);
-  //
+  // menu item 数据结构
+  // {
+  //   icon: () => h(),
+  //   key: 'home',
+  //   label: '首页',
+  //   routeName: 'home',
+  //   routePath: '/'
+  //   children?: [] 可能有
+  // };
+  // 获取当前激活路由的菜单
   const breadcrumbMenu = getBreadcrumbMenu(activeKey, menus);
+  //
   const breadcrumb = breadcrumbMenu.map(item => transformBreadcrumbMenuToBreadcrumb(item, rootPath));
   return breadcrumb;
 }
@@ -39,6 +48,7 @@ function getBreadcrumbMenuItem(activeKey: string, menu: App.GlobalMenuOption) {
   if (activeKey === menu.routeName) {
     breadcrumbMenu.push(menu);
   }
+  // 是否有子路由
   if (activeKey.includes(menu.routeName) && menu.children && menu.children.length) {
     breadcrumbMenu.push(menu);
     breadcrumbMenu.push(

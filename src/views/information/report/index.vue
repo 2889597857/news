@@ -98,15 +98,15 @@ onMounted(() => {
         </router-link>
       </div>
     </div>
+    <content-menu
+      :model="newsShowModel"
+      :visible="dropdown.visible"
+      :x="dropdown.x"
+      :y="dropdown.y"
+      @update:visible="handleDropdownVisible"
+    >
+    </content-menu>
   </div>
-  <content-menu
-    :model="newsShowModel"
-    :visible="dropdown.visible"
-    :x="dropdown.x"
-    :y="dropdown.y"
-    @update:visible="handleDropdownVisible"
-  >
-  </content-menu>
 </template>
 
 <style scoped>

@@ -15,7 +15,7 @@ const homeRouter = {
     {
       name: 'welcome',
       path: '/home',
-      component: () => import('@/views/index.vue'),
+      component: () => import('@/views/home/index.vue'),
       meta: {
         title: '首页',
         showLink: true,

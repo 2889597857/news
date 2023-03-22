@@ -2,7 +2,9 @@
 import { InfoTable, SelectorTable, WebsiteForm } from './components';
 </script>
 <template>
-  <website-form />
-  <info-table />
-  <selector-table />
+  <div>
+    <website-form />
+    <info-table />
+    <selector-table />
+  </div>
 </template>

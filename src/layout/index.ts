@@ -1,4 +1,4 @@
-const BasicLayout = () => import('./BasicLayout/index.vue');
-const BlankLayout = () => import('./BlankLayout/index.vue');
+const BasicLayout = () => import('./BasicLayout/BasicLayout.vue');
+const BlankLayout = () => import('./BlankLayout/BlankLayout.vue');
 
 export { BasicLayout, BlankLayout };

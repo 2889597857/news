@@ -44,17 +44,14 @@ watch(
       <div class="get-news">
         <get-news />
       </div>
-      <n-scrollbar>
-        <news-item
-          v-for="(item, index) in newsList"
-          :id="index"
-          :key="item._id"
-          :menu="true"
-          :news-info="item"
-          @report-news="reportNews"
-        />
-      </n-scrollbar>
-
+      <news-item
+        v-for="(item, index) in newsList"
+        :id="index"
+        :key="item._id"
+        :menu="true"
+        :news-info="item"
+        @report-news="reportNews"
+      />
       <div class="pagination">
         <n-pagination v-model:page="page" size="large" :page-count="pageCount" :page-slot="4" />
       </div>

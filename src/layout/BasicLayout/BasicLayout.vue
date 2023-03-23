@@ -10,8 +10,7 @@
       class="fixed top-56px w-full h-44px global-tab-container global-transition"
       :style="{ paddingLeft: currentSiderWidth + 'px' }"
     >
-      <!-- <global-tab /> -->
-      <h1>TAB</h1>
+      <global-tab />
     </div>
 
     <main class="wh-full mt-90px overflow-auto global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
@@ -25,7 +24,7 @@
 </template>
 <script lang="ts" setup>
 import { useAppStore, useThemeStore } from '@/store';
-import { GlobalContent, GlobalHeader, GlobalSide, SettingDrawer } from '../common';
+import { GlobalContent, GlobalHeader, GlobalSide, GlobalTab, SettingDrawer } from '../common';
 
 const appStore = useAppStore();
 const themeStore = useThemeStore();

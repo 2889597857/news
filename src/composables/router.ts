@@ -19,9 +19,9 @@ export function useRouterPush(inSetup = true) {
     if (newTab) {
       const routerData = router.resolve(to);
       window.open(routerData.href, '_blank');
-    } else {
-      router.push(to);
+      return Promise.resolve();
     }
+    return router.push(to);
   }
 
   /** 返回上一级路由 */
@@ -39,27 +39,11 @@ export function useRouterPush(inSetup = true) {
 
   /**
    * 跳转登录页面
-   * @param loginModule - 展示的登录模块
    * @param redirectUrl - 重定向地址(登录成功后跳转的地址),默认undefined表示取当前地址为重定向地址
    */
-  function toLogin(loginModule?: EnumType.LoginModuleKey, redirectUrl?: string) {
-    const module: EnumType.LoginModuleKey = loginModule || 'pwd-login';
-    const routeLocation: RouteLocationRaw = {
-      name: 'login',
-      params: { module }
-    };
+  function toLogin(redirectUrl?: string) {
     const redirect = redirectUrl || route.value.fullPath;
-    Object.assign(routeLocation, { query: { redirect } });
-    routerPush(routeLocation);
-  }
-
-  /**
-   * 登录页切换其他模块
-   * @param module - 切换后的登录模块
-   */
-  function toLoginModule(module: EnumType.LoginModuleKey) {
-    const { query } = route.value;
-    routerPush({ name: 'login', params: { module }, query });
+    routerPush({ name: 'login', query: { redirect } });
   }
 
   /**
@@ -79,7 +63,6 @@ export function useRouterPush(inSetup = true) {
     routerBack,
     toHome,
     toLogin,
-    toLoginModule,
     toLoginRedirect
   };
 }

@@ -1,36 +1,39 @@
-<!-- <template>
-  <div ref="tabRef" class="h-full" :class="[isChromeMode ? 'flex items-end' : 'flex-y-center']">
-    <page-tab
-      v-for="(item, index) in tab.tabs"
+<template>
+  <div ref="tabRef" class="flex h-full pr-18px" :class="[isChromeMode ? 'items-end' : 'items-center gap-12px']">
+    <tab-button
+      v-for="item in tab.tabs"
       :key="item.fullPath"
-      :is-active="tab.activeTab === item.fullPath"
-      :primary-color="theme.themeColor"
-      :closable="item.name !== tab.homeTab.name"
-      :dark-mode="theme.darkMode"
-      :class="{ '!mr-0': isChromeMode && index === tab.tabs.length - 1, 'mr-10px': !isChromeMode }"
+      :active="tab.activeTab === item.fullPath"
+      :active-color="theme.themeColor"
+      :closable="!(item.name === tab.homeTab.name || item.meta.affix)"
       @click="tab.handleClickTab(item.fullPath)"
       @close="tab.removeTab(item.fullPath)"
-      @contextmenu="handleContextMenu($event, item.fullPath)"
+      @contextmenu="handleContextMenu($event, item.fullPath, item.meta.affix)"
     >
-      <Icon v-if="item.meta.icon" :icon="item.meta.icon" class="inline-block align-text-bottom mr-4px text-16px" />
+      <template #prefix>
+        <svg-icon
+          :icon="item.meta.icon"
+          :local-icon="item.meta.localIcon"
+          class="inline-block align-text-bottom text-16px"
+        />
+      </template>
       {{ item.meta.title }}
-    </page-tab>
+    </tab-button>
   </div>
   <context-menu
-    v-model:visible="dropdown.visible"
+    :visible="dropdown.visible"
     :current-path="dropdown.currentPath"
+    :affix="dropdown.affix"
     :x="dropdown.x"
     :y="dropdown.y"
+    @update:visible="handleDropdownVisible"
   />
 </template>
 
 <script setup lang="ts">
 import { useTabStore, useThemeStore } from '@/store';
-import { setTabRoutes } from '@/utils';
-import { Icon } from '@iconify/vue';
-import { useEventListener } from '@vueuse/core';
-import { computed, nextTick, reactive, ref, watch } from 'vue';
-import { ContextMenu, PageTab } from './components';
+import { computed, nextTick, reactive, ref } from 'vue';
+import { ContextMenu, TabButton } from './components';
 
 interface Emits {
   (e: 'scroll', clientX: number): void;
@@ -57,30 +60,56 @@ async function getActiveTabClientX() {
   }
 }
 
-const dropdown = reactive({
+interface DropdownConfig {
+  visible: boolean;
+  affix: boolean;
+  x: number;
+  y: number;
+  currentPath: string;
+}
+
+const dropdown: DropdownConfig = reactive({
   visible: false,
+  affix: false,
   x: 0,
   y: 0,
   currentPath: ''
 });
-function showDropdown() {
-  dropdown.visible = true;
+
+function setDropdown(config: Partial<DropdownConfig>) {
+  Object.assign(dropdown, config);
 }
-function hideDropdown() {
-  dropdown.visible = false;
-}
-function setDropdown(x: number, y: number, currentPath: string) {
-  Object.assign(dropdown, { x, y, currentPath });
+
+let isClickContextMenu = false;
+
+function handleDropdownVisible(visible: boolean) {
+  if (!isClickContextMenu) {
+    setDropdown({ visible });
+  }
 }
 
 /** 点击右键菜单 */
-async function handleContextMenu(e: MouseEvent, fullPath: string) {
+async function handleContextMenu(e: MouseEvent, currentPath: string, affix?: boolean) {
   e.preventDefault();
+
   const { clientX, clientY } = e;
-  hideDropdown();
-  setDropdown(clientX, clientY, fullPath);
-  await nextTick();
-  showDropdown();
+
+  isClickContextMenu = true;
+
+  const DURATION = dropdown.visible ? 150 : 0;
+
+  setDropdown({ visible: false });
+
+  setTimeout(() => {
+    setDropdown({
+      visible: true,
+      x: clientX,
+      y: clientY,
+      currentPath,
+      affix
+    });
+    isClickContextMenu = false;
+  }, DURATION);
 }
 
 watch(
@@ -92,11 +121,6 @@ watch(
     immediate: true
   }
 );
-
-/** 页面离开时缓存多页签数据 */
-useEventListener(window, 'beforeunload', () => {
-  setTabRoutes(tab.tabs);
-});
 </script>
 
-<style scoped></style> -->
+<style scoped></style>

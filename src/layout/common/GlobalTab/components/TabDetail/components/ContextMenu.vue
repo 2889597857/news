@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <n-dropdown
     :show="dropdownVisible"
     :options="options"
@@ -11,40 +11,39 @@
 </template>
 
 <script setup lang="ts">
+import { useIconRender } from '@/composables';
 import { useAppStore, useTabStore } from '@/store';
-import { iconifyRender } from '@/utils';
 import type { DropdownOption } from 'naive-ui';
-import { computed } from 'vue';
+
+defineOptions({ name: 'ContextMenu' });
 
 interface Props {
   /** 右键菜单可见性 */
   visible?: boolean;
   /** 当前路由路径 */
   currentPath?: string;
+  /** 是否固定在tab卡不可关闭  */
+  affix?: boolean;
   /** 鼠标x坐标 */
   x: number;
   /** 鼠标y坐标 */
   y: number;
 }
 
-interface Emits {
-  (e: 'update:visible', visible: boolean): void;
-}
-
-type DropdownKey = 'reload-current' | 'close-current' | 'close-other' | 'close-left' | 'close-right' | 'close-all';
-type Option = DropdownOption & {
-  key: DropdownKey;
-};
-
 const props = withDefaults(defineProps<Props>(), {
   visible: false,
   currentPath: ''
 });
 
+interface Emits {
+  (e: 'update:visible', visible: boolean): void;
+}
+
 const emit = defineEmits<Emits>();
 
 const app = useAppStore();
 const tab = useTabStore();
+const { iconRender } = useIconRender();
 
 const dropdownVisible = computed({
   get() {
@@ -59,37 +58,65 @@ function hide() {
   dropdownVisible.value = false;
 }
 
+type DropdownKey =
+  | 'full-content'
+  | 'reload-current'
+  | 'close-current'
+  | 'close-other'
+  | 'close-left'
+  | 'close-right'
+  | 'close-all';
+type Option = DropdownOption & {
+  key: DropdownKey;
+};
+
 const options = computed<Option[]>(() => [
+  {
+    label: '内容全屏',
+    key: 'full-content',
+    icon: iconRender({ icon: 'gridicons-fullscreen' })
+  },
   {
     label: '重新加载',
     key: 'reload-current',
     disabled: props.currentPath !== tab.activeTab,
-    icon: iconifyRender('ant-design:reload-outlined')
+    icon: iconRender({ icon: 'ant-design:reload-outlined' })
   },
   {
     label: '关闭',
     key: 'close-current',
-    disabled: props.currentPath === tab.homeTab.fullPath,
-    icon: iconifyRender('ant-design:close-outlined')
+    disabled: props.currentPath === tab.homeTab.fullPath || Boolean(props.affix),
+    icon: iconRender({ icon: 'ant-design:close-outlined' })
   },
   {
     label: '关闭其他',
     key: 'close-other',
-    icon: iconifyRender('ant-design:column-width-outlined')
+    icon: iconRender({ icon: 'ant-design:column-width-outlined' })
   },
   {
     label: '关闭左侧',
     key: 'close-left',
-    icon: iconifyRender('mdi:format-horizontal-align-left')
+    icon: iconRender({ icon: 'mdi:format-horizontal-align-left' })
   },
   {
     label: '关闭右侧',
     key: 'close-right',
-    icon: iconifyRender('mdi:format-horizontal-align-right')
+    icon: iconRender({ icon: 'mdi:format-horizontal-align-right' })
+  },
+  {
+    label: '关闭所有',
+    key: 'close-all',
+    icon: iconRender({ icon: 'ant-design:line-outlined' })
   }
 ]);
 
 const actionMap = new Map<DropdownKey, () => void>([
+  [
+    'full-content',
+    () => {
+      app.setContentFull(true);
+    }
+  ],
   [
     'reload-current',
     () => {
@@ -119,6 +146,12 @@ const actionMap = new Map<DropdownKey, () => void>([
     () => {
       tab.clearRightTab(props.currentPath);
     }
+  ],
+  [
+    'close-all',
+    () => {
+      tab.clearAllTab();
+    }
   ]
 ]);
 
@@ -132,4 +165,4 @@ function handleDropdown(optionKey: string) {
 }
 </script>
 
-<style scoped></style> -->
+<style scoped></style>

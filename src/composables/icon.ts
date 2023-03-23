@@ -1,4 +1,4 @@
-import SvgIcon from '@/components/common/SvgIcon.vue';
+import SvgIcon from '@/components/common/svg-icon.vue';
 import { h } from 'vue';
 
 /**

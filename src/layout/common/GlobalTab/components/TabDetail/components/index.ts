@@ -1,4 +1,4 @@
 import ContextMenu from './ContextMenu.vue';
-import PageTab from './PageTab.vue';
+import TabButton from './TabButton.vue';
 
-export { ContextMenu, PageTab };
+export { ContextMenu, TabButton };

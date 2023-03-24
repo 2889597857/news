@@ -13,11 +13,9 @@
       <global-tab />
     </div>
 
-    <main class="wh-full mt-90px overflow-auto global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
-      <n-scrollbar>
-        <global-content />
-        <n-back-top bottom="50" />
-      </n-scrollbar>
+    <main class="wh-full mt-100px overflow-y-auto global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
+      <global-content />
+      <n-back-top bottom="50" />
     </main>
     <setting-drawer />
   </div>
@@ -38,5 +36,18 @@ const currentSiderWidth = computed(() => {
 .global-transition {
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
+}
+
+main::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+main::-webkit-scrollbar-thumb {
+  background-color: #e1e1e1;
+  border-radius: 8px;
+}
+main::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
 }
 </style>

@@ -2,10 +2,11 @@
   <div class="global-header flex-y-center h-full">
     <menu-collapse />
     <global-breadcrumb />
+    <full-screen />
   </div>
 </template>
 <script lang="ts" setup>
-import { GlobalBreadcrumb, MenuCollapse } from './components';
+import { FullScreen, GlobalBreadcrumb, MenuCollapse } from './components';
 </script>
 <style scoped>
 .global-header {

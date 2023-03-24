@@ -12,9 +12,8 @@
     >
       <global-tab />
     </div>
-
     <main class="wh-full mt-100px overflow-y-auto global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
-      <global-content />
+      <global-content ref="el" />
       <n-back-top bottom="50" />
     </main>
     <setting-drawer />
@@ -31,6 +30,16 @@ const currentSiderWidth = computed(() => {
   const width = appStore.siderCollapse ? themeStore.sider.collapsedWidth : themeStore.sider.width;
   return width;
 });
+
+const el = ref<HTMLElement | null>(null);
+const { isFullscreen, enter } = useFullscreen(el);
+
+watch(
+  () => appStore.contentFull,
+  value => {
+    if (value && !isFullscreen) enter();
+  }
+);
 </script>
 <style scoped lang="scss">
 .global-transition {

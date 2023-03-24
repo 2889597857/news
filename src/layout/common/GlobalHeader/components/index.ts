@@ -2,7 +2,7 @@ import GlobalBreadcrumb from './GlobalBreadCrumb.vue';
 import MenuCollapse from './MenuCollapse.vue';
 // import HeaderMenu from './HeaderMenu.vue';
 // import GithubSite from './GithubSite.vue';
-// import FullScreen from './FullScreen.vue';
+import FullScreen from './FullScreen.vue';
 // import ThemeMode from './ThemeMode.vue';
 // import UserAvatar from './UserAvatar.vue';
 // import SystemMessage from './SystemMessage.vue';
@@ -10,10 +10,12 @@ import MenuCollapse from './MenuCollapse.vue';
 
 export {
   MenuCollapse,
-  GlobalBreadcrumb
+  GlobalBreadcrumb,
   // HeaderMenu,
   // GithubSite,
-  // FullScreen,
+  // HeaderMenu,
+  // GithubSite,
+  FullScreen
   // ThemeMode,
   // UserAvatar,
   // SystemMessage,

@@ -1,19 +1,28 @@
 <template>
   <div class="flex-col wh-full">
-    <aside class="fixed left-0 top-0 h-full global-transition" :style="{ width: currentSiderWidth + 'px' }">
+    <aside
+      v-show="!appStore.contentFull"
+      class="fixed left-0 top-0 h-full global-transition"
+      :style="{ width: currentSiderWidth }"
+    >
       <global-side />
     </aside>
-    <header class="fixed top-0 w-full h-56px global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
+    <header
+      v-show="!appStore.contentFull"
+      class="fixed top-0 w-full h-56px global-transition"
+      :style="{ paddingLeft: currentSiderWidth }"
+    >
       <global-header />
     </header>
     <div
+      v-show="!appStore.contentFull"
       class="fixed top-56px w-full h-44px global-tab-container global-transition"
-      :style="{ paddingLeft: currentSiderWidth + 'px' }"
+      :style="{ paddingLeft: currentSiderWidth }"
     >
       <global-tab />
     </div>
-    <main class="wh-full mt-100px overflow-y-auto global-transition" :style="{ paddingLeft: currentSiderWidth + 'px' }">
-      <global-content ref="el" />
+    <main class="wh-full overflow-y-auto global-transition" :class="{ 'content-full': !appStore.contentFull }">
+      <global-content />
       <n-back-top bottom="50" />
     </main>
     <setting-drawer />
@@ -28,25 +37,18 @@ const themeStore = useThemeStore();
 
 const currentSiderWidth = computed(() => {
   const width = appStore.siderCollapse ? themeStore.sider.collapsedWidth : themeStore.sider.width;
-  return width;
+  return `${width}px`;
 });
-
-const el = ref<HTMLElement | null>(null);
-const { isFullscreen, enter } = useFullscreen(el);
-
-watch(
-  () => appStore.contentFull,
-  value => {
-    if (value && !isFullscreen) enter();
-  }
-);
 </script>
 <style scoped lang="scss">
 .global-transition {
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
 }
-
+.content-full {
+  margin-top: 100px;
+  padding-left: v-bind(currentSiderWidth);
+}
 main::-webkit-scrollbar {
   width: 8px;
   height: 8px;

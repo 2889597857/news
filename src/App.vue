@@ -13,9 +13,11 @@
 </template>
 
 <script setup lang="ts">
+import { useGlobalEvents } from '@/composables';
 import { subscribeStore, useThemeStore } from '@/store';
 import { dateZhCN, zhCN } from 'naive-ui';
 
 const theme = useThemeStore();
 subscribeStore();
+useGlobalEvents();
 </script>

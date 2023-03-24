@@ -115,15 +115,19 @@ export const useTabStore = defineStore('tab-store', {
      * @param fullPath - 路由fullPath
      */
     async removeTab(fullPath: string) {
+      /** 路由跳转 */
       const { routerPush } = useRouterPush(false);
-
+      /** 删除的 tab 是否为激活状态 */
       const isActive = this.activeTab === fullPath;
+      /** 删除后的 tab */
       const updateTabs = this.tabs.filter(tab => tab.fullPath !== fullPath);
+      /** 删除的不是当前激活的 tab */
       if (!isActive) {
         this.tabs = updateTabs;
       }
+      /** 删除的是当前激活的 tab */
       if (isActive && updateTabs.length) {
-        const activePath = updateTabs[updateTabs.length - 1].fullPath;
+        const activePath = updateTabs.at(-1).fullPath;
         const navigationFailure = await routerPush(activePath);
         if (!navigationFailure) {
           this.tabs = updateTabs;
@@ -191,6 +195,7 @@ export const useTabStore = defineStore('tab-store', {
       const { routerPush } = useRouterPush(false);
 
       const isActive = this.activeTab === fullPath;
+      // 点击的 tab 不是激活的 tab
       if (!isActive) {
         const navigationFailure = await routerPush(fullPath);
         if (!navigationFailure) this.setActiveTab(fullPath);

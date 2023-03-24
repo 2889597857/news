@@ -48,7 +48,10 @@ withDefaults(defineProps<Props>(), {
 });
 
 const emits = defineEmits(['close']);
-const close = () => emits('close');
+const close = e => {
+  e.stopPropagation();
+  emits('close');
+};
 </script>
 <style lang="scss">
 .tab-button {

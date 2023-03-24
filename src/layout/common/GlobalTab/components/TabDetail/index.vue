@@ -1,5 +1,5 @@
 <template>
-  <div ref="tabRef" class="flex h-full pr-18px" :class="[isChromeMode ? 'items-end' : 'items-center gap-12px']">
+  <div ref="tabRef" class="flex h-full pr-18px items-end">
     <tab-button
       v-for="item in tab.tabs"
       :key="item.fullPath"
@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { useTabStore, useThemeStore } from '@/store';
-import { computed, nextTick, reactive, ref } from 'vue';
+import { nextTick, reactive, ref } from 'vue';
 import { ContextMenu, TabButton } from './components';
 
 interface Emits {
@@ -43,8 +43,6 @@ const emit = defineEmits<Emits>();
 
 const theme = useThemeStore();
 const tab = useTabStore();
-
-const isChromeMode = computed(() => theme.tab.mode === 'chrome');
 
 // 获取当前激活的tab的clientX
 const tabRef = ref<HTMLElement>();

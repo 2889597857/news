@@ -83,7 +83,6 @@ export const useTabStore = defineStore('tab-store', {
         // 有子路由的不能作为Tab
         this.homeTab = getTabRouteByVueRoute(findHome);
       }
-      console.log(this.homeTab);
     },
     /**
      * 添加多页签
@@ -137,15 +136,20 @@ export const useTabStore = defineStore('tab-store', {
      * @param excludes - 保留的多页签path
      */
     async clearTab(excludes: string[] = []) {
+      /** 路由跳转 */
       const { routerPush } = useRouterPush(false);
-
+      /** 首页 tab */
       const homePath = this.homeTab.fullPath;
+      /** 清空后需要保留的 tab */
       const remain = [homePath, ...excludes];
+      /** 当前激活的 tab 是否在保留 tabs 中 */
       const hasActive = remain.includes(this.activeTab);
+      /** 从 this.tabs 过滤出需要保留的 tab */
       const updateTabs = this.tabs.filter(tab => remain.includes(tab.fullPath));
       if (hasActive) this.tabs = updateTabs;
+      // 当前激活的 tab 不在 tabs, 选择 tabs 中最后一个 tab 为激活 tab
       if (!hasActive && updateTabs.length) {
-        const activePath = updateTabs[updateTabs.length - 1].fullPath;
+        const activePath = updateTabs.at(-1).fullPath;
         const navigationFailure = await routerPush(activePath);
         if (!navigationFailure) {
           this.tabs = updateTabs;

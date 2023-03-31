@@ -1,4 +1,4 @@
-import { axios } from './index';
+import { axios } from '@/utils';
 
 export async function getWebsite() {
   return axios.get<Array<Site.Info>>(`/site/get/info`);

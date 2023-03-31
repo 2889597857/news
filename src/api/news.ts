@@ -1,5 +1,4 @@
-import { getTodayZeroHour } from '@/utils';
-import { axios } from './index';
+import { axios, getTodayZeroHour } from '@/utils';
 
 export async function getNews(url: string) {
   return axios.get<NEWS.NewsItem>(`/news/crawler?url=${url}`);

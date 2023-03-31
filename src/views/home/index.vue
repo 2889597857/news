@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <h1>{{ page }}</h1>
+  <div class="flex">
+    <line-charts />
+    <pie-charts />
   </div>
 </template>
 <script lang="ts" setup>
-const page = ref('信息报送');
+import LineCharts from './components/LineCharts.vue';
+import PieCharts from './components/PieCharts.vue';
 </script>

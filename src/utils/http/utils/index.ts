@@ -25,4 +25,6 @@
 //   resetAuthStore();
 //   return null;
 // }
-export default async function handleRefreshToken() {}
+export default async function handleRefreshToken(a) {
+  return a;
+}

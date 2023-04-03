@@ -3,9 +3,8 @@ import CustomAxiosInstance from './instance';
 
 type RequestMethods = Extract<Method, 'get' | 'post' | 'put' | 'delete' | 'patch' | 'option' | 'head'>;
 
-export default function createRequest(config: AxiosRequestConfig) {
-  const customInstance = new CustomAxiosInstance(config);
-
+export default function createRequest(AxiosConfig: AxiosRequestConfig) {
+  const customInstance = new CustomAxiosInstance(AxiosConfig);
   function request<T>(method: RequestMethods, url: string, param?: AxiosRequestConfig, config?: any): Promise<T> {
     const axiosConfig = {
       method,

@@ -41,5 +41,5 @@ export function getTaskInfo() {
 }
 
 export function startTask() {
-  return axios.get<{ cooldown: boolean; creationTime: string }>(`/task/create`);
+  return axios.get<{ cooldown: boolean; time: string }>(`/task/create`);
 }

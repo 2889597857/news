@@ -1,14 +1,10 @@
 <script lang="ts" setup>
 import { getTaskInfo, startTask } from '@/api';
 import dayjs from 'dayjs';
-import { NButton, NSpace, useMessage } from 'naive-ui';
-import { computed } from 'vue';
-
-const message = useMessage();
 
 const taskInfo = reactive({
   isExecuting: false,
-  creationTime: '-',
+  time: '',
   success: '',
   difference: 0
 });
@@ -18,16 +14,16 @@ const start = async () => {
     const res = await startTask();
     if (res.cooldown) {
       taskInfo.isExecuting = true;
-      taskInfo.creationTime = res.creationTime;
+      taskInfo.time = res.time;
       taskInfo.success = '-';
-      message.success('任务开始执行');
+      window.$message.success('任务开始执行');
     }
   } else {
-    message.info('技能冷却中');
+    window.$message.info('技能冷却中');
   }
 };
 
-const creationTime = computed(() => (taskInfo.creationTime ? '-' : dayjs(taskInfo.creationTime).format('MM-DD HH:mm')));
+const creationTime = computed(() => (taskInfo.time ? dayjs(taskInfo.time).format('MM-DD HH:mm') : '-'));
 
 onMounted(() => {
   getTaskInfo().then(res => {

@@ -4,18 +4,19 @@ import dayjs from 'dayjs';
 
 const taskInfo = reactive({
   isExecuting: false,
-  time: '',
-  success: '',
+  time: 0,
+  success: 0,
   difference: 0
 });
 
 const start = async () => {
-  if (taskInfo.difference || taskInfo.difference >= 1 * 60 * 60 * 1000) {
+  const time = +new Date();
+  if (time - dayjs(taskInfo.time).valueOf() >= 0.5 * 60 * 60 * 1000) {
     const res = await startTask();
-    if (res.cooldown) {
+    if (res.id) {
       taskInfo.isExecuting = true;
       taskInfo.time = res.time;
-      taskInfo.success = '-';
+      taskInfo.success = 0;
       window.$message.success('任务开始执行');
     }
   } else {

@@ -5,6 +5,9 @@ declare namespace Site {
     state?: boolean;
     lastTime?: string;
     selector?: string;
+    title: string;
+    content: string;
+    time: string;
   }
   interface Info {
     _id: string;

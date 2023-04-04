@@ -1,6 +1,5 @@
 <template>
-  <v-chart class="chart" :option="option" />
-  <n-button @click="avc"> 123 </n-button>
+  <v-chart class="w-full h-360px" :option="option" />
 </template>
 
 <script lang="ts" setup>
@@ -14,9 +13,6 @@ import VChart from 'vue-echarts';
 use([CanvasRenderer, LineChart]);
 
 const option = ref();
-const avc = () => {
-  option.value.series[0].data[0] = Math.random() * 100;
-};
 
 const data = { xAxis: [], seriesA: [], seriesB: [] };
 onMounted(async () => {
@@ -125,8 +121,4 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss" scoped>
-.chart {
-  height: 400px;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { handleAxiosError, handleServiceResult } from './handleError';
 import handleRefreshToken from './utils';
 
@@ -34,7 +34,7 @@ export default class CustomAxiosInstance {
     );
     // 响应拦截器
     this.instance.interceptors.response.use(
-      async response => {
+      async (response: AxiosResponse<{ code: number; data: any; message: string }>) => {
         const { status, data } = response;
         if (status === 200 || status < 300 || status === 304) {
           // 请求成功

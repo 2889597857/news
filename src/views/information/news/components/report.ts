@@ -11,7 +11,6 @@ export default function reportNewsHook(store, showModal?: Ref<boolean>) {
   async function changeNewsState(news: NEWS.NewsItem, state = 1) {
     if (!reportLoading.value) {
       reportLoading.value = true;
-      // eslint-disable-next-line no-underscore-dangle
       const data = await updateNewsState({ _id: news._id, state });
       switch (data.state) {
         case 1:

@@ -37,7 +37,7 @@ export function isDate<T extends Date>(data: T | unknown): data is T {
 }
 
 export function isRegExp<T extends RegExp>(data: T | unknown): data is T {
-  return Object.prototype.toString.call(data) === EnumDataType.regexp;
+  return Object.prototype.toString.call(data) === EnumDataType.regExp;
 }
 
 export function isPromise<T extends Promise<any>>(data: T | unknown): data is T {

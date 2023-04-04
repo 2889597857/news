@@ -1,5 +1,5 @@
 <template>
-  <v-chart class="chart" :option="option" />
+  <v-chart class="w-full h-360px" :option="option" />
 </template>
 
 <script lang="ts" setup>
@@ -65,9 +65,3 @@ onMounted(async () => {
   };
 });
 </script>
-
-<style lang="scss" scoped>
-.chart {
-  height: 400px;
-}
-</style>

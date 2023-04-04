@@ -2,13 +2,13 @@ import { EnumStorageKey } from '@/enum';
 import { storageLocal } from '../storage';
 
 /** 缓存多页签数据 */
-export function setTabRoutes(data: GlobalTabRoute[]) {
+export function setTabRoutes(data) {
   storageLocal.setItem(EnumStorageKey['multi-tab-routes'], data);
 }
 
 /** 获取缓存的多页签数据 */
 export function getTabRoutes() {
-  const routes: GlobalTabRoute[] = [];
+  const routes = [];
   const data = storageLocal.getItem(EnumStorageKey['multi-tab-routes']);
   if (data) {
     const defaultTabRoutes = data.map(item => ({

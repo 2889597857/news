@@ -23,12 +23,8 @@ export function getReportNews(date = getTodayZeroHour(), isCount = 0) {
 export function getReportNewsCount() {
   return getReportNews(getTodayZeroHour(), 1);
 }
-type NewsState = {
-  _id: string;
-  state: 0 | 1 | 2;
-};
 
-export function updateNewsState(data: NewsState) {
+export function updateNewsState(data) {
   return axios.post<NEWS.updateNewsState>(`/news/update/state`, data);
 }
 
@@ -37,9 +33,9 @@ export function updateReportTime(data) {
 }
 
 export function getTaskInfo() {
-  return axios.get(`/task`);
+  return axios.get(`/task/new`);
 }
 
 export function startTask() {
-  return axios.get<{ cooldown: boolean; time: string }>(`/task/create`);
+  return axios.get<{ id: string; time: number }>(`/task/start`);
 }

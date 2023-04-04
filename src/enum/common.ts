@@ -21,15 +21,19 @@ export enum EnumStorageKey {
 
 /** 数据类型 */
 export enum EnumDataType {
-  number = '[object Number]',
   string = '[object String]',
+  number = '[object Number]',
   boolean = '[object Boolean]',
   null = '[object Null]',
   undefined = '[object Undefined]',
+  symbol = '[object Symbol]',
+  bigInt = '[object BigInt]',
   object = '[object Object]',
+  function = '[object Function]',
   array = '[object Array]',
   date = '[object Date]',
-  regexp = '[object RegExp]',
+  regExp = '[object RegExp]',
+  promise = '[object Promise]',
   set = '[object Set]',
   map = '[object Map]',
   file = '[object File]'

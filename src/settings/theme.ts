@@ -88,7 +88,8 @@ const defaultThemeSetting: Theme.Setting = {
   },
   footer: {
     fixed: false,
-    height: 48
+    height: 48,
+    visible: false
   },
   page: {
     animate: true,

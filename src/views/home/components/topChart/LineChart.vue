@@ -35,7 +35,7 @@ onMounted(async () => {
       }
     },
     legend: {
-      data: ['连接数', '内容数']
+      data: ['链接数', '内容数']
     },
     grid: {
       left: '3%',
@@ -58,7 +58,7 @@ onMounted(async () => {
     series: [
       {
         color: '#8e9dff',
-        name: '连接数',
+        name: '链接数',
         type: 'line',
         smooth: true,
         stack: 'Total',

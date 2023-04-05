@@ -4,14 +4,9 @@
       <n-card :bordered="false" class="rounded-16px shadow-sm">
         <div class="w-full h-360px py-12px">
           <h3 class="text-16px font-bold">基本信息</h3>
-          <h3 class="pt-32px text-24px font-bold">
-            <n-number-animation :from="0" :to="info.count" />
-          </h3>
+          <h3 class="pt-32px text-24px font-bold"><n-number-animation :from="0" :to="info.count" /> 条</h3>
           <p class="text-#aaa">采集新闻</p>
-
-          <h3 class="pt-32px text-24px font-bold">
-            <n-number-animation :from="0" :to="info.report" />
-          </h3>
+          <h3 class="pt-32px text-24px font-bold"><n-number-animation :from="0" :to="info.report" /> 条</h3>
           <p class="text-#aaa">报送新闻</p>
           <task-menu class="mt-10px" />
         </div>

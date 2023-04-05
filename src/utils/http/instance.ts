@@ -3,7 +3,7 @@ import { handleAxiosError, handleServiceResult } from './handleError';
 import handleRefreshToken from './utils';
 
 export const defaultConfig: AxiosRequestConfig = {
-  baseURL: 'http://localhost:888',
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 5000
 };
 

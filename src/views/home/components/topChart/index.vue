@@ -41,7 +41,6 @@ const info = reactive({
 
 onMounted(async () => {
   const data = await getBase();
-  console.log('data: ', data);
   Object.assign(info, data);
 });
 </script>

@@ -3,17 +3,17 @@
     <n-grid-item span="0:24 640:24 1024:6">
       <n-card :bordered="false" class="rounded-16px shadow-sm">
         <div class="w-full h-360px py-12px">
-          <h3 class="text-16px font-bold">Dashboard</h3>
-          <p class="text-#aaa">Overview Of Lasted Month</p>
+          <h3 class="text-16px font-bold">基本信息</h3>
           <h3 class="pt-32px text-24px font-bold">
-            <n-number-animation :from="0" :to="12039" />
+            <n-number-animation :from="0" :to="info.count" />
           </h3>
-          <p class="text-#aaa">Current Month Earnings</p>
+          <p class="text-#aaa">采集新闻</p>
+
           <h3 class="pt-32px text-24px font-bold">
-            <n-number-animation :from="0" :to="12039" />
+            <n-number-animation :from="0" :to="info.report" />
           </h3>
-          <p class="text-#aaa">Current Month Sales</p>
-          <n-button class="mt-24px whitespace-pre-wrap" type="primary">Last Month Summary</n-button>
+          <p class="text-#aaa">报送新闻</p>
+          <task-menu class="mt-10px" />
         </div>
       </n-card>
     </n-grid-item>
@@ -35,6 +35,18 @@
 </template>
 
 <script lang="ts" setup>
+import { getBase } from '@/api';
 import LineChart from './LineChart.vue';
 import PieChart from './PieChart.vue';
+
+const info = reactive({
+  count: 0,
+  report: 0
+});
+
+onMounted(async () => {
+  const data = await getBase();
+  console.log('data: ', data);
+  Object.assign(info, data);
+});
 </script>

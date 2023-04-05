@@ -6,3 +6,6 @@ export async function getFu() {
 export async function getTaskCount() {
   return axios.get<[{ time: string; count: number; success: number }]>('/chart/task');
 }
+export async function getBase() {
+  return axios.get<[{ count: number; report: number }]>('/chart/news/base');
+}

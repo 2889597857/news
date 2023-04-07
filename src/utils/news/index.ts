@@ -1,7 +1,7 @@
 export const copyNews = (news: NEWS.NewsItem, number: number | string = '') => {
   const { title, url, report } = news;
 
-  return `${number || ''}、标题：${title}\n链接： ${url}\n摘要：${report}${number}`;
+  return `${number || ''}、标题：${title}\n链接： ${url}\n摘要：${report}\n\n`;
 };
 
 export const copyNewsList = (newsList: Array<NEWS.NewsItem>, number = 0) => {

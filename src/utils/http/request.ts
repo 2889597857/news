@@ -5,11 +5,11 @@ type RequestMethods = Extract<Method, 'get' | 'post' | 'put' | 'delete' | 'patch
 
 export default function createRequest(AxiosConfig: AxiosRequestConfig) {
   const customInstance = new CustomAxiosInstance(AxiosConfig);
-  function request<T>(method: RequestMethods, url: string, param?: AxiosRequestConfig, config?: any): Promise<T> {
+  function request<T>(method: RequestMethods, url: string, data?: AxiosRequestConfig, config?: any): Promise<T> {
     const axiosConfig = {
       method,
       url,
-      param,
+      data,
       ...config
     };
 

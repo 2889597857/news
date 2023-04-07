@@ -13,7 +13,7 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     root,
-    base: './',
+    base: '/',
     resolve: {
       alias: {
         '@/': new URL('./src/', import.meta.url).pathname

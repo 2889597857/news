@@ -13,19 +13,15 @@
       </n-card>
     </n-grid-item>
     <n-grid-item span="0:24 640:24 1024:10">
-      <!-- <line-chart /> -->
       <n-card :bordered="false" class="rounded-16px shadow-sm">
         <line-chart />
       </n-card>
     </n-grid-item>
     <n-grid-item span="0:24 640:24 1024:8">
-      <!-- <pie-chart /> -->
-
       <n-card :bordered="false" class="rounded-16px shadow-sm">
         <pie-chart />
       </n-card>
     </n-grid-item>
-    <!-- <LineCharts /> -->
   </n-grid>
 </template>
 

@@ -2,7 +2,6 @@
 <script lang="ts" setup>
 import { getContentSelector } from '@/api';
 import { useBoolean } from '@/hooks/common';
-import { NButton } from 'naive-ui';
 
 interface ITableData {
   /**
@@ -51,24 +50,24 @@ const createColumns = [
   {
     title: '内容选择器',
     key: 'content'
-  },
-  {
-    title: '编辑',
-    key: 'crawler',
-    width: 100,
-    render(rowData: ITableData) {
-      return h(
-        NButton,
-        {
-          value: rowData.state,
-          size: 'small',
-          loading: rowData.loading,
-          onClick: () => a(rowData)
-        },
-        () => '编辑'
-      );
-    }
   }
+  // {
+  //   title: '编辑',
+  //   key: 'crawler',
+  //   width: 100,
+  //   render(rowData: ITableData) {
+  //     return h(
+  //       NButton,
+  //       {
+  //         value: rowData.state,
+  //         size: 'small',
+  //         loading: rowData.loading,
+  //         onClick: () => a(rowData)
+  //       },
+  //       () => '编辑'
+  //     );
+  //   }
+  // }
 ];
 const data = ref([]);
 onMounted(async () => {
